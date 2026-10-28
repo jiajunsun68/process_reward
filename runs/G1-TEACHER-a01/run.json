@@ -1,0 +1,239 @@
+{
+  "active_phase": "audit288",
+  "analysis": {
+    "analysis_scope": "posterior-aggregate scores first, then induce uniform-tie student choice under exact Q^pi",
+    "conditions": {
+      "H": {
+        "all_calls_valid_case_rate": 1.0,
+        "format_total_calls": 288,
+        "format_valid_calls": 288,
+        "format_valid_rate": 1.0,
+        "mean_expected_q_pi": -0.20287832922666427,
+        "mean_harm_probability": 0.10102762214216883,
+        "mean_information_action_probability": 0.8518518518518519,
+        "mean_normalized_regret": 0.03466125500158715,
+        "mean_pause_probability": 0.2938040099141796,
+        "root_cases": 288,
+        "unhelpful_information_selection_probability": 0.8680555555555555,
+        "unhelpful_mean_information_cost": 5.531876946180556,
+        "valid_only_mean_normalized_regret": 0.03466125500158715,
+        "valid_only_root_cases": 288,
+        "valuable_information_miss_probability": 0.15798611111111113
+      },
+      "P": {
+        "all_calls_valid_case_rate": 1.0,
+        "format_total_calls": 768,
+        "format_valid_calls": 768,
+        "format_valid_rate": 1.0,
+        "mean_expected_q_pi": 0.6589668280238055,
+        "mean_harm_probability": 0.05812724112203807,
+        "mean_information_action_probability": 0.9479166666666666,
+        "mean_normalized_regret": 0.013115126070325405,
+        "mean_pause_probability": 0.31611675704280384,
+        "root_cases": 288,
+        "unhelpful_information_selection_probability": 0.9479166666666666,
+        "unhelpful_mean_information_cost": 6.10899975,
+        "valid_only_mean_normalized_regret": 0.013115126070325405,
+        "valid_only_root_cases": 288,
+        "valuable_information_miss_probability": 0.041666666666666664
+      },
+      "PR": {
+        "all_calls_valid_case_rate": 1.0,
+        "format_total_calls": 768,
+        "format_valid_calls": 768,
+        "format_valid_rate": 1.0,
+        "mean_expected_q_pi": 0.6705290309221508,
+        "mean_harm_probability": 0.11816358100035528,
+        "mean_information_action_probability": 0.6302083333333334,
+        "mean_normalized_regret": 0.012826070997866774,
+        "mean_pause_probability": 0.32075135382402287,
+        "root_cases": 288,
+        "unhelpful_information_selection_probability": 0.5729166666666666,
+        "unhelpful_mean_information_cost": 3.9091588593749997,
+        "valid_only_mean_normalized_regret": 0.012826070997866774,
+        "valid_only_root_cases": 288,
+        "valuable_information_miss_probability": 0.3072916666666667
+      },
+      "PR-IC": {
+        "all_calls_valid_case_rate": 1.0,
+        "format_total_calls": 768,
+        "format_valid_calls": 768,
+        "format_valid_rate": 1.0,
+        "mean_expected_q_pi": 0.6168849760191565,
+        "mean_harm_probability": 0.10935095262223057,
+        "mean_information_action_probability": 0.6840277777777778,
+        "mean_normalized_regret": 0.014167172370441627,
+        "mean_pause_probability": 0.3074992685933405,
+        "root_cases": 288,
+        "unhelpful_information_selection_probability": 0.6875,
+        "unhelpful_mean_information_cost": 4.5114672760416665,
+        "valid_only_mean_normalized_regret": 0.014167172370441627,
+        "valid_only_root_cases": 288,
+        "valuable_information_miss_probability": 0.3020833333333333
+      },
+      "PR-full": {
+        "all_calls_valid_case_rate": 1.0,
+        "format_total_calls": 192,
+        "format_valid_calls": 192,
+        "format_valid_rate": 1.0,
+        "mean_expected_q_pi": 0.7172373215541356,
+        "mean_harm_probability": 0.048206705249330885,
+        "mean_information_action_probability": 0.9722222222222222,
+        "mean_normalized_regret": 0.012402816117126788,
+        "mean_pause_probability": 0.3287834038204417,
+        "root_cases": 72,
+        "unhelpful_information_selection_probability": 0.9583333333333334,
+        "unhelpful_mean_information_cost": 5.927743583333334,
+        "valid_only_mean_normalized_regret": 0.012402816117126788,
+        "valid_only_root_cases": 72,
+        "valuable_information_miss_probability": 0.0
+      },
+      "PR-full-IC": {
+        "all_calls_valid_case_rate": 1.0,
+        "format_total_calls": 192,
+        "format_valid_calls": 192,
+        "format_valid_rate": 1.0,
+        "mean_expected_q_pi": 0.7040105160100971,
+        "mean_harm_probability": 0.04837770542046696,
+        "mean_information_action_probability": 0.9722222222222222,
+        "mean_normalized_regret": 0.012733486255727748,
+        "mean_pause_probability": 0.32845446424585684,
+        "root_cases": 72,
+        "unhelpful_information_selection_probability": 0.9583333333333334,
+        "unhelpful_mean_information_cost": 5.956772166666667,
+        "valid_only_mean_normalized_regret": 0.012733486255727748,
+        "valid_only_root_cases": 72,
+        "valuable_information_miss_probability": 0.0
+      }
+    },
+    "decision": "insufficient mechanism evidence; no-go for automatic expansion",
+    "gate": {
+      "PR_problem_rate": true,
+      "PR_to_PRIC_improvement": false,
+      "audit_format_rate_gap_le_0.02": true,
+      "not_fully_explained_by_reference_coverage": false
+    },
+    "independent_n": 288,
+    "missing_root_cases_by_condition": {},
+    "prediction_rows": 3624,
+    "primary_PR_minus_PRIC": {
+      "ci95": [
+        -0.002671414245783646,
+        4.125496262135888e-05
+      ],
+      "mean": -0.0013411013725748552,
+      "mechanisms_at_or_above_0.15": 2,
+      "replicates": 2000,
+      "seed": 23,
+      "stratified_by": "mechanism",
+      "unit": "independent_root_case",
+      "valid_only_sensitivity": {
+        "bootstrap": {
+          "ci95": [
+            -0.002671414245783646,
+            4.125496262135888e-05
+          ],
+          "mean": -0.0013411013725748552,
+          "replicates": 2000,
+          "seed": 23,
+          "stratified_by": "mechanism",
+          "unit": "independent_root_case"
+        },
+        "root_cases": 288
+      },
+      "valuable_PR_rate_by_mechanism": {
+        "dynamic_evidence": 0.28125,
+        "progress_uncertainty": 0.125,
+        "static_diagnosis": 0.21875
+      },
+      "valuable_PR_regret_ge_0.05_rate": 0.20833333333333334
+    },
+    "reference_completeness_control": {
+      "coverage_effect_PRIC_minus_PRfullIC": {
+        "ci95": [
+          -0.00045036561941648673,
+          0.009909689463272439
+        ],
+        "mean": 0.00446061997300283,
+        "replicates": 2000,
+        "seed": 23,
+        "stratified_by": "mechanism",
+        "unit": "independent_root_case"
+      },
+      "coverage_effect_PR_minus_PRfull": {
+        "ci95": [
+          -0.0036501835449555776,
+          0.007897982496318784
+        ],
+        "mean": 0.0017868478985307555,
+        "replicates": 2000,
+        "seed": 23,
+        "stratified_by": "mechanism",
+        "unit": "independent_root_case"
+      },
+      "residual_PRfull_minus_PRfullIC": {
+        "ci95": [
+          -0.001658519631741209,
+          0.0006665092159383263
+        ],
+        "mean": -0.00033067013860096087,
+        "replicates": 2000,
+        "seed": 23,
+        "stratified_by": "mechanism",
+        "unit": "independent_root_case"
+      }
+    },
+    "teacher_calls_counted": 3624
+  },
+  "attempt_id": "G1-TEACHER-a01",
+  "completed_at_utc": "2026-10-28T07:44:13.620273+00:00",
+  "created_at_utc": "2026-10-28T07:30:09.108997+00:00",
+  "data": {
+    "cases_sha256": "2d1d7279b2bacc811cc70f32bfa577ffa31986c5eec7c8082409c9bdfaf0ba8e",
+    "split_seed": 17
+  },
+  "decoding": {
+    "batch_size": 8,
+    "do_sample": false,
+    "max_new_tokens": 128,
+    "seed": 42
+  },
+  "elapsed_model_seconds": 437.81434067804366,
+  "errors": [],
+  "gpu_name": "NVIDIA A800-SXM4-80GB",
+  "inflight_call_keys": [],
+  "model": {
+    "commit": "2de2439ea21be1dc5cb21f22f88af07e43393cbb",
+    "local_files_only": true,
+    "path": "/data4/sjj/.cache/modelscope/models/Qwen--Qwen3-4B-Instruct-2507/snapshots/2de2439ea21be1dc5cb21f22f88af07e43393cbb"
+  },
+  "model_files_saved": 0,
+  "model_loaded_at_utc": "2026-10-28T07:36:55.805263+00:00",
+  "peak_gpu_allocated_gib": 8.303150653839111,
+  "peak_gpu_reserved_gib": 9.125,
+  "phases_completed": [
+    "dev24",
+    "dev72",
+    "audit288"
+  ],
+  "planned_phase_calls": 2976,
+  "prompt": {
+    "hash": "070814a6a5a4aa7b529d86c25f40950297e014f7d1770544b6895544d3d483bc",
+    "method": "VPR-style adaptation; local model and task-specific short scoring prompt",
+    "version": "v1"
+  },
+  "remaining_phase_calls": 0,
+  "resume_supported": "inference call-key deduplication only; not a training checkpoint",
+  "run_id": "G1-TEACHER",
+  "scope": "centralized G1 dev/audit teacher scoring; no training and no model saving",
+  "status": "SUCCEEDED",
+  "teacher_calls_persisted": 3624,
+  "teacher_calls_prior_attempts": 0,
+  "teacher_calls_total_budgeted": 3624,
+  "teacher_calls_unknown_upper_bound": 0,
+  "updated_at_utc": "2026-10-28T11:41:15.729594+00:00",
+  "versions": {
+    "torch": "2.12.0+cu130",
+    "transformers": "5.10.2"
+  }
+}

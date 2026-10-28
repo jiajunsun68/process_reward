@@ -1,0 +1,35 @@
+/data4/sjj/anaconda3/lib/python3.12/site-packages/torch/cuda/__init__.py:1074: UserWarning: Can't initialize NVML
+  raw_cnt = _raw_device_count_nvml()
+{
+  "python": "3.12.13 | packaged by Anaconda, Inc. | (main, Mar 19 2026, 20:20:58) [GCC 14.3.0]",
+  "platform": "Linux-6.5.0-28-generic-x86_64-with-glibc2.35",
+  "torch": "2.12.0+cu130",
+  "torch_cuda_build": "13.0",
+  "cuda_available": true,
+  "num_visible_gpus": 1,
+  "cuda_visible_devices": "6",
+  "scope": "Only the local machine executing gpu_smoke.py",
+  "devices": [
+    {
+      "logical_index": 0,
+      "name": "NVIDIA A800-SXM4-80GB",
+      "total_memory_gib": 79.32501220703125,
+      "compute_capability": [
+        8,
+        0
+      ],
+      "multiprocessor_count": 108,
+      "native_bf16_supported": true
+    }
+  ]
+}
+{
+  "ok": true,
+  "operation": "128x128 BF16 ones matrix @ itself; expected every value = 128",
+  "logical_device": 0,
+  "output_dtype": "torch.bfloat16",
+  "finite": true,
+  "expected_result": true,
+  "peak_allocated_mib": 8.265625,
+  "peak_reserved_mib": 22.0
+}

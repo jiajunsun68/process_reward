@@ -14,6 +14,8 @@ from core import (
     observation_branches, transitioned_belief,
 )
 from generate_pairs import format_prompt, generate, scenarios, split_scenario
+from audit_cases import MECHANISMS, STRATA, generate_cases, validate_cases
+from audit_teacher import build_messages, call_plan, parse_scores
 
 
 class DecisionProblemTests(unittest.TestCase):
@@ -115,6 +117,47 @@ class DatasetTests(unittest.TestCase):
             audits = [json.loads(line) for line in (root / "pairs_audit.jsonl").read_text().splitlines()]
             for item in audits:
                 self.assertEqual(item["kept_in_both_modes"], all(item["preferences"].values()))
+
+
+class AuditProtocolTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.cases = generate_cases()
+
+    def test_exact_root_case_cells_and_true_posteriors(self) -> None:
+        summary = validate_cases(self.cases)
+        self.assertEqual(summary["independent_root_cases"], 360)
+        self.assertEqual(summary["counts"]["split:dev"], 72)
+        self.assertEqual(summary["counts"]["split:audit"], 288)
+        for mechanism in MECHANISMS:
+            for stratum in STRATA:
+                self.assertEqual(summary["counts"][f"cell:{mechanism}:{stratum}:dev"], 8)
+                self.assertEqual(summary["counts"][f"cell:{mechanism}:{stratum}:audit"], 32)
+        for case in self.cases:
+            worlds = case["private_context"]["worlds"]
+            self.assertAlmostEqual(sum(world["posterior"] for world in worlds), 1.0)
+            for action, exact in case["gold"]["q_pi"].items():
+                self.assertAlmostEqual(exact, sum(world["posterior"] * world["q_pi"][action] for world in worlds))
+                outcome = case["gold"]["candidate_outcomes_under_pi"][action]
+                self.assertTrue(0.0 <= outcome["harm_probability"] <= 1.0)
+                self.assertTrue(0.0 <= outcome["pause_probability"] <= 1.0)
+
+    def test_call_budgets_and_H_prompt_boundary(self) -> None:
+        commit = "0" * 40
+        self.assertEqual(len(call_plan(self.cases, "dev24", ("H", "P", "PR", "PR-IC"), commit, 42)), 216)
+        self.assertEqual(len(call_plan(self.cases, "dev72", ("H", "P", "PR", "PR-IC"), commit, 42)), 648)
+        self.assertEqual(len(call_plan(self.cases, "audit288", ("H", "P", "PR", "PR-IC", "PR-full", "PR-full-IC"), commit, 42)), 2976)
+        messages = json.dumps(build_messages(self.cases[0], "H", None), ensure_ascii=False)
+        self.assertNotIn("Privileged current hidden state", messages)
+        self.assertNotIn("Reference action IDs", messages)
+
+    def test_teacher_parser_is_strict_and_keeps_invalid_outputs_invalid(self) -> None:
+        order = ["a", "b", "c"]
+        parsed, error = parse_scores('{"scores":{"a":1,"b":0,"c":-1}}', order)
+        self.assertEqual(parsed, {"a": 1, "b": 0, "c": -1})
+        self.assertIsNone(error)
+        self.assertIsNone(parse_scores('{"scores":{"a":1}}', order)[0])
+        self.assertIsNone(parse_scores('{"scores":{"a":1.0,"b":0,"c":-1}}', order)[0])
 
 
 if __name__ == "__main__":
