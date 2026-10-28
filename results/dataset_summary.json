@@ -1,0 +1,30 @@
+{
+  "dataset_type": "Synthetic exact-expectation toy labels; no LLM-generated labels or GPU training",
+  "seed": 17,
+  "prompt_variants_per_scenario": 2,
+  "num_scenarios": 800,
+  "scenario_counts": {
+    "regime:in_distribution": 420,
+    "regime:ood_drift": 320,
+    "regime:ood_reliability_combination": 60,
+    "test": 438,
+    "train": 307,
+    "validation": 55
+  },
+  "pair_counts": {
+    "candidate_pairs": 4800,
+    "dropped_from_both_due_to_tie": 32,
+    "matched_pairs": 4768,
+    "opposite_labels": 2190,
+    "regime:in_distribution": 2506,
+    "regime:ood_drift": 1906,
+    "regime:ood_reliability_combination": 356,
+    "split:test": 2608,
+    "split:train": 1830,
+    "split:validation": 330
+  },
+  "matching": "For every retained pair, both teachers see the identical prompt and the same unordered actions. A tie under either teacher drops the pair from both datasets.",
+  "splits": "All pairs and prompt variants of a complete scenario configuration share one split. Drift >=0.2 and the (0.75,0.95) reliability combination are held out from training and validation.",
+  "format": "Conversational DPO: prompt/chosen/rejected. pair_id/scenario_id/regime are audit metadata, not model input.",
+  "scope": "These are first-decision labels only. A learned model must later be tested in a closed-loop environment; preference accuracy alone is insufficient."
+}

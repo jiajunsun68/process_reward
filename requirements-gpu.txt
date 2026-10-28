@@ -1,0 +1,13 @@
+# Python 3.10-3.12; install in a dedicated environment on the GPU server.
+# First install a CUDA-enabled PyTorch wheel suitable for the server's driver:
+# https://pytorch.org/get-started/previous-versions/
+# These are bounded, released API versions, not a claim of GPU validation.
+# The script records every actual installed package inside run.json.
+torch>=2.6.0,<2.9.0
+trl==0.21.0
+transformers>=4.55.0,<4.56.0
+peft>=0.17.0,<0.18.0
+accelerate>=1.4.0,<1.11.0
+datasets>=3.0.0,<4.1.0
+packaging>=24.0,<26.0
+safetensors>=0.5.0,<0.7.0

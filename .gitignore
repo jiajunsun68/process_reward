@@ -1,0 +1,27 @@
+# Local datasets and generated data
+/data/
+/datasets/
+
+# Model weights and checkpoints
+/models/
+/checkpoints/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Local experiment/service caches
+.cache/
+wandb/
+
+# Editor and OS metadata
+.DS_Store
+.idea/
+.vscode/

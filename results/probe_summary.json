@@ -1,0 +1,177 @@
+{
+  "experiment_type": "CPU analytic finite-state toy enumeration; no language model was trained or evaluated",
+  "arithmetic": "Enumerated expectations evaluated with Python floating point; no Monte Carlo sampling",
+  "canonical_counterexample": {
+    "scenario_id": "bcc485aaf7eb076719de",
+    "scenario": {
+      "p_a": 0.5,
+      "flip_probability": 0.0,
+      "inspections": [
+        {
+          "name": "precise",
+          "accuracy": 1.0,
+          "cost": 1.0
+        }
+      ],
+      "terminal_visible": false
+    },
+    "information_values": {
+      "skip": 0.0,
+      "precise": 9.0
+    },
+    "clairvoyant_values": {
+      "skip": 10.0,
+      "precise": 9.0
+    },
+    "information_action": "precise",
+    "clairvoyant_action": "skip",
+    "information_deployed_return": 9.0,
+    "clairvoyant_deployed_return": 0.0,
+    "clairvoyant_decision_regret": 9.0,
+    "selected_actions_disagree": true,
+    "deployment_information": "Both terminal controllers use only the inspection report/history; no latent fault is revealed unless terminal_visible=True."
+  },
+  "grid": {
+    "num_scenarios": 2772,
+    "selected_action_disagreement_count": 565,
+    "selected_action_disagreement_rate": 0.20382395382395382,
+    "strict_preference_reversal_count": 436,
+    "strict_preference_reversal_rate": 0.15728715728715728,
+    "positive_deployment_regret_count": 565,
+    "mean_deployment_regret": 0.6000541125541126,
+    "max_deployment_regret": 10.0,
+    "mean_information_return": 1.8727813852813853,
+    "mean_clairvoyant_deployed_return": 1.2727272727272727
+  },
+  "grid_axes": {
+    "p_a": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "cost": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0,
+      8.0
+    ],
+    "accuracy": [
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "flip_probability": [
+      0.0,
+      0.05,
+      0.1,
+      0.2,
+      0.35,
+      0.5
+    ]
+  },
+  "by_drift": [
+    {
+      "flip_probability": 0.0,
+      "num_scenarios": 462,
+      "selected_action_disagreement_count": 181,
+      "selected_action_disagreement_rate": 0.3917748917748918,
+      "strict_preference_reversal_count": 144,
+      "strict_preference_reversal_rate": 0.3116883116883117,
+      "positive_deployment_regret_count": 181,
+      "mean_deployment_regret": 1.4862554112554114,
+      "max_deployment_regret": 10.0,
+      "mean_information_return": 4.758982683982684,
+      "mean_clairvoyant_deployed_return": 3.272727272727273
+    },
+    {
+      "flip_probability": 0.05,
+      "num_scenarios": 462,
+      "selected_action_disagreement_count": 161,
+      "selected_action_disagreement_rate": 0.3484848484848485,
+      "strict_preference_reversal_count": 128,
+      "strict_preference_reversal_rate": 0.27705627705627706,
+      "positive_deployment_regret_count": 161,
+      "mean_deployment_regret": 1.136038961038961,
+      "max_deployment_regret": 7.999999999999999,
+      "mean_information_return": 3.536038961038961,
+      "mean_clairvoyant_deployed_return": 2.4
+    },
+    {
+      "flip_probability": 0.1,
+      "num_scenarios": 462,
+      "selected_action_disagreement_count": 147,
+      "selected_action_disagreement_rate": 0.3181818181818182,
+      "strict_preference_reversal_count": 113,
+      "strict_preference_reversal_rate": 0.24458874458874458,
+      "positive_deployment_regret_count": 147,
+      "mean_deployment_regret": 0.8069264069264069,
+      "max_deployment_regret": 6.000000000000001,
+      "mean_information_return": 2.406926406926407,
+      "mean_clairvoyant_deployed_return": 1.6000000000000003
+    },
+    {
+      "flip_probability": 0.2,
+      "num_scenarios": 462,
+      "selected_action_disagreement_count": 76,
+      "selected_action_disagreement_rate": 0.1645021645021645,
+      "strict_preference_reversal_count": 51,
+      "strict_preference_reversal_rate": 0.11038961038961038,
+      "positive_deployment_regret_count": 76,
+      "mean_deployment_regret": 0.17110389610389626,
+      "max_deployment_regret": 2.0000000000000018,
+      "mean_information_return": 0.5347402597402601,
+      "mean_clairvoyant_deployed_return": 0.3636363636363638
+    },
+    {
+      "flip_probability": 0.35,
+      "num_scenarios": 462,
+      "selected_action_disagreement_count": 0,
+      "selected_action_disagreement_rate": 0,
+      "strict_preference_reversal_count": 0,
+      "strict_preference_reversal_rate": 0,
+      "positive_deployment_regret_count": 0,
+      "mean_deployment_regret": 0.0,
+      "max_deployment_regret": 0.0,
+      "mean_information_return": 0.0,
+      "mean_clairvoyant_deployed_return": 0.0
+    },
+    {
+      "flip_probability": 0.5,
+      "num_scenarios": 462,
+      "selected_action_disagreement_count": 0,
+      "selected_action_disagreement_rate": 0,
+      "strict_preference_reversal_count": 0,
+      "strict_preference_reversal_rate": 0,
+      "positive_deployment_regret_count": 0,
+      "mean_deployment_regret": 0.0,
+      "max_deployment_regret": 0.0,
+      "mean_information_return": 0.0,
+      "mean_clairvoyant_deployed_return": 0.0
+    }
+  ],
+  "full_observability_control": {
+    "num_scenarios": 2772,
+    "max_value_gap": 0.0,
+    "max_deployment_regret": 0.0
+  },
+  "interpretation": [
+    "Grid averages describe this enumerated design, not a population or an empirical LLM failure rate.",
+    "Selected-action disagreement uses the documented skip-first tie break. Strict preference reversals exclude ties.",
+    "The clairvoyant teacher predicts future full observability. Its deployed terminal controller receives no extra information.",
+    "The toy exposes information-infeasible continuation labels; it does not prove that every privileged critic or process reward is biased."
+  ]
+}
