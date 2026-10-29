@@ -201,7 +201,16 @@ def main() -> None:
             torch.cuda.synchronize(device)
             before = time.perf_counter()
             with torch.inference_mode():
-                output = model.generate(**inputs, generation_config=generation_config)
+                # use_model_defaults=False must be passed to generate() itself, not
+                # the GenerationConfig constructor. Without it, transformers treats
+                # do_sample=False as an untouched dataclass default (False already
+                # equals GenerationConfig's own default) and silently re-merges the
+                # model's own generation_config.json (do_sample=True, temperature=0.7,
+                # ...) back in. Confirmed via the "modified to match model-specific
+                # defaults" warning present in every prior eval run's log.
+                output = model.generate(
+                    **inputs, generation_config=generation_config, use_model_defaults=False
+                )
             torch.cuda.synchronize(device)
             elapsed = time.perf_counter() - before
             new_tokens = output[0, prompt_length:]

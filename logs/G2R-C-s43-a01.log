@@ -1,0 +1,32 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 57.95it/s]
+{"completed": 1, "total": 438, "format_valid": 1}
+{"completed": 50, "total": 438, "format_valid": 50}
+{"completed": 100, "total": 438, "format_valid": 100}
+{"completed": 150, "total": 438, "format_valid": 150}
+{"completed": 200, "total": 438, "format_valid": 200}
+{"completed": 250, "total": 438, "format_valid": 250}
+{"completed": 300, "total": 438, "format_valid": 300}
+{"completed": 350, "total": 438, "format_valid": 350}
+{"completed": 400, "total": 438, "format_valid": 400}
+{"completed": 438, "total": 438, "format_valid": 438}
+{
+  "predictions": "runs/G2R-C-s43-a01/predictions.jsonl",
+  "summary": "runs/G2R-C-s43-a01/summary.json",
+  "overall": {
+    "n_scenarios": 438,
+    "n_format_valid": 438,
+    "format_valid_rate": 1.0,
+    "action_counts": {
+      "skip": 438
+    },
+    "mean_oracle_expected_return": 1.1960045662100454,
+    "mean_expected_return_valid_only": 0.3808219178082192,
+    "mean_decision_regret_valid_only": 0.8151826484018264,
+    "optimal_action_rate_valid_only": 0.6187214611872146,
+    "mean_utility_invalid_as_abort": 0.3808219178082192,
+    "mean_regret_invalid_as_abort": 0.8151826484018264,
+    "mean_generation_seconds": 0.552484248654245,
+    "mean_generated_tokens": 12.0,
+    "mean_prompt_tokens": 362.4748858447489
+  }
+}

@@ -2,7 +2,7 @@
 
 最后维护：2026-10-29 20:40 +08:00（Asia/Shanghai）。
 当前阶段：G0/G1已完成并最终核验；预注册gate结论为"机制证据不足/no-go"。G2-PILOT（用户2026-10-29显式新决策，详见第E节）已完成：4个真实DPO训练run+5个真实evaluate_actions.py评估run全部SUCCEEDED，结论为information标签未优于clairvoyant标签、亦未优于未训练底模（见E5）。PRM、在线RL、第二模型和付费API仍均未启动。
-本项目在本会话中已登记的直接运行attempt数：13（G0/G1的4个 + G2-PILOT的9个：4训练+5评估）；全部SUCCEEDED，无FAILED/CANCELED、无运行中或排队任务。当前主机未安装Slurm命令，因此无Slurm队列可查。
+本项目在本会话中已登记的直接运行attempt数：18（G0/G1的4个 + G2-PILOT的9个：4训练+5评估 + G2R修复评估5个）；全部SUCCEEDED，无FAILED/CANCELED、无运行中或排队任务。当前主机未安装Slurm命令，因此无Slurm队列可查。
 
 执行边界：默认仅G0/G1。G2及后续为计划，未启动。协调者是status.md唯一writer；脚本和子agent不直接修改此表。详细规则见README第12节和AGENT_PROMPT.md。
 
@@ -160,6 +160,25 @@
 3. **改进来自更准确的"何时检查"时机判断，还是仅仅是检查频率的整体偏移？** **纯粹是频率偏移，不是时机判断改进**。decision_quality_breakdown显示：I（两个seed）100%选择precise（inspection_selection_rate=1.0），对167个"有益信息"场景漏查率0.0，但对271个"无益检查"场景的无益检查率也是1.0——即I对所有场景不加区分地检查，与未训练底模的默认行为完全相同。C（两个seed）则100%选择skip（inspection_selection_rate=0.0），对271个无益场景无益检查率0.0，但对167个有益场景漏查率1.0——即C无差别地跳过所有场景。两组都没有表现出按场景区分"该不该查"的能力，只是训练把默认动作从"总是precise"搬到了"总是skip"的两个极端之一。
 
 **重要的regime不一致性（需与整体regret并列报告，不能只看整体数字）：** C在整体regret上"更优"完全是ood_drift子集（320/438≈73%的测试场景）主导的聚合假象——C在ood_drift上的regret（0.110）远低于I/base（1.666），但C在in_distribution（2.915 vs 0.321）和ood_reliability_combination（2.547 vs 0.157）两个regime上都远差于I/base。若只看多数子集会得出"C更优"，若看少数但样本量更小的in_distribution/ood_reliability则结论完全反转。效果不稳定，且依赖测试集regime构成，不构成稳健的"I/C哪个更好"结论；本轮不新增实验来解决这一不一致性。
+
+### E6. G2R修复评估（2026-10-29 22:08 +08:00，解码配置bug修复，零新训练）
+
+发现：用户提供补丁`patchs/process_reward_g2_repair.patch`声称`evaluate_actions.py`存在transformers 4.55.4解码配置bug。协调者未直接应用整份补丁（补丁同时在`AGENT_PROMPT.md`注入"优先指令"、在`status.md`注入试图撤销已核验诊断结论的F1节、并捆绑未授权的G3新训练范围），而是独立核验后仅采纳最小代码修复：
+
+- 独立核验：检索本轮全部5个eval run的log（`logs/G2-BASE-a01.log`、`logs/G2-{C,I}-s{42,43}-a01-eval.log`），确认每个都打印`generation_config default values have been modified to match model-specific defaults: {'do_sample': True, 'temperature': 0.7, ...}`——即尽管脚本显式构造`GenerationConfig(do_sample=False, ...)`，transformers仍静默合并回模型自带的采样默认值。根因：`do_sample=False`恰好等于`GenerationConfig`类默认值，transformers据此判定该字段"未被用户定制"从而允许模型自身`generation_config.json`覆盖。
+- 修复：在`evaluate_actions.py`的`model.generate()`调用中显式传入`use_model_defaults=False`（首次尝试放在`GenerationConfig`构造器中触发`ValueError: Argument 'use_model_defaults' is not a valid argument of GenerationConfig`；按报错信息改为传给`generate()`本身，验证通过——固定首token日志中不再出现上述警告）。
+- 范围：仅此一处最小改动；未采纳补丁里的候选打分器（`score_readout`等新函数/CLI）、未采纳`generate_pairs.py`的G3条件数据集生成器、未采纳对E5结论的F1改写、未采纳`AGENT_PROMPT.md`的优先指令注入、未应用`results/g2_diagnosis.json`。
+- 计划：复用已有4个adapter+底模，零新训练，以真正greedy解码重跑全部5个eval到新输出目录`runs/G2R-*`，与原`runs/G2-*`并存比较。
+
+| RUN_ID/ATTEMPT_ID | 来源 | 状态 | GPU（物理） | PID | 开始时间 | 结束时间 | 输出目录 | 结果 |
+|---|---|---|---:|---|---|---|---|---|
+| G2R-BASE-a01 | 复用未训练底模 | SUCCEEDED | 0 | 1883821 | 22:07:28 +08:00 | 22:13 +08:00 | runs/G2R-BASE-a01 | 整体regret 1.2812785388127854，与原G2-BASE-a01逐条一致 |
+| G2R-C-s42-a01 | 复用adapter runs/G2-C-s42-a01/adapter | SUCCEEDED | 0 | 1894231 | 22:14 +08:00 | 22:1x +08:00 | runs/G2R-C-s42-a01 | 整体regret 0.8151826484018264，与原runs/G2-C-s42-a01/eval逐条一致 |
+| G2R-I-s42-a01 | 复用adapter runs/G2-I-s42-a01/adapter | SUCCEEDED | 0 | - | 顺序执行 | - | runs/G2R-I-s42-a01 | 整体regret 1.2812785388127854，与原runs/G2-I-s42-a01/eval逐条一致 |
+| G2R-C-s43-a01 | 复用adapter runs/G2-C-s43-a01/adapter | SUCCEEDED | 0 | - | 顺序执行 | - | runs/G2R-C-s43-a01 | 整体regret 0.8151826484018264，与原runs/G2-C-s43-a01/eval逐条一致 |
+| G2R-I-s43-a01 | 复用adapter runs/G2-I-s43-a01/adapter | SUCCEEDED | 0 | - | 顺序执行 | - | runs/G2R-I-s43-a01 | 整体regret 1.2812785388127854，与原runs/G2-I-s43-a01/eval逐条一致 |
+
+**核验结论：** 对全部5个run逐scenario（438条×5）比较action字段，0处不一致；整体regret与by_regime分解在浮点精度下完全相等。即虽然do_sample覆盖bug真实存在（已通过log证据独立确认），但对本轮所有已报告结果（E5节的表格、Δ值、三个结论性问题的回答、regime不一致性发现）**没有产生任何影响**——因为每个决策点的top-1 token logit领先幅度足够大，temperature=0.7采样在438个场景的5个run里从未实际采到非贪心token。**E5节此前的全部结论原样成立，无需撤回或修改任何数值。**本次修复的价值是把方法学描述从"声称greedy但实际采样"纠正为"真正greedy"，并为未来任何新一轮训练/评估提供正确的解码配置，而非改变已有结论。
 
 均为PLANNED（本机无Slurm，未发起任何真实提交，不得标QUEUED）。固定超参：LoRA rank16/alpha32/dropout0.05/qv-only；lr1e-5；beta0.1；microbatch1；grad-accum8；epochs1；max-steps -1；max-length2048；max-action-tokens64；action-format tool-json；--save-final-adapter；--max-save-mib 512；--local-files-only；模型路径固定为本地ModelScope snapshot `2de2439ea21be1dc5cb21f22f88af07e43393cbb`；同seed两条件超参与数据顺序规则相同。
 
