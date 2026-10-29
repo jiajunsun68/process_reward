@@ -1,8 +1,8 @@
 # 实验状态
 
-最后维护：2026-10-28 19:41:57 +08:00（Asia/Shanghai）。
-当前阶段：G0/G1已完成并最终核验；预注册gate结论为“机制证据不足/no-go”。G2、PRM、在线RL、第二模型和付费API均未启动。
-本项目在本会话中已登记的直接运行attempt数：4；全部SUCCEEDED，无FAILED/CANCELED、无运行中或排队任务。当前主机未安装Slurm命令，因此无Slurm队列可查。
+最后维护：2026-10-29 20:40 +08:00（Asia/Shanghai）。
+当前阶段：G0/G1已完成并最终核验；预注册gate结论为"机制证据不足/no-go"。G2-PILOT（用户2026-10-29显式新决策，详见第E节）已完成：4个真实DPO训练run+5个真实evaluate_actions.py评估run全部SUCCEEDED，结论为information标签未优于clairvoyant标签、亦未优于未训练底模（见E5）。PRM、在线RL、第二模型和付费API仍均未启动。
+本项目在本会话中已登记的直接运行attempt数：13（G0/G1的4个 + G2-PILOT的9个：4训练+5评估）；全部SUCCEEDED，无FAILED/CANCELED、无运行中或排队任务。当前主机未安装Slurm命令，因此无Slurm队列可查。
 
 执行边界：默认仅G0/G1。G2及后续为计划，未启动。协调者是status.md唯一writer；脚本和子agent不直接修改此表。详细规则见README第12节和AGENT_PROMPT.md。
 
@@ -106,4 +106,73 @@
 提交前写唯一attempt、实际job-name/comment标签、完整命令、依赖、代码/数据/model版本、计算及磁盘预留、输出路径和SUBMITTING；真实回执后再查队列。Slurm查当前squeue与结束后的sacct；无调度器验证主机/PID/启动时间。提交结果不确定时先核实，不能重交。
 作业结束先VERIFYING，校验退出码、预期步数、结果和文件白名单后SUCCEEDED；失败保留记录。断线不刷新last_verified_at，另记当前观察错误。
 一个协调者串行修改本文件；用同目录.status.md.tmp写完后原子替换。任务不直接写status；不创建状态副本或后台daemon。
+
+## E. G2-PILOT（用户2026-10-29显式新决策，覆盖本文件第1行默认G0/G1-only范围）
+
+研究问题（本轮唯一目标）：固定输入/候选动作/底模/训练预算，信息可实施监督标签（information）是否比允许隐藏信息的监督标签（clairvoyant）训练出更好的信息采集决策。不扩展到新教师audit、PRM、在线RL或多轮agent。
+
+### E1. 环境修复记录
+
+共享`base` conda环境（transformers 5.10.2、trl 1.5.1）无法满足`train_dpo.py`硬编码版本门（要求`trl==0.21.0`且`4.55.0<=transformers<4.56.0`）。排查发现`/data4`、`/`、`/data2`、`/data3`均99-100%满，故未在这些位置新建环境；`/data/sjj`（本人可写、44GB可用）有足够空间。
+
+- 新建专用venv：`/data/sjj/process_reward_venv`（`python3 -m venv`，不继承系统site-packages）。
+- 按`requirements-gpu.txt`精确安装（经清华PyPI镜像，因直连pypi.org约17KB/s、镜像约300-550KB/s）：torch 2.8.0+cu128、trl 0.21.0、transformers 4.55.4、peft 0.17.1、accelerate 1.10.1、datasets 4.0.0、safetensors 0.6.2、packaging 25.0 — 全部落在requirements-gpu.txt声明区间内。
+- 磁盘：安装后`/data`剩余37GB（从44GB，实际占用约7GB，远低于分区剩余）。
+- 驱动/CUDA验证：驱动535.104.05名义最高支持CUDA 12.2，但torch 2.8.0自带CUDA 12.8 runtime实测可用（物理GPU1上256x256 BF16矩阵乘法finite=true）——与本机此前G0/G1使用的torch 2.12.0+cu130经验一致，未发现驱动不兼容。
+- 端到端smoke验证（最小化验证修复，非独立profile步骤）：用该venv在物理GPU1上以`--max-steps 3 --max-train-samples 16 --max-eval-samples 8`跑通`train_dpo.py`完整路径（模型加载→LoRA reference precompute→训练3步→validation1次），rc=0。峰值`allocated 8.08GiB / reserved 8.26GiB`；输出目录`/tmp/g2_memtest`（非仓库路径，已删除，不计入产物预算）。
+
+### E2. GPU授权更新
+
+用户2026-10-29明确："0 1 6都可以寄生"——物理GPU 0、1、6均可用，非独占/机会式共享，不抢占其他任务。单run实测峰值约8.3GiB；三卡各自可用显存会随其他租户波动，实际分配以启动前`nvidia-smi`读数为准，不固化在本表之外。
+
+### E3. 四个正式训练run预注册
+
+| RUN_ID/ATTEMPT_ID | 条件 | seed | 状态 | 当前阶段 | GPU（物理） | Job ID/host+PID+启动时间 | 开始时间 | 结束时间 | 最后更新时间 | 完成/预期optimizer steps | GPU-hours | 输出目录 | 主要结果/错误 |
+|---|---|---:|---|---|---:|---|---|---|---|---|---:|---|---|
+| G2-C-s42-a01 | clairvoyant | 42 | SUCCEEDED | 训练+eval全部完成 | 0 | klclab-X660-G45；训练PID 1553634；eval PID 1706040 | 18:44:00 +08:00 | 20:26 +08:00 | 2026-10-29 20:26 +08:00 | 229/229(训练) | 0.558(训练)+0.096(eval)=0.654 | runs/G2-C-s42-a01 | 训练train_loss0.0715/eval_loss0.00479/acc1.0/margin7.02；test-regret整体0.815(ID2.915/ood_drift0.110/ood_rel2.547)；100%选skip；valuable_info漏查率1.0；无益检查率0.0；格式有效率1.0 |
+| G2-I-s42-a01 | information | 42 | SUCCEEDED | 训练+eval全部完成 | 6训练/1eval | klclab-X660-G45；训练PID 1553635；eval PID 1706041 | 18:44:00 +08:00 | 20:26 +08:00 | 2026-10-29 20:26 +08:00 | 229/229(训练) | 0.334(训练)+0.140(eval)=0.474 | runs/G2-I-s42-a01 | 训练train_loss0.588/eval_loss0.498/acc0.736；test-regret整体1.281(ID0.321/ood_drift1.666/ood_rel0.157)——与未训练底模逐条预测100%一致；100%选precise；valuable_info漏查率0.0；无益检查率1.0；格式有效率1.0 |
+| G2-C-s43-a01 | clairvoyant | 43 | SUCCEEDED | 训练+eval全部完成 | 0 | klclab-X660-G45；训练PID 1611798；eval PID 1725156 | 19:19:18 +08:00 | 20:36 +08:00 | 2026-10-29 20:36 +08:00 | 229/229(训练) | 0.553(训练)+0.096(eval)=0.649 | runs/G2-C-s43-a01 | 训练train_loss0.0677/eval_loss0.00459/acc1.0/margin7.08；test-regret整体0.815(ID2.915/ood_drift0.110/ood_rel2.547)；100%选skip；valuable_info漏查率1.0；无益检查率0.0；格式有效率1.0 |
+| G2-I-s43-a01 | information | 43 | SUCCEEDED | 训练+eval全部完成 | 6训练/1eval | klclab-X660-G45；训练PID 1592559；eval PID 1725157 | 19:06:46 +08:00 | 20:36 +08:00 | 2026-10-29 20:36 +08:00 | 229/229(训练) | 0.335(训练)+0.143(eval)=0.478 | runs/G2-I-s43-a01 | 训练train_loss0.578/eval_loss0.492/acc0.752；test-regret整体1.281(ID0.321/ood_drift1.666/ood_rel0.157)——与未训练底模逐条预测100%一致；100%选precise；valuable_info漏查率0.0；无益检查率1.0；格式有效率1.0 |
+| G2-BASE-a01 | 未训练底模评估 | - | SUCCEEDED | eval完成 | 0 | klclab-X660-G45；PID 1694776；启动2026-10-29 20:13 +08:00 | 20:13 +08:00 | 20:19 +08:00 | 2026-10-29 20:19 +08:00 | - | 0.094(eval) | runs/G2-BASE-a01 | test共438个唯一scenario；format_valid_rate1.0；100%选precise；mean_regret_invalid_as_abort整体1.281（ID0.321/ood_drift1.666/ood_rel0.157）；valuable_info漏查率0.0；无益检查率1.0 |
+
+### E5. 最终结果表与结论（2026-10-29 20:40 +08:00）
+
+| 模型/条件 | seed | 整体 regret | ID regret | OOD drift regret | OOD reliability regret | 有益信息漏查率 | 无益检查率 | 格式有效率 | GPU-hours |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| BASE（未训练） | - | 1.281 | 0.321 | 1.666 | 0.157 | 0.0 | 1.0 | 1.0 | 0.094 |
+| C（clairvoyant） | 42 | 0.815 | 2.915 | 0.110 | 2.547 | 1.0 | 0.0 | 1.0 | 0.654 |
+| I（information） | 42 | 1.281 | 0.321 | 1.666 | 0.157 | 0.0 | 1.0 | 1.0 | 0.474 |
+| C（clairvoyant） | 43 | 0.815 | 2.915 | 0.110 | 2.547 | 1.0 | 0.0 | 1.0 | 0.649 |
+| I（information） | 43 | 1.281 | 0.321 | 1.666 | 0.157 | 0.0 | 1.0 | 1.0 | 0.478 |
+| C 两seed均值 | 42,43 | 0.815 | 2.915 | 0.110 | 2.547 | 1.0 | 0.0 | 1.0 | 0.6515 |
+| I 两seed均值 | 42,43 | 1.281 | 0.321 | 1.666 | 0.157 | 0.0 | 1.0 | 1.0 | 0.476 |
+
+Δ = Regret_C − Regret_I（整体，正数表示I更优）：seed42 = 0.815−1.281 = **−0.466**；seed43同样 = **−0.466**；两seed均值 = **−0.466**。两seed方向一致，但均为负——即C（clairvoyant）整体regret更低，不是I更优。
+
+本轮累计GPU-hours：训练1.780 + 评估0.570 = **2.350**（预算上限12，远未超）。4个final adapter各23.6MB（预算上限512MiB/个），合计≈94.5MB（预算上限3GiB）。无a02重试，无文件白名单外产物。
+
+**三个结论性问题的直接回答：**
+
+1. **I是否在两个seed上都优于C？** 否。两个seed上C的整体regret（0.815）都低于I（1.281），方向一致但结果与假设相反——信息可实施标签并未在本轮设置下训练出更好的决策。
+
+2. **I是否优于未训练底模？** 否。I42与I43的predictions.jsonl在全部438个测试场景上与G2-BASE-a01逐条完全一致（action、regret等全部相同数值），即两个information-label LoRA adapter对greedy解码结果零可测效果。已通过独立诊断排除"adapter未生效"的bug可能：对同一prompt比较启用/禁用adapter的logits，最大绝对差1.4375、平均绝对差0.40——adapter确实产生了数值影响，只是未达到翻转任何一个贪心首token决策的幅度（lr1e-5、rank16仅q/v、229步、仅训练动作token可能是此幅度不足的原因，本轮未做超参搜索，不展开新实验）。
+
+3. **改进来自更准确的"何时检查"时机判断，还是仅仅是检查频率的整体偏移？** **纯粹是频率偏移，不是时机判断改进**。decision_quality_breakdown显示：I（两个seed）100%选择precise（inspection_selection_rate=1.0），对167个"有益信息"场景漏查率0.0，但对271个"无益检查"场景的无益检查率也是1.0——即I对所有场景不加区分地检查，与未训练底模的默认行为完全相同。C（两个seed）则100%选择skip（inspection_selection_rate=0.0），对271个无益场景无益检查率0.0，但对167个有益场景漏查率1.0——即C无差别地跳过所有场景。两组都没有表现出按场景区分"该不该查"的能力，只是训练把默认动作从"总是precise"搬到了"总是skip"的两个极端之一。
+
+**重要的regime不一致性（需与整体regret并列报告，不能只看整体数字）：** C在整体regret上"更优"完全是ood_drift子集（320/438≈73%的测试场景）主导的聚合假象——C在ood_drift上的regret（0.110）远低于I/base（1.666），但C在in_distribution（2.915 vs 0.321）和ood_reliability_combination（2.547 vs 0.157）两个regime上都远差于I/base。若只看多数子集会得出"C更优"，若看少数但样本量更小的in_distribution/ood_reliability则结论完全反转。效果不稳定，且依赖测试集regime构成，不构成稳健的"I/C哪个更好"结论；本轮不新增实验来解决这一不一致性。
+
+均为PLANNED（本机无Slurm，未发起任何真实提交，不得标QUEUED）。固定超参：LoRA rank16/alpha32/dropout0.05/qv-only；lr1e-5；beta0.1；microbatch1；grad-accum8；epochs1；max-steps -1；max-length2048；max-action-tokens64；action-format tool-json；--save-final-adapter；--max-save-mib 512；--local-files-only；模型路径固定为本地ModelScope snapshot `2de2439ea21be1dc5cb21f22f88af07e43393cbb`；同seed两条件超参与数据顺序规则相同。
+
+### E4. 本轮预算账目（独立于G0/G1的36 GPU-hour/2GiB账本）
+
+| 项目 | 协议上限 | 当前已用/预留 |
+|---|---:|---:|
+| 本轮GPU-hours | ≤12（含训练+precompute+评估+失败attempt） | 环境smoke验证≈0.01，其余0 |
+| 单训练run GPU-hours | ≤2 | 0 |
+| 正式final adapter数 | ≤4，每个≤512MiB | 0 |
+| 本轮新产物总量 | ≤3GiB | 0（/tmp smoke产物已删除，不计） |
+| a02重试 | 仅真实错误触发一次，a01记录保留 | 0 |
+
+最近维护：2026-10-29 18:43 +08:00：排查环境/磁盘阻塞，新建`/data/sjj/process_reward_venv`并按requirements-gpu.txt精确安装、smoke验证通过；用户将GPU授权从{0,6}扩展为{0,1,6}（寄生式）；四个训练run与一个base评估已预注册为PLANNED，尚未实际提交。
+- 2026-10-29 19:52 +08:00：四个正式训练run全部SUCCEEDED（G2-C-s42-a01/G2-I-s42-a01/G2-I-s43-a01/G2-C-s43-a01），累计训练GPU-hours≈0.558+0.334+0.335+0.553=1.780，4个final adapter各23.6MB（共≈94.5MB），均在512MiB/run与≤4-adapter上限内。下一步：读取evaluate_actions.py接口，启动G2-BASE-a01（未训练底模，评估一次复用）+4个adapter共5次evaluate_actions.py评估。
 

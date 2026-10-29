@@ -1,0 +1,33 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 59.61it/s]
+`generation_config` default values have been modified to match model-specific defaults: {'do_sample': True, 'temperature': 0.7, 'top_k': 20, 'top_p': 0.8, 'bos_token_id': 151643}. If this is not desired, please set these values explicitly.
+{"completed": 1, "total": 438, "format_valid": 1}
+{"completed": 50, "total": 438, "format_valid": 50}
+{"completed": 100, "total": 438, "format_valid": 100}
+{"completed": 150, "total": 438, "format_valid": 150}
+{"completed": 200, "total": 438, "format_valid": 200}
+{"completed": 250, "total": 438, "format_valid": 250}
+{"completed": 300, "total": 438, "format_valid": 300}
+{"completed": 350, "total": 438, "format_valid": 350}
+{"completed": 400, "total": 438, "format_valid": 400}
+{"completed": 438, "total": 438, "format_valid": 438}
+{
+  "predictions": "runs/G2-BASE-a01/predictions.jsonl",
+  "summary": "runs/G2-BASE-a01/summary.json",
+  "overall": {
+    "n_scenarios": 438,
+    "n_format_valid": 438,
+    "format_valid_rate": 1.0,
+    "action_counts": {
+      "precise": 438
+    },
+    "mean_oracle_expected_return": 1.1960045662100454,
+    "mean_expected_return_valid_only": -0.08527397260273985,
+    "mean_decision_regret_valid_only": 1.2812785388127854,
+    "optimal_action_rate_valid_only": 0.2579908675799087,
+    "mean_utility_invalid_as_abort": -0.08527397260273985,
+    "mean_regret_invalid_as_abort": 1.2812785388127854,
+    "mean_generation_seconds": 0.7645311798734514,
+    "mean_generated_tokens": 13.0,
+    "mean_prompt_tokens": 362.4748858447489
+  }
+}
