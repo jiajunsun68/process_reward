@@ -1,0 +1,1406 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 56.10it/s]
+{"phase": "dev", "prefix_views": 50, "logical_scores": 50}
+{"phase": "dev", "prefix_views": 100, "logical_scores": 100}
+{"phase": "dev", "prefix_views": 150, "logical_scores": 150}
+{"phase": "dev", "prefix_views": 200, "logical_scores": 200}
+{"phase": "dev", "prefix_views": 250, "logical_scores": 250}
+{"phase": "dev", "prefix_views": 300, "logical_scores": 300}
+{"phase": "dev", "prefix_views": 350, "logical_scores": 350}
+{"phase": "dev", "prefix_views": 400, "logical_scores": 400}
+{"phase": "dev", "prefix_views": 450, "logical_scores": 450}
+{"phase": "dev", "prefix_views": 500, "logical_scores": 500}
+{"phase": "audit", "prefix_views": 50, "logical_scores": 563}
+{"phase": "audit", "prefix_views": 100, "logical_scores": 613}
+{"phase": "audit", "prefix_views": 150, "logical_scores": 663}
+{"phase": "audit", "prefix_views": 200, "logical_scores": 713}
+{"phase": "audit", "prefix_views": 250, "logical_scores": 763}
+{"phase": "audit", "prefix_views": 300, "logical_scores": 813}
+{"phase": "audit", "prefix_views": 350, "logical_scores": 863}
+{"phase": "audit", "prefix_views": 400, "logical_scores": 913}
+{"phase": "audit", "prefix_views": 450, "logical_scores": 963}
+{"phase": "audit", "prefix_views": 500, "logical_scores": 1013}
+{"phase": "audit", "prefix_views": 550, "logical_scores": 1063}
+{"phase": "audit", "prefix_views": 600, "logical_scores": 1113}
+{"phase": "audit", "prefix_views": 650, "logical_scores": 1163}
+{"phase": "audit", "prefix_views": 700, "logical_scores": 1213}
+{"phase": "audit", "prefix_views": 750, "logical_scores": 1263}
+{"phase": "audit", "prefix_views": 800, "logical_scores": 1313}
+{"phase": "audit", "prefix_views": 850, "logical_scores": 1363}
+{"phase": "audit", "prefix_views": 900, "logical_scores": 1413}
+{"phase": "audit", "prefix_views": 950, "logical_scores": 1463}
+{"phase": "audit", "prefix_views": 1000, "logical_scores": 1513}
+{"phase": "audit", "prefix_views": 1050, "logical_scores": 1563}
+{"phase": "audit", "prefix_views": 1100, "logical_scores": 1613}
+{"phase": "audit", "prefix_views": 1150, "logical_scores": 1663}
+{"phase": "audit", "prefix_views": 1200, "logical_scores": 1713}
+{"phase": "audit", "prefix_views": 1250, "logical_scores": 1763}
+{"phase": "audit", "prefix_views": 1300, "logical_scores": 1813}
+{"phase": "audit", "prefix_views": 1350, "logical_scores": 1863}
+{"phase": "audit", "prefix_views": 1400, "logical_scores": 1913}
+{"phase": "audit", "prefix_views": 1450, "logical_scores": 1963}
+{"phase": "audit", "prefix_views": 1500, "logical_scores": 2013}
+{"phase": "audit", "prefix_views": 1550, "logical_scores": 2063}
+{"phase": "audit", "prefix_views": 1600, "logical_scores": 2113}
+{"phase": "audit", "prefix_views": 1650, "logical_scores": 2163}
+{"phase": "audit", "prefix_views": 1700, "logical_scores": 2213}
+{"phase": "audit", "prefix_views": 1750, "logical_scores": 2263}
+{"phase": "audit", "prefix_views": 1800, "logical_scores": 2313}
+{"phase": "audit", "prefix_views": 1850, "logical_scores": 2363}
+{"phase": "audit", "prefix_views": 1900, "logical_scores": 2413}
+{"phase": "audit", "prefix_views": 1950, "logical_scores": 2463}
+{"phase": "audit", "prefix_views": 2000, "logical_scores": 2513}
+{"phase": "audit", "prefix_views": 2050, "logical_scores": 2563}
+{"phase": "closed_loop", "family": "F0006", "logical_scores": 2571}
+{"phase": "closed_loop", "family": "F0007", "logical_scores": 2577}
+{"phase": "closed_loop", "family": "F0008", "logical_scores": 2583}
+{"phase": "closed_loop", "family": "F0009", "logical_scores": 2589}
+{"phase": "closed_loop", "family": "F0010", "logical_scores": 2595}
+{"phase": "closed_loop", "family": "F0011", "logical_scores": 2601}
+{"phase": "closed_loop", "family": "F0036", "logical_scores": 2607}
+{"phase": "closed_loop", "family": "F0037", "logical_scores": 2613}
+{"phase": "closed_loop", "family": "F0038", "logical_scores": 2619}
+{"phase": "closed_loop", "family": "F0039", "logical_scores": 2633}
+{"phase": "closed_loop", "family": "F0040", "logical_scores": 2639}
+{"phase": "closed_loop", "family": "F0041", "logical_scores": 2645}
+{"phase": "closed_loop", "family": "F0066", "logical_scores": 2665}
+{"phase": "closed_loop", "family": "F0067", "logical_scores": 2671}
+{"phase": "closed_loop", "family": "F0068", "logical_scores": 2682}
+{"phase": "closed_loop", "family": "F0069", "logical_scores": 2693}
+{"phase": "closed_loop", "family": "F0070", "logical_scores": 2699}
+{"phase": "closed_loop", "family": "F0071", "logical_scores": 2709}
+{"phase": "closed_loop", "family": "F0096", "logical_scores": 2717}
+{"phase": "closed_loop", "family": "F0097", "logical_scores": 2724}
+{"phase": "closed_loop", "family": "F0098", "logical_scores": 2730}
+{"phase": "closed_loop", "family": "F0099", "logical_scores": 2736}
+{"phase": "closed_loop", "family": "F0100", "logical_scores": 2745}
+{"phase": "closed_loop", "family": "F0101", "logical_scores": 2759}
+{"phase": "closed_loop", "family": "F0126", "logical_scores": 2765}
+{"phase": "closed_loop", "family": "F0127", "logical_scores": 2771}
+{"phase": "closed_loop", "family": "F0128", "logical_scores": 2777}
+{"phase": "closed_loop", "family": "F0129", "logical_scores": 2783}
+{"phase": "closed_loop", "family": "F0130", "logical_scores": 2789}
+{"phase": "closed_loop", "family": "F0131", "logical_scores": 2795}
+{"phase": "closed_loop", "family": "F0156", "logical_scores": 2801}
+{"phase": "closed_loop", "family": "F0157", "logical_scores": 2807}
+{"phase": "closed_loop", "family": "F0158", "logical_scores": 2814}
+{"phase": "closed_loop", "family": "F0159", "logical_scores": 2821}
+{"phase": "closed_loop", "family": "F0160", "logical_scores": 2830}
+{"phase": "closed_loop", "family": "F0161", "logical_scores": 2836}
+{"predictions_rows": 2836, "trajectories": 300}
+{
+  "offline": {
+    "primary": {
+      "RAW": {
+        "regret": {
+          "macro_mean": 11.161458333333334,
+          "ci95": [
+            9.65625,
+            12.753472222222221
+          ],
+          "n_families": 144,
+          "cells": {
+            "versioned_report:reversal": {
+              "mean": 12.552083333333334,
+              "n": 24
+            },
+            "versioned_report:invariant": {
+              "mean": 12.854166666666666,
+              "n": 24
+            },
+            "scoped_authorization:reversal": {
+              "mean": 7.0,
+              "n": 24
+            },
+            "scoped_authorization:invariant": {
+              "mean": 11.260416666666666,
+              "n": 24
+            },
+            "exactly_once:reversal": {
+              "mean": 10.479166666666666,
+              "n": 24
+            },
+            "exactly_once:invariant": {
+              "mean": 12.822916666666666,
+              "n": 24
+            }
+          }
+        },
+        "optimal_rate": {
+          "macro_mean": 0.4114583333333333,
+          "ci95": [
+            0.3524305555555556,
+            0.4739583333333333
+          ],
+          "n_families": 144,
+          "cells": {
+            "versioned_report:reversal": {
+              "mean": 0.28125,
+              "n": 24
+            },
+            "versioned_report:invariant": {
+              "mean": 0.3333333333333333,
+              "n": 24
+            },
+            "scoped_authorization:reversal": {
+              "mean": 0.53125,
+              "n": 24
+            },
+            "scoped_authorization:invariant": {
+              "mean": 0.375,
+              "n": 24
+            },
+            "exactly_once:reversal": {
+              "mean": 0.4895833333333333,
+              "n": 24
+            },
+            "exactly_once:invariant": {
+              "mean": 0.4583333333333333,
+              "n": 24
+            }
+          }
+        },
+        "strict_pair": {
+          "macro_mean": 0.5231481481481481,
+          "ci95": [
+            0.4797453703703704,
+            0.5694444444444445
+          ],
+          "n_families": 144,
+          "cells": {
+            "versioned_report:reversal": {
+              "mean": 0.43402777777777773,
+              "n": 24
+            },
+            "versioned_report:invariant": {
+              "mean": 0.46527777777777773,
+              "n": 24
+            },
+            "scoped_authorization:reversal": {
+              "mean": 0.6215277777777778,
+              "n": 24
+            },
+            "scoped_authorization:invariant": {
+              "mean": 0.4861111111111111,
+              "n": 24
+            },
+            "exactly_once:reversal": {
+              "mean": 0.5694444444444444,
+              "n": 24
+            },
+            "exactly_once:invariant": {
+              "mean": 0.5625,
+              "n": 24
+            }
+          }
+        },
+        "margin": {
+          "macro_mean": 55.38194444444445,
+          "ci95": [
+            51.545138888888886,
+            58.97569444444445
+          ],
+          "n_families": 144,
+          "cells": {
+            "versioned_report:reversal": {
+              "mean": 64.0625,
+              "n": 24
+            },
+            "versioned_report:invariant": {
+              "mean": 65.9375,
+              "n": 24
+            },
+            "scoped_authorization:reversal": {
+              "mean": 57.916666666666664,
+              "n": 24
+            },
+            "scoped_authorization:invariant": {
+              "mean": 50.104166666666664,
+              "n": 24
+            },
+            "exactly_once:reversal": {
+              "mean": 44.0625,
+              "n": 24
+            },
+            "exactly_once:invariant": {
+              "mean": 50.208333333333336,
+              "n": 24
+            }
+          }
+        }
+      },
+      "FORMAT": {
+        "regret": {
+          "macro_mean": 9.661458333333334,
+          "ci95": [
+            8.230902777777777,
+            11.184027777777779
+          ],
+          "n_families": 144,
+          "cells": {
+            "versioned_report:reversal": {
+              "mean": 11.520833333333334,
+              "n": 24
+            },
+            "versioned_report:invariant": {
+              "mean": 11.645833333333334,
+              "n": 24
+            },
+            "scoped_authorization:reversal": {
+              "mean": 5.208333333333333,
+              "n": 24
+            },
+            "scoped_authorization:invariant": {
+              "mean": 10.666666666666666,
+              "n": 24
+            },
+            "exactly_once:reversal": {
+              "mean": 10.875,
+              "n": 24
+            },
+            "exactly_once:invariant": {
+              "mean": 8.052083333333334,
+              "n": 24
+            }
+          }
+        },
+        "optimal_rate": {
+          "macro_mean": 0.45138888888888884,
+          "ci95": [
+            0.3958333333333333,
+            0.5104166666666666
+          ],
+          "n_families": 144,
+          "cells": {
+            "versioned_report:reversal": {
+              "mean": 0.3333333333333333,
+              "n": 24
+            },
+            "versioned_report:invariant": {
+              "mean": 0.3958333333333333,
+              "n": 24
+            },
+            "scoped_authorization:reversal": {
+              "mean": 0.5416666666666666,
+              "n": 24
+            },
+            "scoped_authorization:invariant": {
+              "mean": 0.3958333333333333,
+              "n": 24
+            },
+            "exactly_once:reversal": {
+              "mean": 0.46875,
+              "n": 24
+            },
+            "exactly_once:invariant": {
+              "mean": 0.5729166666666666,
+              "n": 24
+            }
+          }
+        },
+        "strict_pair": {
+          "macro_mean": 0.5509259259259259,
+          "ci95": [
+            0.5063657407407408,
+            0.5943287037037037
+          ],
+          "n_families": 144,
+          "cells": {
+            "versioned_report:reversal": {
+              "mean": 0.44097222222222215,
+              "n": 24
+            },
+            "versioned_report:invariant": {
+              "mean": 0.49652777777777773,
+              "n": 24
+            },
+            "scoped_authorization:reversal": {
+              "mean": 0.6493055555555555,
+              "n": 24
+            },
+            "scoped_authorization:invariant": {
+              "mean": 0.5,
+              "n": 24
+            },
+            "exactly_once:reversal": {
+              "mean": 0.5763888888888888,
+              "n": 24
+            },
+            "exactly_once:invariant": {
+              "mean": 0.642361111111111,
+              "n": 24
+            }
+          }
+        },
+        "margin": {
+          "macro_mean": 53.229166666666664,
+          "ci95": [
+            49.46180555555555,
+            57.048611111111114
+          ],
+          "n_families": 144,
+          "cells": {
+            "versioned_report:reversal": {
+              "mean": 61.354166666666664,
+              "n": 24
+            },
+            "versioned_report:invariant": {
+              "mean": 60.9375,
+              "n": 24
+            },
+            "scoped_authorization:reversal": {
+              "mean": 54.166666666666664,
+              "n": 24
+            },
+            "scoped_authorization:invariant": {
+              "mean": 48.333333333333336,
+              "n": 24
+            },
+            "exactly_once:reversal": {
+              "mean": 43.645833333333336,
+              "n": 24
+            },
+            "exactly_once:invariant": {
+              "mean": 50.9375,
+              "n": 24
+            }
+          }
+        }
+      },
+      "LEDGER": {
+        "regret": {
+          "macro_mean": 10.052083333333334,
+          "ci95": [
+            8.588541666666666,
+            11.625
+          ],
+          "n_families": 144,
+          "cells": {
+            "versioned_report:reversal": {
+              "mean": 11.520833333333334,
+              "n": 24
+            },
+            "versioned_report:invariant": {
+              "mean": 11.645833333333334,
+              "n": 24
+            },
+            "scoped_authorization:reversal": {
+              "mean": 5.208333333333333,
+              "n": 24
+            },
+            "scoped_authorization:invariant": {
+              "mean": 10.666666666666666,
+              "n": 24
+            },
+            "exactly_once:reversal": {
+              "mean": 12.135416666666666,
+              "n": 24
+            },
+            "exactly_once:invariant": {
+              "mean": 9.135416666666666,
+              "n": 24
+            }
+          }
+        },
+        "optimal_rate": {
+          "macro_mean": 0.43576388888888884,
+          "ci95": [
+            0.37847222222222227,
+            0.49652777777777773
+          ],
+          "n_families": 144,
+          "cells": {
+            "versioned_report:reversal": {
+              "mean": 0.3333333333333333,
+              "n": 24
+            },
+            "versioned_report:invariant": {
+              "mean": 0.3958333333333333,
+              "n": 24
+            },
+            "scoped_authorization:reversal": {
+              "mean": 0.5416666666666666,
+              "n": 24
+            },
+            "scoped_authorization:invariant": {
+              "mean": 0.3958333333333333,
+              "n": 24
+            },
+            "exactly_once:reversal": {
+              "mean": 0.4270833333333333,
+              "n": 24
+            },
+            "exactly_once:invariant": {
+              "mean": 0.5208333333333334,
+              "n": 24
+            }
+          }
+        },
+        "strict_pair": {
+          "macro_mean": 0.546875,
+          "ci95": [
+            0.5023148148148148,
+            0.5920138888888888
+          ],
+          "n_families": 144,
+          "cells": {
+            "versioned_report:reversal": {
+              "mean": 0.44097222222222215,
+              "n": 24
+            },
+            "versioned_report:invariant": {
+              "mean": 0.49652777777777773,
+              "n": 24
+            },
+            "scoped_authorization:reversal": {
+              "mean": 0.6493055555555555,
+              "n": 24
+            },
+            "scoped_authorization:invariant": {
+              "mean": 0.5,
+              "n": 24
+            },
+            "exactly_once:reversal": {
+              "mean": 0.5590277777777778,
+              "n": 24
+            },
+            "exactly_once:invariant": {
+              "mean": 0.6354166666666666,
+              "n": 24
+            }
+          }
+        },
+        "margin": {
+          "macro_mean": 53.55902777777778,
+          "ci95": [
+            49.861111111111114,
+            57.204861111111114
+          ],
+          "n_families": 144,
+          "cells": {
+            "versioned_report:reversal": {
+              "mean": 61.354166666666664,
+              "n": 24
+            },
+            "versioned_report:invariant": {
+              "mean": 60.9375,
+              "n": 24
+            },
+            "scoped_authorization:reversal": {
+              "mean": 54.166666666666664,
+              "n": 24
+            },
+            "scoped_authorization:invariant": {
+              "mean": 48.333333333333336,
+              "n": 24
+            },
+            "exactly_once:reversal": {
+              "mean": 43.333333333333336,
+              "n": 24
+            },
+            "exactly_once:invariant": {
+              "mean": 53.229166666666664,
+              "n": 24
+            }
+          }
+        }
+      }
+    },
+    "secondary": {
+      "RAW": {
+        "requery": 0.07291666666666667,
+        "adopt": 0.6579861111111112,
+        "wrong": 0.3420138888888889
+      },
+      "FORMAT": {
+        "requery": 0.09375,
+        "adopt": 0.6493055555555556,
+        "wrong": 0.3506944444444444
+      },
+      "LEDGER": {
+        "requery": 0.0920138888888889,
+        "adopt": 0.6510416666666666,
+        "wrong": 0.3489583333333333
+      }
+    },
+    "diagnostics": {
+      "RAW": {
+        "reversal_both_correct": 0.10416666666666667,
+        "reversal_true_switch": 0.10416666666666667,
+        "invariant_both_correct": 0.3645833333333333,
+        "invariant_strict_switch_rate": 0.041666666666666664,
+        "invariant_argmax_tv": 0.08333333333333333,
+        "action_counts": {
+          "c1": 101,
+          "c2": 99,
+          "c0": 88
+        },
+        "unnecessary_query_rate": 0.10069444444444445,
+        "missed_query_rate": 0.3229166666666667,
+        "invalid_execution_rate": 0.19791666666666666,
+        "duplicate_execution_rate": 0.041666666666666664
+      },
+      "FORMAT": {
+        "reversal_both_correct": 0.08333333333333333,
+        "reversal_true_switch": 0.08333333333333333,
+        "invariant_both_correct": 0.3854166666666667,
+        "invariant_strict_switch_rate": 0.1388888888888889,
+        "invariant_argmax_tv": 0.1875,
+        "action_counts": {
+          "c1": 99,
+          "c2": 105,
+          "c0": 84
+        },
+        "unnecessary_query_rate": 0.10416666666666667,
+        "missed_query_rate": 0.3020833333333333,
+        "invalid_execution_rate": 0.15625,
+        "duplicate_execution_rate": 0.024305555555555556
+      },
+      "LEDGER": {
+        "reversal_both_correct": 0.06944444444444445,
+        "reversal_true_switch": 0.06944444444444445,
+        "invariant_both_correct": 0.3680555555555556,
+        "invariant_strict_switch_rate": 0.1388888888888889,
+        "invariant_argmax_tv": 0.19444444444444445,
+        "action_counts": {
+          "c1": 94,
+          "c2": 111,
+          "c0": 83
+        },
+        "unnecessary_query_rate": 0.11458333333333333,
+        "missed_query_rate": 0.3020833333333333,
+        "invalid_execution_rate": 0.16319444444444445,
+        "duplicate_execution_rate": 0.03125
+      }
+    },
+    "deltas": {
+      "RAW_minus_LEDGER": {
+        "regret": {
+          "delta": 1.109375,
+          "ci95": [
+            -0.15625000000000003,
+            2.399305555555556
+          ],
+          "n_families": 144
+        },
+        "optimal_rate": {
+          "delta": -0.024305555555555556,
+          "ci95": [
+            -0.0625,
+            0.012152777777777778
+          ],
+          "n_families": 144
+        }
+      },
+      "RAW_minus_FORMAT": {
+        "regret": {
+          "delta": 1.5,
+          "ci95": [
+            0.27430555555555564,
+            2.777777777777778
+          ],
+          "n_families": 144
+        },
+        "optimal_rate": {
+          "delta": -0.03993055555555556,
+          "ci95": [
+            -0.078125,
+            -0.0017361111111111101
+          ],
+          "n_families": 144
+        }
+      },
+      "FORMAT_minus_LEDGER": {
+        "regret": {
+          "delta": -0.390625,
+          "ci95": [
+            -1.0503472222222223,
+            0.23263888888888892
+          ],
+          "n_families": 144
+        },
+        "optimal_rate": {
+          "delta": 0.015625,
+          "ci95": [
+            -0.001736111111111111,
+            0.03472222222222222
+          ],
+          "n_families": 144
+        }
+      }
+    },
+    "gold_strata": {
+      "RAW": {
+        "query": {
+          "mean_regret": 11.479166666666666,
+          "n_families": 84
+        },
+        "direct": {
+          "mean_regret": 0.23958333333333334,
+          "n_families": 24
+        },
+        "stop": {
+          "mean_regret": 17.70138888888889,
+          "n_families": 36
+        }
+      },
+      "FORMAT": {
+        "query": {
+          "mean_regret": 10.851190476190476,
+          "n_families": 84
+        },
+        "direct": {
+          "mean_regret": 0.4479166666666667,
+          "n_families": 24
+        },
+        "stop": {
+          "mean_regret": 13.027777777777779,
+          "n_families": 36
+        }
+      },
+      "LEDGER": {
+        "query": {
+          "mean_regret": 11.211309523809524,
+          "n_families": 84
+        },
+        "direct": {
+          "mean_regret": 0.23958333333333334,
+          "n_families": 24
+        },
+        "stop": {
+          "mean_regret": 13.88888888888889,
+          "n_families": 36
+        }
+      }
+    }
+  },
+  "closed_loop": {
+    "RAW": {
+      "utility": {
+        "macro_mean": -6.034722222222222,
+        "ci95": [
+          -9.5,
+          -2.513888888888889
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": -6.666666666666667,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": -10.0,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": -1.2083333333333333,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": -8.083333333333334,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": -10.25,
+            "n": 6
+          }
+        }
+      },
+      "queries": {
+        "macro_mean": 0.20138888888888892,
+        "ci95": [
+          0.08333333333333333,
+          0.3333333333333333
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.375,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.5833333333333334,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.25,
+            "n": 6
+          }
+        }
+      },
+      "safe_completion": {
+        "macro_mean": 0.5833333333333334,
+        "ci95": [
+          0.4930555555555556,
+          0.6736111111111112
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.5833333333333334,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.5,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.6666666666666666,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.5,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.75,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.5,
+            "n": 6
+          }
+        }
+      },
+      "violation": {
+        "macro_mean": 0.2638888888888889,
+        "ci95": [
+          0.18055555555555555,
+          0.34722222222222227
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.4166666666666667,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.5,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.25,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.4166666666666667,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.0,
+            "n": 6
+          }
+        }
+      },
+      "duplicate": {
+        "macro_mean": 0.125,
+        "ci95": [
+          0.08333333333333333,
+          0.16666666666666666
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.25,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.5,
+            "n": 6
+          }
+        }
+      },
+      "incomplete": {
+        "macro_mean": 0.020833333333333332,
+        "ci95": [
+          0.0,
+          0.05555555555555555
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.041666666666666664,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.08333333333333333,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.0,
+            "n": 6
+          }
+        }
+      },
+      "horizon": {
+        "macro_mean": 0.006944444444444444,
+        "ci95": [
+          0.0,
+          0.020833333333333332
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.041666666666666664,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.0,
+            "n": 6
+          }
+        }
+      }
+    },
+    "FORMAT": {
+      "utility": {
+        "macro_mean": -4.618055555555555,
+        "ci95": [
+          -7.930555555555556,
+          -1.1041666666666667
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": -6.666666666666667,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": -10.166666666666666,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": -2.9583333333333335,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": -7.833333333333333,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": -0.08333333333333333,
+            "n": 6
+          }
+        }
+      },
+      "queries": {
+        "macro_mean": 0.24305555555555555,
+        "ci95": [
+          0.125,
+          0.36111111111111116
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.16666666666666666,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.875,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.3333333333333333,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.08333333333333333,
+            "n": 6
+          }
+        }
+      },
+      "safe_completion": {
+        "macro_mean": 0.625,
+        "ci95": [
+          0.5347222222222222,
+          0.7152777777777778
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.5833333333333334,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.5,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.6666666666666666,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.5,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.75,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.75,
+            "n": 6
+          }
+        }
+      },
+      "violation": {
+        "macro_mean": 0.2708333333333333,
+        "ci95": [
+          0.1875,
+          0.3541666666666667
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.4166666666666667,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.5,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.2916666666666667,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.4166666666666667,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.0,
+            "n": 6
+          }
+        }
+      },
+      "duplicate": {
+        "macro_mean": 0.08333333333333333,
+        "ci95": [
+          0.05555555555555555,
+          0.11111111111111112
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.25,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.25,
+            "n": 6
+          }
+        }
+      },
+      "incomplete": {
+        "macro_mean": 0.013888888888888888,
+        "ci95": [
+          0.0,
+          0.041666666666666664
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.08333333333333333,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.0,
+            "n": 6
+          }
+        }
+      },
+      "horizon": {
+        "macro_mean": 0.006944444444444444,
+        "ci95": [
+          0.0,
+          0.020833333333333332
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.041666666666666664,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.0,
+            "n": 6
+          }
+        }
+      }
+    },
+    "LEDGER": {
+      "utility": {
+        "macro_mean": -5.076388888888888,
+        "ci95": [
+          -8.416666666666666,
+          -1.5625
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": -6.666666666666667,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": -10.166666666666666,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": -2.5416666666666665,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": -7.666666666666667,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": -3.4166666666666665,
+            "n": 6
+          }
+        }
+      },
+      "queries": {
+        "macro_mean": 0.14583333333333334,
+        "ci95": [
+          0.05555555555555555,
+          0.2569444444444444
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.16666666666666666,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.4583333333333333,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.16666666666666666,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.08333333333333333,
+            "n": 6
+          }
+        }
+      },
+      "safe_completion": {
+        "macro_mean": 0.611111111111111,
+        "ci95": [
+          0.5208333333333334,
+          0.7013888888888888
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.5833333333333334,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.5,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.6666666666666666,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.5,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.75,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.6666666666666666,
+            "n": 6
+          }
+        }
+      },
+      "violation": {
+        "macro_mean": 0.2708333333333333,
+        "ci95": [
+          0.1875,
+          0.3541666666666667
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.4166666666666667,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.5,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.2916666666666667,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.4166666666666667,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.0,
+            "n": 6
+          }
+        }
+      },
+      "duplicate": {
+        "macro_mean": 0.09722222222222221,
+        "ci95": [
+          0.06944444444444443,
+          0.125
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.25,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.3333333333333333,
+            "n": 6
+          }
+        }
+      },
+      "incomplete": {
+        "macro_mean": 0.013888888888888888,
+        "ci95": [
+          0.0,
+          0.041666666666666664
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.08333333333333333,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.0,
+            "n": 6
+          }
+        }
+      },
+      "horizon": {
+        "macro_mean": 0.006944444444444444,
+        "ci95": [
+          0.0,
+          0.020833333333333332
+        ],
+        "n_families": 36,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "versioned_report:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "scoped_authorization:reversal": {
+            "mean": 0.041666666666666664,
+            "n": 6
+          },
+          "scoped_authorization:invariant": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:reversal": {
+            "mean": 0.0,
+            "n": 6
+          },
+          "exactly_once:invariant": {
+            "mean": 0.0,
+            "n": 6
+          }
+        }
+      }
+    },
+    "delta_LEDGER_minus_FORMAT_utility": {
+      "delta": -0.4583333333333333,
+      "ci95": [
+        -1.5833333333333333,
+        0.15277777777777776
+      ],
+      "n_families": 36
+    }
+  }
+}

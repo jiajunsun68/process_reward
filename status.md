@@ -1,10 +1,10 @@
 # 实验状态
 
-最后维护：2026-10-30 11:25 +08:00（Asia/Shanghai）。
-当前阶段：G0/G1已完成（预注册gate为no-go）；G2-PILOT与G2R解码修复已完成（见E节）；G3 conditional-cost轮次已完成（见G节，用户2026-10-30显式新决策）：候选评分5run、conditional数据1次、DPO TRUE/SHUFFLE各1训练、BASE/TRUE/SHUFFLE/SFT共4次评估、SFT条件触发1次，全部SUCCEEDED。G3结论：DPO部署策略与常数策略无差异（主Δ=0），implicit rerank偏好可读但弱于cost-only基线且probe无支持；SFT正对照泛化成功。PRM、在线RL、第二模型和付费API仍均未启动。
-本项目在本会话中已登记的直接运行attempt数：31（G0/G1的4个 + G2-PILOT的9个 + G2R修复评估5个 + G3的13个：5候选评分+1数据+2 DPO训练+4 conditional评估+1 SFT训练）；全部SUCCEEDED，无FAILED/CANCELED、无运行中或排队任务。当前主机未安装Slurm命令，因此无Slurm队列可查。
+最后维护：2026-10-30 17:10 +08:00（Asia/Shanghai）。
+当前阶段：G0/G1已完成（预注册gate为no-go）；G2-PILOT与G2R解码修复已完成（见E节）；G3 conditional-cost轮次已完成（见G节）；G4证据关联过程评分轮次已完成（见H节，用户2026-10-30显式新决策）：G4-DATA/AGENTRM/QWEN/ANALYZE全部COMPLETED。G4结论：主分支为GENERAL_TASK_MISMATCH——AgentRM与Qwen在该任务上均无可靠候选排序能力（reversal/invariant/secondary/各gold层普遍失败，动作近均匀），唯一改善来自“加入任何事实索引”的呈现/重复效应；LEDGER相对FORMAT无实质增益（Delta_specific=+0.003，远低于+0.5），闭环亦无同向改善（−0.98，CI含0）。不进入方法阶段；PRM、在线RL、额外模型和付费API仍均未启动。
+本项目在本会话中已登记的直接运行attempt数：35（G0/G1的4个 + G2-PILOT的9个 + G2R修复评估5个 + G3的13个 + G4的4个）；全部COMPLETED/SUCCEEDED，无FAILED/CANCELED、无运行中或排队任务。当前主机未安装Slurm命令，因此无Slurm队列可查。
 
-执行边界：默认仅G0/G1。G2及后续为计划，未启动。协调者是status.md唯一writer；脚本和子agent不直接修改此表。详细规则见README第12节和AGENT_PROMPT.md。
+执行边界：G0–G4均已完成；任何新阶段（PRM、在线RL、训练scorer、外部benchmark）须由用户显式新决策与预算，不自动启动。协调者是status.md唯一writer；脚本和子agent不直接修改此表。详细规则见README第12节和AGENT_PROMPT.md。
 
 ## A. 已完成实验与工程核验
 
@@ -299,3 +299,97 @@
 
 **预算与产物：** 本轮GPU-hours≈0.861(Step A 5次评分)+0.699(DPO-SHUFFLE)+0.342(DPO-TRUE)+0.263(G3-BASE)+0.385(G3-TRUE-eval)+0.400(G3-SHUFFLE-eval)+0.333(G3-SFT-eval)+0.200(SFT训练)=**≈3.48 GPU-hours**（上限8）；单训练attempt最大0.70h（上限2）；并行GPU最多2（GPU0+GPU6）；final adapter共**3个**（TRUE/SHUFFLE/SFT各23,613,253 bytes≈22.5MiB，上限512MiB/个、≤3个）；本轮新产物≈90MB（上限2GiB）；无checkpoint/W&B/trainer_state/tokenizer副本/逐样本文件。
 
+
+## H. G4 证据关联过程评分实验（用户2026-10-30显式新决策，按 patchs/MAINLINE_RESEARCH_PROMPT.md G4范围执行）
+
+研究问题：冻结的agent过程/价值评分器，能否根据当前可见证据的版本、适用对象、授权变化及执行确认，正确改变候选动作排序？只重新组织已有证据，能否降低评分引导的决策损失并改善短闭环执行？保留G1机制证据不足结论与G2/G3全部结果；本轮不训练actor/adapter/checkpoint（0训练、0导出）。
+
+### H0. 本轮登记的逻辑run
+
+| RUN_ID | 工作 | 状态 |
+|---|---|---|
+| G4-DATA-a01 | 180 families数据、exact gold、CPU baselines、manifest freeze（CPU-only） | COMPLETED |
+| G4-AGENTRM-a01 | AgentRM 8B原生scalar：dev→audit→closed_loop | COMPLETED |
+| G4-QWEN-a01 | Qwen3-4B prompted judge：dev→audit→closed_loop | COMPLETED |
+| G4-ANALYZE | 汇总、失败实例、研究判断 | COMPLETED |
+
+本机无Slurm，均为本地直接attempt；只有真实启动证据才写RUNNING，无QUEUED。协调者是status.md唯一writer。
+
+### H-预算账目（按用户G4指令）
+
+| 项目 | 协议上限 | 当前已用/预留 |
+|---|---:|---:|
+| GPU-hours | ≤8（含加载+dev+audit+闭环+失败+重试；两卡并行1小时=2 GPU-hours） | **1.327**（AgentRM 0.535 + Qwen 0.792） |
+| 单评分器GPU-hours | 先按≤4分配 | AgentRM 0.535、Qwen 0.792 |
+| 并行GPU | ≤2，每进程单卡 | 2（GPU1 AgentRM + GPU0 Qwen） |
+| AgentRM logical candidate scores | ≤16,848 | planned 9,798（offline 7,695 + loop 2,103）；unique forward 9,546（含cache命中差异） |
+| Qwen generation calls | ≤5,616 | planned 2,920（offline 2,565 + loop 355）；unique 2,836 |
+| 训练/adapter/checkpoint/optimizer state/模型导出 | 0 | **0**（runs/G4-*中无safetensors/adapter/checkpoint） |
+| 新增非模型产物 | ≤1 GiB（共享数据≤128MiB；单attempt≤128MiB；单日志≤10MiB） | **≈6.6MB**（data 2.2MB + runs 4.3MB + logs 88KB） |
+| 新增模型缓存 | 24 GiB（文件声明）；实际repo为27.97GiB fp32，见H-notes | **27.97 GiB**（唯一revision，见偏差说明） |
+| 新源文件 | 仅trajectory_cases.py、trajectory_score.py | 2 |
+
+### H-notes
+
+- 2026-10-30 12:05 +08:00：登记H节；开始下载唯一允许的预训练scorer `cheesewafer/Meta-Llama-3.1-8B-Instruct-regression-avg-all-v3-True-False`，固定revision `411ac92b1bdf1cfbe10653d56ddb31611af607e4`（HF API实查），经hf-mirror（huggingface.co直连在本机超时；socks代理可用但镜像直连更快）。**实际文件树合计27.97GiB（7个fp32 safetensors分片），超出文件所述24GiB缓存上限约3.97GiB**；/data4当时可用37GiB，下载仅取config/tokenizer/index/safetensors（跳过README、.gitattributes、training_args.bin），不复制到runs，不转换/导出。此偏差将在最终报告显式列出。
+- 2026-10-30 12:05 +08:00：实现与数据生成（CPU）进行中，尚未调用任何评分器。
+- 2026-10-30 16:02 +08:00：`G4-DATA-a01`完成（CPU-only）：`data/g4_evidence/cases.jsonl`（180 families；dev36/audit144；6 cells各6/24）+ `manifest.json`，共2.2MiB。验证：九个解析状态（A/B known-good/known-bad/unknown、C not_committed/committed/unknown）与Q^π0逐项一致；reversal主prefix两端gold不同且top-2 gap≥0.5；invariant两端gold相同；invariant gold动作dev每机制2/2/2、audit 8/8/8；候选c0/c1/c2的gold分布131/108/121（非固定c0）；secondary分支：225个已知变体1支、135个未知变体2支；rejection=0。CPU baselines（audit macro）：π0=0.000 regret/opt1.0、exact_planner=0.000/1.0、always_query=0.625/0.375、always_direct=15.667/0.333、always_stop=4.833/0.292。预选closed-loop 36 audit families（每机制12：reversal 6 + invariant 6）。status：**G4-DATA-a01: COMPLETED**，数据已冻结。
+- 2026-10-30 16:06 +08:00：`G4-QWEN-a01`在GPU0启动（PID 3508924，`CUDA_VISIBLE_DEVICES=0`），单样本接口检查通过（LEDGER prompt 1220 tokens，返回合法`{"scores":{"c0":80,"c1":0,"c2":30}}`）。dev phase进行中；日志`logs/G4-QWEN-a01.log`。status：**G4-QWEN-a01: RUNNING**。
+- 2026-10-30 16:20 +08:00：AgentRM权重下载完成（revision `411ac92b1bdf1cfbe10653d56ddb31611af607e4`，28GiB fp32分片→加载为bf16；/data4剩余8.9GiB）。单样本接口检查通过：`LlamaForSequenceClassification`，num_labels=1，`score.weight` [1,4096]来自checkpoint（未新初始化），示例logits[1,1]=0.664，prompt 924 tokens，渲染结尾为候选动作。修正一处输入序列化：AgentRM候选动作不再包含`candidate_id`元数据（与历史assistant动作格式一致）。`G4-AGENTRM-a01`在GPU1启动（PID 3536921，单卡，与Qwen并行为2卡）。dev进度：前50 prefix-views（150 logical scores）完成，scores有限且同prefix内spread均值0.081（区分度偏小，待审计）。Qwen dev已完成：513/513 calls，invalid=0，token max 1461；audit进行中（200/2052 views）。status：**G4-AGENTRM-a01: RUNNING，G4-QWEN-a01: RUNNING**。
+
+### H-结果：G4 全部完成（2026-10-30 17:05 +08:00）
+
+**运行记录：** G4-DATA-a01（CPU，2.2MiB数据，rejection=0）COMPLETED；G4-AGENTRM-a01（GPU1，PID 3536921，16:20:54→16:53:13，1927.3s≈0.535 GPU-hours）COMPLETED；G4-QWEN-a01（GPU0，PID 3508924，16:06:41→16:54:22，2851.7s≈0.792 GPU-hours）COMPLETED；G4-ANALYZE COMPLETED。无失败、无a02、无重试。0训练/0 adapter/0 checkpoint/0 optimizer state/0模型导出。
+
+**有效样本：** 两评分器均0 invalid。AgentRM 9,546条candidate score（dev 1,539 / audit 6,156 / closed_loop 2,151）+300条闭环轨迹；Qwen 2,836次generation（dev 513 / audit 2,052 / closed_loop 571）+300条轨迹。AgentRM token均值919.9/max 1,373；Qwen均值1,206.4/max 1,689（均<3,072上限）。FORMAT与LEDGER token数几乎相同（AgentRM 981.5 vs 981.9；Qwen 1,273.7 vs 1,271.6）。
+
+**主表（audit primary，macro equal-cell；每cell 24 audit families）：**
+
+| 评分器 | 视图 | Regret | 95% CI | 最优动作率 | Strict pair | 同history margin |
+|---|---|---:|---|---:|---:|---:|
+| AgentRM | RAW | 8.753 | [7.186, 10.344] | 0.443 | 0.487 | 0.017 |
+| AgentRM | FORMAT | 5.332 | [4.240, 6.366] | 0.345 | 0.509 | 0.024 |
+| AgentRM | LEDGER | 5.328 | [4.240, 6.361] | 0.349 | 0.510 | 0.023 |
+| Qwen | RAW | 11.161 | [9.656, 12.753] | 0.411 | 0.523 | 55.382 |
+| Qwen | FORMAT | 9.661 | [8.231, 11.184] | 0.451 | 0.551 | 53.229 |
+| Qwen | LEDGER | 10.052 | [8.589, 11.625] | 0.436 | 0.547 | 53.559 |
+
+**唯一预注册比较 Delta_specific = Regret(FORMAT) − Regret(LEDGER)：AgentRM = +0.003472，95% CI [+0.000000, +0.010417]**（远低于+0.5门槛；CI下界约为0，不满足实用标准）。Qwen同一比较 = **−0.390625**，CI [−1.050347, +0.232639]。RAW−LEDGER：AgentRM +3.425 [+1.793,+4.955]；Qwen +1.109 [−0.156,+2.399]。RAW−FORMAT：AgentRM +3.422 [+1.790,+4.951]；Qwen +1.500 [+0.274,+2.778]。即两评分器仅表现出“加入任何索引/重复事实”的呈现效应，LEDGER相对FORMAT无实质增益；Qwen在C机制上LEDGER反而更差。
+
+**Per-cell regret：** AgentRM RAW/FORMAT/LEDGER：versioned_report:reversal 11.250/10.969/10.969；versioned_report:invariant 9.198/12.312/12.312；scoped_authorization:reversal 3.740/1.958/1.958；scoped_authorization:invariant 1.156/4.792/4.792；exactly_once:reversal 11.802/0.896/0.875；exactly_once:invariant 15.375/1.062/1.062。Qwen对应：12.552/11.521/11.521；12.854/11.646/11.646；7.000/5.208/5.208；11.260/10.667/10.667；10.479/10.875/12.135；12.823/8.052/9.135。**FORMAT与LEDGER在6个cell中有5个完全同值**，说明分组整理未改变评分排序；唯一差异（AgentRM C reversal 0.896→0.875）幅度0.02。
+
+**诊断量（audit primary）：**
+| 评分器/视图 | reversal两端都正确 | 正确切换率 | invariant两端正确 | invariant严格切换率 | invariant argmax TV | 不必要查询 | 应查未查 | 违规执行 | 重复执行 | 二次重复查询（posterior加权） |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| AgentRM RAW | 0.167 | 0.167 | 0.319 | 0.194 | 0.229 | 0.215 | 0.170 | 0.160 | 0.094 | 0.168 |
+| AgentRM FORMAT | 0.094 | 0.094 | 0.215 | 0.167 | 0.188 | 0.420 | 0.146 | 0.094 | 0.000 | 0.679 |
+| AgentRM LEDGER | 0.108 | 0.108 | 0.215 | 0.167 | 0.188 | 0.417 | 0.146 | 0.094 | 0.000 | 0.630 |
+| Qwen RAW | 0.104 | 0.104 | 0.365 | 0.042 | 0.083 | 0.101 | 0.323 | 0.198 | 0.042 | 0.073 |
+| Qwen FORMAT | 0.083 | 0.083 | 0.385 | 0.139 | 0.188 | 0.104 | 0.302 | 0.156 | 0.024 | 0.094 |
+| Qwen LEDGER | 0.069 | 0.069 | 0.368 | 0.139 | 0.194 | 0.115 | 0.302 | 0.163 | 0.031 | 0.092 |
+
+**Gold-action分层 regret（audit primary）：** AgentRM RAW query/direct/stop = 8.97/0.469/13.77；FORMAT 5.90/0.58/7.18；LEDGER 5.89/0.58/7.18。Qwen RAW 11.48/0.24/17.70；FORMAT 10.85/0.45/13.03；LEDGER 11.21/0.24/13.89。**失败集中在query与stop类，direct类较好；但invariant与secondary准确率均远低于80%参考线，不能据此认定“证据失效”特异机制。**
+
+**闭环（36 audit families；posterior加权期望）：**
+| 评分器/视图 | Utility | 95% CI | 安全完成 | 违规 | 重复 | 查询数 | 未完成 | horizon用尽 |
+|---|---:|---|---:|---:|---:|---:|---:|---:|
+| AgentRM RAW | −7.917 | [−11.132, −4.667] | 0.479 | 0.236 | 0.174 | 0.49 | 0.097 | 0.014 |
+| AgentRM FORMAT | −3.917 | [−6.625, −1.181] | 0.271 | 0.188 | 0.014 | 2.25 | 0.014 | 0.514 |
+| AgentRM LEDGER | −4.896 | [−8.285, −1.389] | 0.306 | 0.243 | 0.007 | 2.19 | 0.014 | 0.431 |
+| Qwen RAW | −6.035 | [−9.500, −2.514] | 0.583 | 0.264 | 0.125 | 0.20 | 0.021 | 0.007 |
+| Qwen FORMAT | −4.618 | [−7.931, −1.104] | 0.625 | 0.271 | 0.083 | 0.24 | 0.014 | 0.007 |
+| Qwen LEDGER | −5.076 | [−8.417, −1.562] | 0.611 | 0.271 | 0.097 | 0.15 | 0.014 | 0.007 |
+
+**闭环主要比较 Utility(LEDGER)−Utility(FORMAT)：AgentRM −0.979，CI [−3.104, +0.813]；Qwen −0.458，CI [−1.583, +0.153]。** 均不与主指标同向，且CI含0。CPU闭环基线（同36 families）：π0 +6.583 [5.778,7.444]、always_stop +1.806 [1.528,2.083]、always_query −2.194 [−2.472,−1.917]、always_direct −8.889 [−12.5,−5.278]。**两个评分器的闭环效用均低于always_stop，远低于π0；AgentRM的索引视图还诱导大量重复查询（FORMAT/LEDGER约2.2次/轨迹，51%/43%轨迹耗尽horizon）。**
+
+**代表性失败/无效实例（直接列此，不建单例文件）：**
+1. `F0006`（versioned_report/reversal_good，stale端，audit）：gold=inspect(Q=4)；AgentRM **RAW**选择execute(c1,Q=−10)，scores c0=0.648/c1=0.676/c2=0.656；FORMAT翻转选inspect(c0=0.688>c1=0.684)——0.03级近并列下的选择不稳定。闭环同一root在hidden bad世界执行execute，utility=−30（违规）。
+2. `F0006`（current端secondary）：已有权威good证据，AgentRM **FORMAT**仍选inspect(c0=0.676)而非execute(c1=0.672)，Q(inspect)=9 vs Q(execute)=10——重复查询/未采纳明确证据。
+3. `F0006`（LEDGER近并列）：c0=0.668 vs c1=0.664，argmax由稳定hash决定，非证据；全局AgentRM同history margin均值仅0.023。
+4. `F0013`（versioned_report/reversal_bad，stale端）：Qwen **RAW**给execute与inspect同为10.0（精确并列→均匀tie），FORMAT给inspect=30>execute=10并选中gold inspect——差异来自重复呈现事实，而非LEDGER分组。
+5. `F0054`（versioned_report/invariant_bad，unrelated-event两端）：Qwen **LEDGER**一端选abort(c1=30,Q=−30)，另一端选inspect(c2=70,Q=−1)，gold两端均为abort(Q=0)——无关事件对上发生严格切换，且两端都错。
+6. `F0006`闭环结构性问题：AgentRM FORMAT/LEDGER平均查询2.25/2.19次，51.4%/43.1%轨迹4步horizon耗尽，utility −3.9/−4.9；索引把模型推向反复核验而非完成任务。
+
+**研究判断（按预先约定分支）：主要分支 = GENERAL_TASK_MISMATCH。** 理由：(a) Delta_specific仅+0.003<+0.5且CI下界≈0，未达实用门槛；(b) 闭环LEDGER−FORMAT为负且CI含0，不同向；(c) RAW在reversal与invariant、以及query/stop/direct各gold层均失败（reversal两端正确0.17/0.10，invariant 0.32/0.36，secondary adoption 0.57/0.66，均远低于80%参考线）；(d) 动作分布接近均匀、AgentRM margin≈0.02，说明不是“特定证据关联排序”问题而是整体任务/目标不适配；(e) 唯一可重复的改善来自“加入任何事实索引”的呈现/重复效应（RAW→FORMAT），LEDGER无额外贡献（FORMAT_ONLY式呈现效应，非证据关联方法贡献）。**不能宣称已定位动态证据失效机制；研究主线在当前评分器/任务组合上不值得直接进入方法阶段。** 下一步最值得做的一项：先用AgentRM官方原生benchmark格式/示例验证该checkpoint在本环境中是否具备基本排序能力（或改用面向过程监督的native scorer），再决定是否值得重跑同一冻结数据；不自动训练scorer、不启动PRM/在线RL。
+
+**预算/产物：** GPU-hours 1.327（≤8；单评分器≤4）；planned logical 9,798/2,920、unique 9,546/2,836（均≤16,848/5,616）；新增产物≈6.6MB（≤1GiB）；新源文件2个；0 checkpoint/adapter；模型缓存27.97GiB（唯一revision `411ac92b...`，超文件24GiB声明约3.97GiB，已在此显式记录）；/data4在下载后剩余8.9GB。README已按指令对TWICE arXiv v2撤回做一行勘误。

@@ -58,7 +58,7 @@
 | A Theoretical Justification for Asymmetric Actor-Critic Algorithms [6] | ICML 2025 | 说明特权 critic 有合理用途，不能将所有特权信息判为错误 |
 | VPR [7] | 本次确认至 arXiv v3，2026-10-12 | 已有 oracle 过程奖励和 posterior oracle；其工具任务附录提供了可具体审计的 privileged expert 流程 |
 | AMV-Guard [8] | 2026-10-22 预印本 | 已有按动作后果选择复核，也有信息受限 exact planner；不能把运行时 VOI gate 当新贡献 |
-| TWICE [9] | 2026-10-22 预印本 | 已研究共享下游噪声的反事实信用分配；控制运气与限制可用信息是不同问题 |
+| TWICE [9] | 2026-10-22 预印本（**勘误 2026-10-30**：其 arXiv v2 已撤回，页面说明原因为作者单位列示不正确；本项目不使用其数字） | 已研究共享下游噪声的反事实信用分配；控制运气与限制可用信息是不同问题 |
 
 VPR v3 附录 D 明确：教师输入包括政策与交互历史，以及学生看不到的 task identifier、user scenario、evaluation criteria 和 reference resolution actions。论文按参考动作匹配生成反馈。这为第一轮审计提供了真实研究流程，但不构成“VPR 已被证明有错”的证据。应忠实复现其评分目的与输入，再分别消融隐藏任务信息和参考解决动作，并检测它是否压低实际有用的核验行为；仅发现评分随参考动作变化并不足以判错。
 
