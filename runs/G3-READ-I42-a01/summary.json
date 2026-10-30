@@ -1,0 +1,236 @@
+{
+  "created_at_utc": "2026-10-29T16:48:38.268038+00:00",
+  "evaluation_scope": "G3 Step A: 3-candidate log-probability scoring + implicit DPO reward readout; test greedy reused, train/validation greedy freshly generated, all with identical greedy decoding",
+  "model": "/data4/sjj/.cache/modelscope/models/Qwen--Qwen3-4B-Instruct-2507/snapshots/2de2439ea21be1dc5cb21f22f88af07e43393cbb",
+  "adapter": "runs/G2-I-s42-a01/adapter",
+  "requested_revision": null,
+  "resolved_model_commit": "2de2439ea21be1dc5cb21f22f88af07e43393cbb",
+  "manifest": "/data4/sjj/catelogue/process_reward/data/scenario_manifest.jsonl",
+  "prompt_variant": 0,
+  "implicit_reward_beta": 0.1,
+  "reuse_greedy_dir": "runs/G2R-I-s42-a01",
+  "device": "cuda:0",
+  "gpu_name": "NVIDIA A800-SXM4-80GB",
+  "precision": "bfloat16",
+  "versions": {
+    "torch": "2.8.0+cu128",
+    "transformers": "4.55.4",
+    "peft": "0.17.1"
+  },
+  "elapsed_evaluation_seconds": 729.774891092442,
+  "peak_gpu_allocated_gib": 7.895299911499023,
+  "overall": {
+    "n_scenarios": 800,
+    "greedy": {
+      "format_valid_rate": 1.0,
+      "action_counts": {
+        "precise": 800
+      },
+      "mean_regret_valid_only": 0.8394375000000003,
+      "optimal_action_rate_valid_only": 0.44375
+    },
+    "policy": {
+      "action_counts": {
+        "precise": 800
+      },
+      "mean_regret": 0.8394375000000003,
+      "optimal_action_rate": 0.44375,
+      "mean_margin": 22.238593074164836,
+      "strict_pair_accuracy": 0.45931208053691275
+    },
+    "implicit": {
+      "action_counts": {
+        "precise": 800
+      },
+      "mean_regret": 0.8394375000000003,
+      "optimal_action_rate": 0.44375,
+      "mean_margin": 0.785095205975188,
+      "strict_pair_accuracy": 0.5369127516778524
+    },
+    "mean_oracle_margin": 1.3409374999999997
+  },
+  "by_split": {
+    "test": {
+      "n_scenarios": 438,
+      "greedy": {
+        "format_valid_rate": 1.0,
+        "action_counts": {
+          "precise": 438
+        },
+        "mean_regret_valid_only": 1.2812785388127854,
+        "optimal_action_rate_valid_only": 0.2579908675799087
+      },
+      "policy": {
+        "action_counts": {
+          "precise": 438
+        },
+        "mean_regret": 1.2812785388127854,
+        "optimal_action_rate": 0.2579908675799087,
+        "mean_margin": 21.65211122491373,
+        "strict_pair_accuracy": 0.276840490797546
+      },
+      "implicit": {
+        "action_counts": {
+          "precise": 438
+        },
+        "mean_regret": 1.2812785388127854,
+        "optimal_action_rate": 0.2579908675799087,
+        "mean_margin": 0.7666307957546704,
+        "strict_pair_accuracy": 0.3934049079754601
+      },
+      "mean_oracle_margin": 0.9098173515981733
+    },
+    "train": {
+      "n_scenarios": 307,
+      "greedy": {
+        "format_valid_rate": 1.0,
+        "action_counts": {
+          "precise": 307
+        },
+        "mean_regret_valid_only": 0.32671009771987014,
+        "optimal_action_rate_valid_only": 0.6547231270358306
+      },
+      "policy": {
+        "action_counts": {
+          "precise": 307
+        },
+        "mean_regret": 0.32671009771987014,
+        "optimal_action_rate": 0.6547231270358306,
+        "mean_margin": 22.82328919382444,
+        "strict_pair_accuracy": 0.673224043715847
+      },
+      "implicit": {
+        "action_counts": {
+          "precise": 307
+        },
+        "mean_regret": 0.32671009771987014,
+        "optimal_action_rate": 0.6547231270358306,
+        "mean_margin": 0.800577823525539,
+        "strict_pair_accuracy": 0.7038251366120218
+      },
+      "mean_oracle_margin": 1.8105863192182408
+    },
+    "validation": {
+      "n_scenarios": 55,
+      "greedy": {
+        "format_valid_rate": 1.0,
+        "action_counts": {
+          "precise": 55
+        },
+        "mean_regret_valid_only": 0.182727272727273,
+        "optimal_action_rate_valid_only": 0.7454545454545455
+      },
+      "policy": {
+        "action_counts": {
+          "precise": 55
+        },
+        "mean_regret": 0.182727272727273,
+        "optimal_action_rate": 0.7454545454545455,
+        "mean_margin": 23.645453823919137,
+        "strict_pair_accuracy": 0.7151515151515152
+      },
+      "implicit": {
+        "action_counts": {
+          "precise": 55
+        },
+        "mean_regret": 0.182727272727273,
+        "optimal_action_rate": 0.7454545454545455,
+        "mean_margin": 0.8457178984957149,
+        "strict_pair_accuracy": 0.7454545454545455
+      },
+      "mean_oracle_margin": 2.1527272727272724
+    }
+  },
+  "by_regime": {
+    "in_distribution": {
+      "n_scenarios": 420,
+      "greedy": {
+        "format_valid_rate": 1.0,
+        "action_counts": {
+          "precise": 420
+        },
+        "mean_regret_valid_only": 0.30702380952381,
+        "optimal_action_rate_valid_only": 0.6642857142857143
+      },
+      "policy": {
+        "action_counts": {
+          "precise": 420
+        },
+        "mean_regret": 0.30702380952381,
+        "optimal_action_rate": 0.6642857142857143,
+        "mean_margin": 22.7854159477827,
+        "strict_pair_accuracy": 0.6783719074221868
+      },
+      "implicit": {
+        "action_counts": {
+          "precise": 420
+        },
+        "mean_regret": 0.30702380952381,
+        "optimal_action_rate": 0.6642857142857143,
+        "mean_margin": 0.8002030804180065,
+        "strict_pair_accuracy": 0.7094972067039106
+      },
+      "mean_oracle_margin": 1.882142857142857
+    },
+    "ood_drift": {
+      "n_scenarios": 320,
+      "greedy": {
+        "format_valid_rate": 1.0,
+        "action_counts": {
+          "precise": 320
+        },
+        "mean_regret_valid_only": 1.6662499999999998,
+        "optimal_action_rate_valid_only": 0.09375
+      },
+      "policy": {
+        "action_counts": {
+          "precise": 320
+        },
+        "mean_regret": 1.6662499999999998,
+        "optimal_action_rate": 0.09375,
+        "mean_margin": 22.206639982118833,
+        "strict_pair_accuracy": 0.12277019937040923
+      },
+      "implicit": {
+        "action_counts": {
+          "precise": 320
+        },
+        "mean_regret": 1.6662499999999998,
+        "optimal_action_rate": 0.09375,
+        "mean_margin": 0.78276968422557,
+        "strict_pair_accuracy": 0.26862539349422876
+      },
+      "mean_oracle_margin": 0.55359375
+    },
+    "ood_reliability_combination": {
+      "n_scenarios": 60,
+      "greedy": {
+        "format_valid_rate": 1.0,
+        "action_counts": {
+          "precise": 60
+        },
+        "mean_regret_valid_only": 0.15666666666666698,
+        "optimal_action_rate_valid_only": 0.7666666666666667
+      },
+      "policy": {
+        "action_counts": {
+          "precise": 60
+        },
+        "mean_regret": 0.15666666666666698,
+        "optimal_action_rate": 0.7666666666666667,
+        "mean_margin": 18.58124944975183,
+        "strict_pair_accuracy": 0.7191011235955056
+      },
+      "implicit": {
+        "action_counts": {
+          "precise": 60
+        },
+        "mean_regret": 0.15666666666666698,
+        "optimal_action_rate": 0.7666666666666667,
+        "mean_margin": 0.691742867540088,
+        "strict_pair_accuracy": 0.7584269662921348
+      },
+      "mean_oracle_margin": 1.7516666666666656
+    }
+  }
+}

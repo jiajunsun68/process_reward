@@ -1,0 +1,220 @@
+{
+  "args": {
+    "manifest": "/data4/sjj/catelogue/process_reward/data/g3_conditional/scenario_manifest.jsonl",
+    "model": "/data4/sjj/.cache/modelscope/models/Qwen--Qwen3-4B-Instruct-2507/snapshots/2de2439ea21be1dc5cb21f22f88af07e43393cbb",
+    "revision": null,
+    "output_dir": "runs/G3-SFT-TRUE-s42-a01",
+    "local_files_only": true,
+    "max_steps": -1,
+    "epochs": 3.0,
+    "max_train_samples": null,
+    "max_length": 2048,
+    "max_action_tokens": 64,
+    "microbatch": 1,
+    "grad_accum": 8,
+    "learning_rate": 1e-05,
+    "lora_targets": "qv",
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "action_format": "tool-json",
+    "seed": 42,
+    "save_final_adapter": true,
+    "max_save_mib": 512
+  },
+  "environment": {
+    "python": "3.12.13 | packaged by Anaconda, Inc. | (main, Mar 19 2026, 20:20:58) [GCC 14.3.0]",
+    "platform": "Linux-6.5.0-28-generic-x86_64-with-glibc2.35",
+    "hardware": {
+      "visible_gpu_count": 1,
+      "cuda_visible_devices": "6",
+      "logical_device": "cuda:0",
+      "name": "NVIDIA A800-SXM4-80GB",
+      "compute_capability": [
+        8,
+        0
+      ],
+      "total_memory_gib": 79.32501220703125,
+      "torch_cuda_version": "12.8",
+      "bf16_supported": true
+    },
+    "process_id": 2989823
+  },
+  "versions": {
+    "packages": {
+      "torch": "2.8.0",
+      "transformers": "4.55.4",
+      "peft": "0.17.1",
+      "accelerate": "1.10.1",
+      "datasets": "4.0.0",
+      "safetensors": "0.6.2"
+    },
+    "installed": [
+      "Jinja2==3.1.6",
+      "MarkupSafe==3.0.4",
+      "PyYAML==6.0.3",
+      "accelerate==1.10.1",
+      "aiohappyeyeballs==2.7.1",
+      "aiohttp==3.14.5",
+      "aiosignal==1.4.0",
+      "attrs==26.1.0",
+      "certifi==2026.10.23",
+      "charset-normalizer==3.5.2",
+      "datasets==4.0.0",
+      "dill==0.3.8",
+      "filelock==4.2.4",
+      "frozenlist==1.8.0",
+      "fsspec==2025.3.0",
+      "hf-xet==1.7.1",
+      "huggingface_hub==0.36.2",
+      "idna==3.20",
+      "mpmath==1.3.0",
+      "multidict==7.2.1",
+      "multiprocess==0.70.16",
+      "networkx==3.7",
+      "numpy==2.5.4",
+      "nvidia-cublas-cu12==12.8.4.1",
+      "nvidia-cuda-cupti-cu12==12.8.90",
+      "nvidia-cuda-nvrtc-cu12==12.8.93",
+      "nvidia-cuda-runtime-cu12==12.8.90",
+      "nvidia-cudnn-cu12==9.10.2.21",
+      "nvidia-cufft-cu12==11.3.3.83",
+      "nvidia-cufile-cu12==1.13.1.3",
+      "nvidia-curand-cu12==10.3.9.90",
+      "nvidia-cusolver-cu12==11.7.3.90",
+      "nvidia-cusparse-cu12==12.5.8.93",
+      "nvidia-cusparselt-cu12==0.7.1",
+      "nvidia-nccl-cu12==2.27.3",
+      "nvidia-nvjitlink-cu12==12.8.93",
+      "nvidia-nvtx-cu12==12.8.90",
+      "packaging==25.0",
+      "pandas==3.1.0",
+      "peft==0.17.1",
+      "pip==26.2.2",
+      "propcache==0.5.4",
+      "psutil==7.2.2",
+      "pyarrow==26.0.0",
+      "python-dateutil==3.0.0",
+      "regex==2026.9.29",
+      "requests==2.34.2",
+      "safetensors==0.6.2",
+      "setuptools==84.2.1",
+      "six==1.17.0",
+      "sympy==1.14.0",
+      "tokenizers==0.21.4",
+      "torch==2.8.0",
+      "tqdm==4.70.1",
+      "transformers==4.55.4",
+      "triton==3.4.0",
+      "trl==0.21.0",
+      "typing_extensions==4.16.0",
+      "tzdata==2026.6",
+      "urllib3==2.8.0",
+      "xxhash==4.0.2",
+      "yarl==1.25.1"
+    ]
+  },
+  "script_sha256": "c9abee626f2929650c4889459a88fd0dd16b84fb13f506790ce513f40bd0fdcc",
+  "started_at_utc": "2026-10-30T02:40:12.813278+00:00",
+  "model": {
+    "name_or_path": "/data4/sjj/.cache/modelscope/models/Qwen--Qwen3-4B-Instruct-2507/snapshots/2de2439ea21be1dc5cb21f22f88af07e43393cbb",
+    "requested_revision": null,
+    "resolved_commit": "2de2439ea21be1dc5cb21f22f88af07e43393cbb"
+  },
+  "data": {
+    "train": {
+      "source": "/data4/sjj/catelogue/process_reward/data/g3_conditional/scenario_manifest.jsonl",
+      "sha256": "53a9b87268bc7079eb9f16566cc71214fc2e117bc663ddbbcb7f39fa375746e0",
+      "train_scenarios": 720,
+      "max_prompt_tokens": 406,
+      "max_action_tokens": 12,
+      "mean_prompt_tokens": 404.46666666666664,
+      "label_actions": {
+        "skip": 240,
+        "quick": 240,
+        "precise": 240
+      },
+      "scored_tokens": "action content only; prompt, assistant header, EOS, padding, and chat suffix masked (-100)"
+    }
+  },
+  "metrics": {
+    "status": "completed",
+    "gpu_validation": "performed only on the machine executing this script",
+    "completed_optimizer_steps": 270,
+    "run_peak_allocated_gib": 8.467894077301025,
+    "run_peak_reserved_gib": 10.0390625,
+    "data": {
+      "source": "/data4/sjj/catelogue/process_reward/data/g3_conditional/scenario_manifest.jsonl",
+      "sha256": "53a9b87268bc7079eb9f16566cc71214fc2e117bc663ddbbcb7f39fa375746e0",
+      "train_scenarios": 720,
+      "max_prompt_tokens": 406,
+      "max_action_tokens": 12,
+      "mean_prompt_tokens": 404.46666666666664,
+      "label_actions": {
+        "skip": 240,
+        "quick": 240,
+        "precise": 240
+      },
+      "scored_tokens": "action content only; prompt, assistant header, EOS, padding, and chat suffix masked (-100)"
+    },
+    "expected_optimizer_steps": 270,
+    "effective_train_batch": 8,
+    "resolved_model_commit": "2de2439ea21be1dc5cb21f22f88af07e43393cbb",
+    "parameter_dtypes": {
+      "torch.bfloat16": 398,
+      "torch.float32": 144
+    },
+    "trainable_parameters": 5898240,
+    "training_wall_seconds": 654.8432767800987,
+    "training_memory": {
+      "allocated_gib": 7.627091884613037,
+      "reserved_gib": 10.0390625,
+      "peak_allocated_gib": 8.435000896453857,
+      "peak_reserved_gib": 10.0390625
+    },
+    "train": {
+      "train_runtime": 654.6304,
+      "train_samples_per_second": 3.3,
+      "train_steps_per_second": 0.412,
+      "total_flos": 1.961193709530317e+16,
+      "train_loss": 0.1879901780022515,
+      "epoch": 3.0
+    },
+    "fit": {
+      "train": {
+        "n": 720,
+        "mean_loss": 0.08974165711277035,
+        "completion_token_accuracy": 0.9512254901960784,
+        "exact_action_accuracy": 0.4930555555555556
+      }
+    },
+    "fit_note": "Held-out generalization is reported by the separate G3-SFT-eval-a01 conditional evaluation, not by this train-only fit pass.",
+    "saved_adapter": {
+      "path": "/data4/sjj/catelogue/process_reward/runs/G3-SFT-TRUE-s42-a01/adapter",
+      "files": [
+        "adapter_model.safetensors",
+        "adapter_config.json"
+      ],
+      "total_bytes": 23613253,
+      "limit_bytes": 536870912,
+      "sha256": {
+        "adapter_model.safetensors": "4b1e077532a8db1481c3c9a8709e904c738061b95cb13a58771195456c25c1c2",
+        "adapter_config.json": "b96ce93f2d2abf66c1478627bf1da33f26071da57c574a17592f962bbdea5cbf"
+      }
+    },
+    "total_wall_seconds": 719.5779858557507,
+    "last_phase_memory": {
+      "allocated_gib": 7.863430976867676,
+      "reserved_gib": 10.0390625,
+      "peak_allocated_gib": 8.467894077301025,
+      "peak_reserved_gib": 10.0390625
+    }
+  },
+  "storage_policy": {
+    "automatic_checkpoints": false,
+    "final_adapter_requested": true,
+    "max_adapter_mib": 512,
+    "training_log_interval_steps": 10
+  },
+  "finished_at_utc": "2026-10-30T02:52:12.391465+00:00"
+}

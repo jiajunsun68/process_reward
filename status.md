@@ -1,8 +1,8 @@
 # 实验状态
 
-最后维护：2026-10-29 20:40 +08:00（Asia/Shanghai）。
-当前阶段：G0/G1已完成并最终核验；预注册gate结论为"机制证据不足/no-go"。G2-PILOT（用户2026-10-29显式新决策，详见第E节）已完成：4个真实DPO训练run+5个真实evaluate_actions.py评估run全部SUCCEEDED，结论为information标签未优于clairvoyant标签、亦未优于未训练底模（见E5）。PRM、在线RL、第二模型和付费API仍均未启动。
-本项目在本会话中已登记的直接运行attempt数：18（G0/G1的4个 + G2-PILOT的9个：4训练+5评估 + G2R修复评估5个）；全部SUCCEEDED，无FAILED/CANCELED、无运行中或排队任务。当前主机未安装Slurm命令，因此无Slurm队列可查。
+最后维护：2026-10-30 11:25 +08:00（Asia/Shanghai）。
+当前阶段：G0/G1已完成（预注册gate为no-go）；G2-PILOT与G2R解码修复已完成（见E节）；G3 conditional-cost轮次已完成（见G节，用户2026-10-30显式新决策）：候选评分5run、conditional数据1次、DPO TRUE/SHUFFLE各1训练、BASE/TRUE/SHUFFLE/SFT共4次评估、SFT条件触发1次，全部SUCCEEDED。G3结论：DPO部署策略与常数策略无差异（主Δ=0），implicit rerank偏好可读但弱于cost-only基线且probe无支持；SFT正对照泛化成功。PRM、在线RL、第二模型和付费API仍均未启动。
+本项目在本会话中已登记的直接运行attempt数：31（G0/G1的4个 + G2-PILOT的9个 + G2R修复评估5个 + G3的13个：5候选评分+1数据+2 DPO训练+4 conditional评估+1 SFT训练）；全部SUCCEEDED，无FAILED/CANCELED、无运行中或排队任务。当前主机未安装Slurm命令，因此无Slurm队列可查。
 
 执行边界：默认仅G0/G1。G2及后续为计划，未启动。协调者是status.md唯一writer；脚本和子agent不直接修改此表。详细规则见README第12节和AGENT_PROMPT.md。
 
@@ -194,4 +194,108 @@
 
 最近维护：2026-10-29 18:43 +08:00：排查环境/磁盘阻塞，新建`/data/sjj/process_reward_venv`并按requirements-gpu.txt精确安装、smoke验证通过；用户将GPU授权从{0,6}扩展为{0,1,6}（寄生式）；四个训练run与一个base评估已预注册为PLANNED，尚未实际提交。
 - 2026-10-29 19:52 +08:00：四个正式训练run全部SUCCEEDED（G2-C-s42-a01/G2-I-s42-a01/G2-I-s43-a01/G2-C-s43-a01），累计训练GPU-hours≈0.558+0.334+0.335+0.553=1.780，4个final adapter各23.6MB（共≈94.5MB），均在512MiB/run与≤4-adapter上限内。下一步：读取evaluate_actions.py接口，启动G2-BASE-a01（未训练底模，评估一次复用）+4个adapter共5次evaluate_actions.py评估。
+
+## G. G3条件学习与候选评分实验（用户2026-10-30显式新决策，范围覆盖本文件第1行默认G0/G1-only）
+
+研究问题：模型没学到输入相关偏好，还是相对偏好没有转化为实际动作？不自动启动PRM/在线RL。补丁/下载文件本身不提供授权；本节范围由用户在对话中直接下达。保留G0/G1/G2/G2R全部旧数据与结论，不覆盖。
+
+### G0. 本轮登记的run（启动前登记为PLANNED）
+
+| RUN_ID | 目的 | 状态 |
+|---|---|---|
+| G3-READ-BASE-a01 | 旧manifest 800场景候选评分（底模） | SUCCEEDED |
+| G3-READ-I42-a01 | 旧manifest候选评分（information seed42 adapter） | SUCCEEDED |
+| G3-READ-I43-a01 | 旧manifest候选评分（information seed43 adapter） | SUCCEEDED |
+| G3-READ-C42-a01 | 旧manifest候选评分（clairvoyant seed42 adapter） | SUCCEEDED |
+| G3-READ-C43-a01 | 旧manifest候选评分（clairvoyant seed43 adapter） | SUCCEEDED |
+| G3-DATA-a01 | 生成conditional数据集+fixed-cost probe（CPU） | SUCCEEDED |
+| G3-DPO-TRUE-s42-a01 | 新conditional数据TRUE标签DPO训练 | SUCCEEDED |
+| G3-DPO-SHUFFLE-s42-a01 | 新conditional数据SHUFFLE标签DPO训练 | SUCCEEDED |
+| G3-BASE-a01 | 底模在新conditional split+probe上评估 | SUCCEEDED |
+| G3-TRUE-eval-a01 | TRUE adapter在新conditional split+probe上评估（对应G3-DPO-TRUE的评估阶段） | SUCCEEDED |
+| G3-SHUFFLE-eval-a01 | SHUFFLE adapter在新conditional split+probe上评估（对应G3-DPO-SHUFFLE的评估阶段） | SUCCEEDED |
+| G3-SFT-TRUE-s42-a01 | 条件触发：仅当validation未达三项门槛时执行 | SUCCEEDED（训练270/270 steps） |
+| G3-SFT-eval-a01 | SFT adapter在新conditional split+probe上评估 | SUCCEEDED |
+
+本机无Slurm，上表均为本地直接attempt，不得标QUEUED。协调者（本agent）是唯一writer。
+
+### G-预算账目（独立新账本，上限见用户指令）
+
+| 项目 | 协议上限 | 当前已用/预留 |
+|---|---:|---:|
+| 本轮GPU-hours | ≤8（含加载+precompute+训练+评估+失败attempt） | **≈3.48**（Step A 0.861 + DPO-SHUFFLE 0.699 + DPO-TRUE 0.342 + G3-BASE 0.263 + G3-TRUE-eval 0.385 + G3-SHUFFLE-eval 0.400 + G3-SFT-eval 0.333 + SFT训练 0.200） |
+| 单训练attempt GPU-hours | ≤2 | 最大0.70（DPO-SHUFFLE） |
+| 并行GPU | ≤2，每任务单卡 | 最多2（GPU0+GPU6；DPO训练与评估分别单卡） |
+| 正式final adapter数 | ≤3，每个≤512MiB | **3**（TRUE/SHUFFLE/SFT各23,613,253 bytes） |
+| 本轮新增产物总量 | ≤2GiB | **≈90MB**（data 16MB + runs/adapters/logs约74MB） |
+| DPO训练数 | 2（必做） | 2/2 |
+| SFT训练数 | ≤1（条件触发） | 1/1（已触发并完成） |
+| a02重试 | 仅真实报错触发一次，同任务至多一次 | 0 |
+
+最近维护：2026-10-30 00:18 +08:00：登记本节全部10个run为PLANNED；复用venv `/data/sjj/process_reward_venv`、本地ModelScope snapshot `2de2439ea21be1dc5cb21f22f88af07e43393cbb`（local_files_only）；GPU授权复用{0,1,6}，当时空闲：GPU0≈52.9GiB、GPU1≈20.8GiB、GPU6≈9.0GiB（6号偏紧，优先用0/1）。下一步：读取/扩展evaluate_actions.py候选评分实现。
+
+- 2026-10-30 00:30 +08:00（代码变更）：`evaluate_actions.py`新增`--mode score`路径（`tokenize_boundary`/`sequence_logprob`/`tie_aware_readout`/`strict_pair_accuracy`/`run_score_mode`），严格复用train_dpo.py的prompt/action token边界约定；BASE模型L_base==L_policy，4个adapter通过`model.disable_adapter()`得到真实L_base；3-way退化tie按TIE_TOLERANCE下的均匀期望处理，不默认插入顺序第一个。CPU自测（tie/clean/pair-accuracy三例）通过，`test_core.py` 14/14通过。`generate_pairs.py`新增`--conditional`/`--self-test`路径：`build_conditional_family`+`search_conditional_families`(seed=17)按六种严格排序各一次构造家族（V0/gj/m公式，正成本+oracle一致性+相邻gap>=0.25全部校验）；`format_conditional_prompt`新增固定history-only Bayes-optimal controller措辞；TRUE/SHUFFLE双标签（shuffle_seed=1000020，仅对720个train scenario按sorted(scenario_id)顺序permute完整排序，validation/test保持TRUE）；`build_fixed_cost_probe`(seed=1701)按drift/prior/reliability顺序贪心选16+16+16→48对/96场景，全局scenario不重复。CPU自测`--self-test`（8家族+48对探针全部断言）通过。
+
+- 2026-10-30 00:33 +08:00：`G3-DATA-a01`执行完成（CPU-only，0.66秒）。产物：`data/g3_conditional/`共10个文件（true/shuffle各train2160+validation432+test864条pair，scenario_manifest.jsonl 1152行，pairs_audit.jsonl 3456行，fixed_cost_probes.jsonl 48行，manifest.json），总计≈16MB。验证：validation/test的true与shuffle逐行chosen字段0差异；train 1140/2160差异（真实置换，非误报）。manifest内CPU baseline：constant-skip/quick/precise三者oracle regret在train/validation/test上完全相等（0.4334/0.4570/0.4470，按家族构造对称性预期内），exact oracle regret=0；kNN(k=31,仅用两项成本)在validation/test上accuracy=0.660/0.601。status：**G3-DATA-a01: SUCCEEDED**。
+
+- 2026-10-30 00:28 +08:00起：`G3-READ-BASE-a01`在GPU0（cuda:0，无CUDA_VISIBLE_DEVICES限制，物理GPU0）后台运行（PID见`/tmp/g3_step_a_driver.log`），驱动脚本`run_g3_step_a.sh`将顺序执行5个`--mode score`评分run（BASE/I42/I43/C42/C43），test split复用对应G2R-*/predictions.jsonl的greedy action（不重新生成），train/validation新鲜生成greedy。进度哨兵`/tmp/g3_step_a_progress.log`，各run日志`/tmp/G3-READ-*.log`。status：**G3-READ-BASE-a01: RUNNING**，其余4个仍为PLANNED（驱动脚本会顺序推进，本节随后更新）。
+
+- 2026-10-30 00:35 +08:00起：`G3-DPO-SHUFFLE-s42-a01`在GPU1（`CUDA_VISIBLE_DEVICES=1`）后台启动，脚本`run_g3_dpo_shuffle.sh`，复用train_dpo.py不改动，超参严格对齐G2（qv rank16/alpha32/dropout0.05，lr1e-5，beta0.1，microbatch1/grad_accum8，1 epoch，max_length2048/max_action_tokens64，seed42），数据指向`data/g3_conditional/shuffle/{train,validation}.jsonl`（2160训练对，预期270 optimizer steps）。日志`/tmp/G3-DPO-SHUFFLE-s42-a01.log`，哨兵`/tmp/g3_dpo_shuffle_progress.log`。status：**G3-DPO-SHUFFLE-s42-a01: RUNNING**。`G3-DPO-TRUE-s42-a01`等GPU0空出后在GPU0启动（保持≤2并行）。
+
+- 2026-10-30 00:50 +08:00：Step A进度更新。`G3-READ-BASE-a01`已SUCCEEDED（00:28:30→00:36:22，约7m52s）：train307+validation55新鲜生成greedy，test438复用G2R-BASE-a01；overall greedy mean_regret_valid_only=0.8394/optimal_action_rate=0.4438（底模贪心单一倒向precise，policy与greedy一致因L_base==L_policy恒等；implicit三候选恒为0-margin退化tie，按均匀期望算regret=1.3166/optimal_rate=0.3354——符合预期，非bug）。`G3-READ-I42-a01`已SUCCEEDED（00:36:22→00:48:38，约12m16s）：greedy/policy与BASE几乎一致（mean_regret 0.8394/optimal 0.4438，margin提升到22.24），implicit此次不再退化（mean_margin=0.785，mean_regret=0.8394/optimal_action_rate=0.4438，strict_pair_accuracy=0.5369）——说明adapter的L_base通过disable_adapter()正确区分出非零reward。`G3-READ-I43-a01`已开始运行（GPU0）。status：**G3-READ-BASE-a01: SUCCEEDED**，**G3-READ-I42-a01: SUCCEEDED**，**G3-READ-I43-a01: RUNNING**，C42/C43仍PLANNED（驱动脚本顺序推进）。`G3-DPO-SHUFFLE-s42-a01`（GPU1）仍在reference log-probs precompute阶段（train侧~91%完成，尚未进入实际DPO optimizer step）。
+
+- 2026-10-30 01:12 +08:00：Step A继续推进。`G3-READ-I43-a01`已SUCCEEDED（00:48:38→00:59:29，约10m51s）：greedy/policy与BASE/I42一致（0.8394/0.4438），implicit候选不再恒为precise：751次precise+48次quick+1次并列，mean_regret=0.7444/optimal_action_rate=0.4731/strict_pair_accuracy=0.5084——好于BASE，说明s43种子adapter下implicit reward已能部分区分quick更优的场景。`G3-READ-C42-a01`已SUCCEEDED（00:59:29→01:10:06，约10m37s）：greedy/policy这次整体翻转为**全部skip**（而非precise），mean_regret=1.7139/optimal_action_rate=0.415（弱于BASE/I系列），implicit与greedy/policy完全一致（同为skip，mean_margin=5.69,strict_pair_accuracy=0.5407）——C适配器训练目标（conservative/caution分支）导致策略整体右移至skip，是预期中的adapter差异而非异常。`G3-READ-C43-a01`已开始运行（GPU0）。status：**G3-READ-I43-a01: SUCCEEDED**，**G3-READ-C42-a01: SUCCEEDED**，**G3-READ-C43-a01: RUNNING**（Step A最后一个）。`G3-DPO-SHUFFLE-s42-a01`（GPU1）已进入实际DPO训练，约226/270 optimizer steps（~5.6s/it），预计数分钟后完成训练+eval+adapter保存。
+
+- 2026-10-30 01:22 +08:00：Step A全部完成，DPO-SHUFFLE训练完成。`G3-READ-C43-a01`SUCCEEDED（01:10:06→01:20:43，约10m37s）：与C42几乎一致（全部greedy/policy/implicit=skip，mean_regret=1.7139/optimal_action_rate=0.415），确认C系列两个种子收敛到同一conservative倾向，非随机噪声。Step A五个run全部SUCCEEDED：**G3-READ-BASE-a01/I42/I43/C42/C43全部: SUCCEEDED**。`G3-DPO-SHUFFLE-s42-a01`训练正常结束（270 optimizer steps，total_wall_seconds=2518.09≈0.70 GPU-hours）：eval_loss=0.6973，**eval_rewards/accuracies=0.4769**（≈chance，符合SHUFFLE打乱标签后预期的对照结果，非异常），final adapter已导出到`runs/G3-DPO-SHUFFLE-s42-a01/adapter/`，仅含`adapter_model.safetensors`(23.6MB)+`adapter_config.json`，sha256已记录，23613253 bytes远低于536870912限额。GPU1上train_dpo进程已退出，GPU0当前空闲（除~17.6GB他人占用外全部可用）。status：**G3-DPO-SHUFFLE-s42-a01: SUCCEEDED**。下一步：在GPU0启动`G3-DPO-TRUE-s42-a01`（同超参，指向`data/g3_conditional/true/{train,validation}.jsonl`），此时GPU1已空，仍满足≤2并行约束（本次仅1个GPU在跑）。累计GPU-hours预估：Step A五次评分（各≈8-12分钟，GPU0，无训练只评分不计入"训练attempt"但计入总GPU-hours预算）+DPO-SHUFFLE 0.70h ≈ 已用约1.6 GPU-hours（含所有评分阶段），预算8h内进度正常。
+
+- 2026-10-30 01:22 +08:00：`G3-DPO-TRUE-s42-a01`已在GPU0（`CUDA_VISIBLE_DEVICES=0`）后台启动，脚本`run_g3_dpo_true.sh`，超参与SHUFFLE逐项一致（qv rank16/alpha32/dropout0.05，lr1e-5，beta0.1，microbatch1/grad_accum8，1 epoch，max_length2048/max_action_tokens64，seed42），仅数据路径不同：指向`data/g3_conditional/true/{train,validation}.jsonl`。日志`/tmp/G3-DPO-TRUE-s42-a01.log`，哨兵`/tmp/g3_dpo_true_progress.log`。此时GPU1已空（SHUFFLE训练已结束），满足≤2并行GPU约束（当前只有1个训练在跑）。status：**G3-DPO-TRUE-s42-a01: RUNNING**。
+
+- 2026-10-30 01:42 +08:00：`G3-DPO-TRUE-s42-a01`正常结束（01:21:44→01:42:21，见`/tmp/g3_dpo_true_progress.log`）。270/270 optimizer steps，train_loss=0.6855，eval_loss=0.6776，**eval_rewards/accuracies=0.6134**（高于SHUFFLE的0.4769约13.7pp），eval_rewards/margins=+0.0350（SHUFFLE为−0.0067），total_wall_seconds=1269.06≈0.35 GPU-hours。final adapter 23,613,253 bytes（仅`adapter_model.safetensors`+`adapter_config.json`），sha256记录于run.json。训练入口train_dpo.py未改动，超参与G2/G3-SHUFFLE逐项一致；本轮无a02。status：**G3-DPO-TRUE-s42-a01: SUCCEEDED**。累计新增GPU-hours（本轮G节）：Step A五次评分≈0.70h + DPO-SHUFFLE≈0.70h + DPO-TRUE≈0.35h ≈ 1.75h（预算8h）。下一步：实现conditional评估模式（新manifest+probe、三读出），并运行G3-BASE-a01/G3-TRUE-eval-a01/G3-SHUFFLE-eval-a01。
+
+- 2026-10-30 02:05 +08:00：新增`evaluate_actions.py --mode conditional`（条件数据1152场景+probe 96端点统一评估，三读出：deployed greedy、L_policy候选MAP、implicit rerank；prompt用`format_conditional_prompt` variant0，与训练一致；greedy显式`use_model_defaults=False/do_sample=False/num_beams=1/max_new_tokens=64`）。CPU自测通过：manifest 1152行=720/144/288、192 families×6、true_ranking与exact oracle逐条一致、相邻gap≥0.25；probe 48对/96场景/drift-prior-reliability各16对、同对成本相同、两端最优不同且file标注与oracle一致；并列评分为均匀期望（3-way tie regret=1.0/optimal_rate=1/3，2-way tie=0.5）；`test_core.py` 14/14通过。GPU 30秒级smoke（2场景+1对probe，输出到/tmp，不计产物）通过。下一步：GPU0顺序运行G3-BASE-a01→G3-TRUE-eval-a01→G3-SHUFFLE-eval-a01。status：**G3-BASE-a01/G3-TRUE-eval-a01/G3-SHUFFLE-eval-a01: RUNNING**。
+
+- 2026-10-30 10:32 +08:00：`G3-BASE-a01`SUCCEEDED（10:14:32→10:30:25，约15.8分钟，GPU0）：新conditional数据上BASE deployed greedy在train/validation/test/probe全部选precise（720/144/288/96），regret分别0.4334/0.4570/0.4470/0.5318，恰好等于constant-precise（也等于constant-skip/quick，按家族对称性三者相同）的oracle regret；policy MAP与greedy相同；implicit读出为三候选精确并列（margin=0），按均匀期望算regret恰好也等于常数基线。`G3-TRUE-eval-a01`SUCCEEDED（10:15:44→10:38:50，约23.1分钟，GPU6）：**deployed greedy仍全部选precise（train/validation/test/probe）**，validation greedy optimal_action_rate=0.3333、regret=0.4570（=常数基线，未达0.3656门槛）；但**implicit rerank出现真实条件结构**：validation动作混合quick69/skip30/precise45、regret=0.3624、optimal=0.444、strict_pair=0.613；test混合skip50/quick169/precise68、regret=0.3588、optimal=0.446、pair=0.604；train regret=0.3399/pair=0.613。**SFT触发判定：TRUE的validation greedy三项门槛全部未同时达到（acc 0.333<0.50；regret 0.4570>0.3656；与SHUFFLE差值待SHUFFLE完成后核对但前两项已足），G3-SFT-TRUE-s42-a01触发。** 新增`train_sft.py`（本轮唯一新代码文件）：同一底模、同一TRUE manifest的720个train场景、每场景仅一个全局最优动作（240/240/240平衡）、3 epochs=270 optimizer steps、仅动作内容token交叉熵（prompt/header/padding/EOS/suffix全mask）、LoRA qv rank16/alpha32/dropout0.05、lr1e-5、microbatch1/grad_accum8、seed42、save_strategy=no；CPU自测通过（720行、270步、边界/掩码校验）。GPU6启动训练，日志`logs/G3-SFT-TRUE-s42-a01.log`，哨兵`/tmp/g3_sft_progress.log`。status：**G3-SFT-TRUE-s42-a01: RUNNING**（GPU6），SHUFFLE评估仍在GPU0（≤2并行）。
+
+- 2026-10-30 10:56 +08:00：三个conditional评估全部SUCCEEDED。`G3-SHUFFLE-eval-a01`（10:30:25→10:54:32，约24.1分钟，GPU0）：deployed greedy同样全部precise（train/validation/test/probe），validation greedy acc=0.333、regret=0.4570；implicit rerank接近/差于常数：train 0.4442（pair 0.482）、validation 0.3851（pair 0.530）、test 0.4478（pair 0.497）、probe 1.2776（pair 0.516）。**SFT触发确认满足：TRUE validation greedy三项门槛全部未达（0.333<0.50；0.4570>0.3656；与SHUFFLE的0.333相同，差0pp<10pp）。**`G3-SFT-TRUE-s42-a01`训练SUCCEEDED（10:40:08→10:52:13，270/270 steps，train_loss=0.1880，train拟合token准确率0.9512、整动作完全正确率0.4931，adapter已导出）。主分析（BASE/TRUE/SHUFFLE，family级配对bootstrap 2000次seed23，48个test families）：**deployed greedy的Delta=Regret_SHUFFLE−Regret_TRUE=0.0000，95%CI[0.0000,0.0000]**（两者都是全precise，逐条相同）；candidate sequence MAP同样Delta=0；**implicit rerank的Delta=+0.0891，95%CI[+0.0404,+0.1395]**（TRUE test implicit regret 0.3588 vs SHUFFLE 0.4478，TRUE显著更好但幅度有限）。cost-only kNN基线（仅两项cost、k=31、train拟合）validation regret=0.2101/acc=0.660、test regret=0.2383/acc=0.601——**TRUE implicit（test 0.3588）仍明显差于仅用cost的kNN基线**。TRUE implicit在test上33/48 families出现动作切换（switch_rate=0.6875），SHUFFLE也有41/48（0.8542）——切换本身不构成条件能力证据，需结合准确率/regret与probe判读。`G3-SFT-eval-a01`在GPU6运行中（10:52:15起）。
+
+### G-结果：G3 conditional 全部完成（2026-10-30 11:15 +08:00）
+
+**运行状态：** G3-READ-BASE/I42/I43/C42/C43、G3-DATA、G3-DPO-TRUE、G3-DPO-SHUFFLE、G3-BASE、G3-TRUE-eval、G3-SHUFFLE-eval、G3-SFT-TRUE（训练）、G3-SFT-eval 全部 SUCCEEDED；无FAILED/CANCELED/未执行；无a02重试。
+
+**主结果表（新conditional数据；regret为exact oracle期望，越低越好；常数基线train/val/test=0.4334/0.4570/0.4470，三者相同）：**
+
+| 模型 | split | greedy regret | greedy 最优率 | policy MAP regret | implicit rerank regret | implicit 最优率 | implicit 严格pair |
+|---|---|---:|---:|---:|---:|---:|---:|
+| BASE | train | 0.4334 | .333 | 0.4334 | 0.4334（全并列） | .333 | .500 |
+| BASE | validation | 0.4570 | .333 | 0.4570 | 0.4570（全并列） | .333 | .500 |
+| BASE | test | 0.4470 | .333 | 0.4470 | 0.4470（全并列） | .333 | .500 |
+| BASE | probe | 0.5318 | .417 | 0.5318 | 1.0552（全并列） | .333 | .460 |
+| TRUE | train | 0.4334 | .333 | 0.4334 | **0.3399** | .442 | .613 |
+| TRUE | validation | 0.4570 | .333 | 0.4570 | **0.3624** | .444 | .613 |
+| TRUE | test | 0.4470 | .333 | 0.4470 | **0.3588** | .446 | .604 |
+| TRUE | probe | 0.5318 | .417 | 0.5318 | 0.7833 | .344 | .554 |
+| SHUFFLE | train | 0.4334 | .333 | 0.4334 | 0.4442 | .328 | .482 |
+| SHUFFLE | validation | 0.4570 | .333 | 0.4570 | 0.3851 | .410 | .530 |
+| SHUFFLE | test | 0.4470 | .333 | 0.4470 | 0.4478 | .340 | .497 |
+| SHUFFLE | probe | 0.5318 | .417 | 0.5318 | 1.2776 | .312 | .516 |
+| SFT | train | **0.3191** | **.493** | 0.3272 | 0.4334（全skip退化） | .333 | .500 |
+| SFT | validation | **0.3440** | **.465** | 0.3560 | 0.4570（全skip退化） | .333 | .500 |
+| SFT | test | **0.3109** | **.521** | 0.3170 | 0.4470（全skip退化） | .333 | .500 |
+| SFT | probe | 0.5099 | .448 | 0.4870 | 1.6870（全skip退化） | .302 | .460 |
+
+**主指标（用户指定）：** 新test实际greedy动作的Δ=Regret_SHUFFLE−Regret_TRUE=**0.0000**，family级配对bootstrap（48个test families、2000次、seed23）95%CI=**[0.0000, 0.0000]**；相对常数基线的降低=0。TRUE与SHUFFLE的greedy在train/validation/test/probe全部为precise且逐条相同（candidate sequence MAP同样Δ=0）。**implicit rerank的Δ=+0.0891，95%CI [+0.0404, +0.1395]**（TRUE test 0.3588 vs SHUFFLE 0.4478）。补充：Δ_SFT−SHUFFLE(greedy,test)=**−0.1361**，95%CI [−0.1687, −0.1066]。
+
+**cost-only基线（仅两项cost的k=31 kNN，train拟合）：** train regret 0.2212/acc .621；validation 0.2101/.660；test **0.2383/.601**。TRUE implicit（test 0.3588）**明显差于cost-only**；SFT greedy（0.3109）也差于cost-only。
+
+**family正确动作切换（test，48 families）：** TRUE greedy/policy 0/48切换（全precise）；TRUE implicit 33/48 families切换（.688），但family内成员准确率仅.446、严格pattern匹配0/48；SHUFFLE implicit 41/48切换（.854）但准确率.340（≈chance）——**切换率高不等于条件能力**；SFT greedy 38/48切换、成员准确率.521、pattern匹配1/48。
+
+**fixed-cost probe（48对/96端点，pairs两侧最优动作必须不同）：** TRUE implicit两端同时正确率**4.3%**（2/47，1对并列剔除），group regret：drift .542、prior **1.144（差于常数.prior .416）**、reliability .664；SHUFFLE implicit 0%；SFT greedy两端同时正确率**12.5%**（6/48）、policy 14.6%（7/48），group regret：drift .434/.420、prior .684/.675、reliability .411/.366（reliability组最优率.656/.688）。**probe总体不支持模型利用了cost之外的信息字段；按用户预先声明，probe失败不能单独证明完全未读取信息字段。**
+
+**SFT触发原因（仅validation greedy判定）：** TRUE三项门槛全部未达——最优动作率0.3333<0.50；regret 0.4570>0.3656（=80%×best-constant 0.4570）；比SHUFFLE高0pp<10pp。SFT训练结果：270/270 steps、train_loss 0.1880、训练集拟合token准确率.9512/整动作完全正确率.4931；held-out（test greedy）整动作准确率.521、regret .3109——**SFT在train与held-out上一致地好于常数基线，DPO的deployed greedy则完全未离开常数策略**。
+
+**并列（ties）处理：** BASE implicit为构造性三候选精确并列（全768+96条），按均匀期望计算、不取字典首项；TRUE implicit并列train4/val0/test1/probe1（switch分析中从非并列pair分母中剔除）；SHUFFLE与SFT implicit无并列。**并列导致的随机切换未计入条件能力。** 另经复核发现：`summary.json`中保存的`strict_pair_accuracy`**不是tie-aware**——全并列判据会因排序方向获得偶然部分得分（G3-READ-BASE implicit存储值0.723即为该假象，非排序能力）。分析时改用tie-aware重算（criterion差≤1e-10的pair从分母剔除）：Step A policy L_policy的pair正确率BASE/I42/I43完全相同（0.673/0.715/0.277，说明三个模型的候选序列排序未变）；I42 implicit为0.704/0.745/0.393、I43为0.692/0.727/0.352、C42/43为0.327/0.285/0.723；BASE implicit全部并列→无定义。conditional：TRUE implicit tie-aware pair=0.613/0.613/0.606（test 522/862，ties 2）、SHUFFLE=0.482/0.528/0.497、SFT=0.500（固定skip排序在家族对称构造下的机会水平）；BASE implicit无定义（全并列）。**报告与结论一律以tie-aware数值为准，存储summary中的BASE implicit pair值不用于推断。**
+
+**定位结论（按用户第九节映射，可同时成立）：**（1）主指标Δ(greedy)=0且CI退化——**DPO TRUE与SHUFFLE的部署策略无任何差异，DPO未把偏好转化为动作**；（2）implicit rerank显著变好→**偏好可读，但原生成策略未改善**；（3）TRUE implicit优于常数/SHUFFLE但劣于cost-only kNN且probe无支持→**只证明部分条件关联，不证明信息价值机制**；（4）SFT泛化成功而DPO失败→**当前DPO目标/优化与生成先验耦合值得关注，原教师机制仍未证明**；（5）train与held-out表现一致（SFT train exact .493 vs test .521；TRUE implicit train .340 vs test .359），**无严重过拟合/捷径证据**；（6）DPO deployed策略连train都未拟合（train regret=常数）→**当前有限预算下的DPO首动作路线应停止；SFT正对照证明数据与流程可学习**。
+
+**预算与产物：** 本轮GPU-hours≈0.861(Step A 5次评分)+0.699(DPO-SHUFFLE)+0.342(DPO-TRUE)+0.263(G3-BASE)+0.385(G3-TRUE-eval)+0.400(G3-SHUFFLE-eval)+0.333(G3-SFT-eval)+0.200(SFT训练)=**≈3.48 GPU-hours**（上限8）；单训练attempt最大0.70h（上限2）；并行GPU最多2（GPU0+GPU6）；final adapter共**3个**（TRUE/SHUFFLE/SFT各23,613,253 bytes≈22.5MiB，上限512MiB/个、≤3个）；本轮新产物≈90MB（上限2GiB）；无checkpoint/W&B/trainer_state/tokenizer副本/逐样本文件。
 

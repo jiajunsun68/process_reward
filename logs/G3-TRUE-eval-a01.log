@@ -1,0 +1,55 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 59.42it/s]
+{"split": "train", "completed": 1, "total": 1152}
+{"split": "train", "completed": 100, "total": 1152}
+{"split": "train", "completed": 200, "total": 1152}
+{"split": "train", "completed": 300, "total": 1152}
+{"split": "train", "completed": 400, "total": 1152}
+{"split": "train", "completed": 500, "total": 1152}
+{"split": "test", "completed": 600, "total": 1152}
+{"split": "train", "completed": 700, "total": 1152}
+{"split": "train", "completed": 800, "total": 1152}
+{"split": "test", "completed": 900, "total": 1152}
+{"split": "train", "completed": 1000, "total": 1152}
+{"split": "test", "completed": 1100, "total": 1152}
+{"split": "train", "completed": 1152, "total": 1152}
+{"split": "probe", "completed": 1, "total": 96}
+{"split": "probe", "completed": 32, "total": 96}
+{"split": "probe", "completed": 64, "total": 96}
+{"split": "probe", "completed": 96, "total": 96}
+{
+  "predictions": "runs/G3-TRUE-eval-a01/predictions.jsonl",
+  "summary": "runs/G3-TRUE-eval-a01/summary.json",
+  "overall": {
+    "n_scenarios": 1248,
+    "greedy": {
+      "format_valid_rate": 1.0,
+      "action_counts": {
+        "precise": 1248
+      },
+      "mean_regret_valid_only": 0.44679131410256406,
+      "optimal_action_rate_valid_only": 0.33974358974358976
+    },
+    "policy": {
+      "action_counts": {
+        "precise": 1248
+      },
+      "mean_regret": 0.44679131410256406,
+      "optimal_action_rate": 0.33974358974358976,
+      "mean_margin": 13.52076895128955,
+      "strict_pair_accuracy": 0.5030724018167245
+    },
+    "implicit": {
+      "action_counts": {
+        "precise": 317,
+        "quick": 707,
+        "skip": 218,
+        "precise,quick": 6
+      },
+      "mean_regret": 0.3809663661858974,
+      "optimal_action_rate": 0.4358974358974359,
+      "mean_margin": 0.08825631883284807,
+      "strict_pair_accuracy": 0.6061982367085226
+    },
+    "mean_oracle_margin": 0.4812464423076923
+  }
+}

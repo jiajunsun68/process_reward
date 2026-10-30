@@ -1,0 +1,50 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 52.74it/s]
+{"split": "train", "completed": 1, "total": 307}
+{"split": "train", "completed": 100, "total": 307}
+{"split": "train", "completed": 200, "total": 307}
+{"split": "train", "completed": 300, "total": 307}
+{"split": "train", "completed": 307, "total": 307}
+{"split": "validation", "completed": 1, "total": 55}
+{"split": "validation", "completed": 55, "total": 55}
+{"split": "test", "completed": 1, "total": 438}
+{"split": "test", "completed": 100, "total": 438}
+{"split": "test", "completed": 200, "total": 438}
+{"split": "test", "completed": 300, "total": 438}
+{"split": "test", "completed": 400, "total": 438}
+{"split": "test", "completed": 438, "total": 438}
+{
+  "predictions": "runs/G3-READ-I43-a01/predictions.jsonl",
+  "summary": "runs/G3-READ-I43-a01/summary.json",
+  "overall": {
+    "n_scenarios": 800,
+    "greedy": {
+      "format_valid_rate": 1.0,
+      "action_counts": {
+        "precise": 800
+      },
+      "mean_regret_valid_only": 0.8394375000000003,
+      "optimal_action_rate_valid_only": 0.44375
+    },
+    "policy": {
+      "action_counts": {
+        "precise": 800
+      },
+      "mean_regret": 0.8394375000000003,
+      "optimal_action_rate": 0.44375,
+      "mean_margin": 20.64390562711331,
+      "strict_pair_accuracy": 0.45931208053691275
+    },
+    "implicit": {
+      "action_counts": {
+        "precise": 751,
+        "quick": 48,
+        "precise,quick": 1
+      },
+      "mean_regret": 0.7444375000000001,
+      "optimal_action_rate": 0.473125,
+      "mean_margin": 0.6789769026285909,
+      "strict_pair_accuracy": 0.5083892617449665
+    },
+    "mean_oracle_margin": 1.3409374999999997
+  }
+}
