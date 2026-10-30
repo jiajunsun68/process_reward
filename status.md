@@ -1,10 +1,10 @@
 # 实验状态
 
-最后维护：2026-10-30 17:10 +08:00（Asia/Shanghai）。
-当前阶段：G0/G1已完成（预注册gate为no-go）；G2-PILOT与G2R解码修复已完成（见E节）；G3 conditional-cost轮次已完成（见G节）；G4证据关联过程评分轮次已完成（见H节，用户2026-10-30显式新决策）：G4-DATA/AGENTRM/QWEN/ANALYZE全部COMPLETED。G4结论：主分支为GENERAL_TASK_MISMATCH——AgentRM与Qwen在该任务上均无可靠候选排序能力（reversal/invariant/secondary/各gold层普遍失败，动作近均匀），唯一改善来自“加入任何事实索引”的呈现/重复效应；LEDGER相对FORMAT无实质增益（Delta_specific=+0.003，远低于+0.5），闭环亦无同向改善（−0.98，CI含0）。不进入方法阶段；PRM、在线RL、额外模型和付费API仍均未启动。
-本项目在本会话中已登记的直接运行attempt数：35（G0/G1的4个 + G2-PILOT的9个 + G2R修复评估5个 + G3的13个 + G4的4个）；全部COMPLETED/SUCCEEDED，无FAILED/CANCELED、无运行中或排队任务。当前主机未安装Slurm命令，因此无Slurm队列可查。
+最后维护：2026-10-31 00:27 +08:00（Asia/Shanghai）。
+当前阶段：G0–G4保留；G5证据解析—价值排序分解轮次已完成（见I节）。G4 CPU更正完成但原始G4未覆盖；G5实际运行完成 dev/audit/closed_loop/analyze，无运行中或排队任务。依据预注册门槛，G5不进入外部验证、不宣称方法收益；唯一后续方向是退出当前冻结标量scorer+toy组合，转向外部真实任务的问题定义。
+本项目在本会话中已登记的直接运行attempt数：G0–G4为35个，G5新增1个逻辑attempt（G4-CPU-CORRECT/G5-DATA/G5-DEV/G5-AUDIT/G5-CLOSED_LOOP/G5-ANALYZE六个phase）；G5全部COMPLETED，无FAILED/CANCELED、无运行中或排队任务。G5早先三次启动失败均无成功模型调用或只是后续已缓存的前9次调用，最终成功路径使用项目venv；细节见I3。当前主机未安装Slurm命令，因此无Slurm队列可查。
 
-执行边界：G0–G4均已完成；任何新阶段（PRM、在线RL、训练scorer、外部benchmark）须由用户显式新决策与预算，不自动启动。协调者是status.md唯一writer；脚本和子agent不直接修改此表。详细规则见README第12节和AGENT_PROMPT.md。
+执行边界：G0–G5均已完成；任何新阶段（PRM、在线RL、训练scorer、外部benchmark）须由用户显式新决策与预算，不自动启动。G5的唯一下一步仅是外部真实任务的问题定义，不在本attempt自动执行。协调者是status.md唯一writer；脚本和子agent不直接修改此表。详细规则见README第12节和AGENT_PROMPT.md。
 
 ## A. 已完成实验与工程核验
 
@@ -393,3 +393,99 @@
 **研究判断（按预先约定分支）：主要分支 = GENERAL_TASK_MISMATCH。** 理由：(a) Delta_specific仅+0.003<+0.5且CI下界≈0，未达实用门槛；(b) 闭环LEDGER−FORMAT为负且CI含0，不同向；(c) RAW在reversal与invariant、以及query/stop/direct各gold层均失败（reversal两端正确0.17/0.10，invariant 0.32/0.36，secondary adoption 0.57/0.66，均远低于80%参考线）；(d) 动作分布接近均匀、AgentRM margin≈0.02，说明不是“特定证据关联排序”问题而是整体任务/目标不适配；(e) 唯一可重复的改善来自“加入任何事实索引”的呈现/重复效应（RAW→FORMAT），LEDGER无额外贡献（FORMAT_ONLY式呈现效应，非证据关联方法贡献）。**不能宣称已定位动态证据失效机制；研究主线在当前评分器/任务组合上不值得直接进入方法阶段。** 下一步最值得做的一项：先用AgentRM官方原生benchmark格式/示例验证该checkpoint在本环境中是否具备基本排序能力（或改用面向过程监督的native scorer），再决定是否值得重跑同一冻结数据；不自动训练scorer、不启动PRM/在线RL。
 
 **预算/产物：** GPU-hours 1.327（≤8；单评分器≤4）；planned logical 9,798/2,920、unique 9,546/2,836（均≤16,848/5,616）；新增产物≈6.6MB（≤1GiB）；新源文件2个；0 checkpoint/adapter；模型缓存27.97GiB（唯一revision `411ac92b...`，超文件24GiB声明约3.97GiB，已在此显式记录）；/data4在下载后剩余8.9GB。README已按指令对TWICE arXiv v2撤回做一行勘误。
+
+## I. G5 证据解析—价值排序分解实验（用户2026-10-30显式新决策，按 patchs/G5_STATE_VALUE_EXPERIMENT_PROMPT.md）
+
+本轮只做一次固定的分解实验：先完成 G4 的 CPU 更正并保留原始 G4 结果，再用 data_seed=501 / split_seed=502 生成 G5 数据；复用 AgentRM 与 Qwen3-4B 两个冻结模型，不训练、不导出 checkpoint、不下载模型。G4 的 GPU predictions 不重跑。
+
+### I0. 登记
+
+| RUN_ID | phase | 状态 | PID/Job | GPU | 说明 |
+|---|---|---|---|---|---|
+| G5-DECOMPOSE-a01 | G4-CPU-CORRECT | COMPLETED | CPU | — | 2026-10-30 23:19；35 个 secondary 修正、0 primary；原始 G4 文件未改 |
+| G5-DECOMPOSE-a01 | G5-DATA | COMPLETED | CPU | — | 2026-10-30 23:20；180 families/36 dev+144 audit；360 primary+495 secondary；closed-loop 36 |
+| G5-DECOMPOSE-a01 | G5-DEV | COMPLETED | 4190939 | 4→cuda:0 | 2026-10-30 23:20:43–23:31:39；Qwen 684、AgentRM 1539、invalid 0；格式检查通过 |
+| G5-DECOMPOSE-a01 | G5-AUDIT | COMPLETED | 18191 | 4→cuda:0 | 2026-10-30 23:37:45–00:15:22；Qwen 3420、AgentRM 7695、invalid 0；2256s |
+| G5-DECOMPOSE-a01 | G5-CLOSED_LOOP | COMPLETED | 90764 | 4→cuda:0 | 2026-10-31 00:16:51–00:22:01；485 trajectories；308.5s |
+| G5-DECOMPOSE-a01 | G5-ANALYZE | COMPLETED | CPU | — | 2026-10-31 00:23；写入 run.json metrics.g5 与 decision |
+
+### I1. G4 CPU 更正结果（原始 G4 未覆盖）
+
+- G4 原始 run 保留：`runs/G4-AGENTRM-a01/`、`runs/G4-QWEN-a01/`；本阶段只读其 cases/predictions。
+- 更正后的 35 个标签变化全部是 scoped_authorization 的 secondary 分支（dev 7 / audit 28），primary 0 变化；Qwen/AgentRM 共用同一批 prefix。
+- 更正后 π0 闭环 utility 由 6.583333 变为 6.694444；always_query/direct/stop 仍为 -2.194444/-8.888889/1.805556。
+- 更正后 semantic action distribution（query/direct/stop）：
+  - AgentRM RAW 39.5833/54.8611/5.5556；FORMAT 62.8472/36.8056/0.3472；LEDGER 62.5000/37.1528/0.3472。
+  - Qwen RAW 12.1528/82.8125/5.0347；FORMAT 15.7986/76.5625/7.6389；LEDGER 16.6667/77.9514/5.3819。
+- secondary 均匀并列正确率：AgentRM RAW/FORMAT/LEDGER=0.5634/0.1415/0.1866；Qwen=0.6285/0.6233/0.6259。
+- FORMAT 与 LEDGER 的主输入相同 232/288=80.56%（A/B 各 96/96，C 40/96）；实际改变的 56 个 C prefix 上，AgentRM FORMAT−LEDGER regret=+0.017857，Qwen=-2.008929。
+- C horizon 轨迹只更正 safe_completion/incomplete 标记（AgentRM 65 个标记变化；Qwen 0），utility 未改；旧 AgentRM view-key tie 只作说明，不做反事实相减。
+- 输出：`runs/G5-DECOMPOSE-a01/run.json` 的 `g4_corrected_analysis`；sanity checks 全通过；新增模型调用=0，GPU-hours=0。
+
+### I2. G5 数据冻结
+
+- 生成命令：`python -m trajectory_cases --output-dir data/g5_state --data-seed 501 --split-seed 502 --dataset-version g5-decompose-v1`。
+- `data/g5_state/cases.jsonl`（2.2MiB，sha256 `0fc3c833...`）；`manifest.json`（12KiB，sha256 `78fda628...`）。
+- 180 families；dev 36 / audit 144；每 cell 6 dev+24 audit；360 primary+495 secondary；closed-loop 预选 36 audit families（每 cell 6）。
+- 数据使用修正后的授权规则（allow grant 是证据；无目标证据为 unknown 先验 1/2；显式 revoke 或准确 query deny 为 deny；不再要求证书），独立 dataset_version/call_key namespace `g5-decompose-v1:501:502`。
+
+### I3. G5 dev 格式检查（2026-10-30 23:31）
+
+- 实际 PID 4190939，GPU4（逻辑 cuda:0）；成功阶段约570s，含早先失败重试的总 GPU 占用约0.19 GPU-hour。
+- 真实调用：Qwen 684（E 171 + RAW/O/E 各171）、AgentRM 1539（3 representations × 3 candidates × 171）；invalid extract 0、invalid score 0；token max 1256 < 3072；evidence-empty 0，evidence-invalid 1。
+- 三次早先启动失败均为 0 成功模型调用或已缓存调用：第一次本地 snapshot 查找，第二次错误 venv 的 `use_model_defaults` 不兼容，第三次 extract 返回字段 bug；最终使用项目既有 `/data/sjj/process_reward_venv`。未因效果修改 prompt。
+- 输出：`runs/G5-DECOMPOSE-a01/predictions.jsonl`（2,223 条）、`run.json`、`logs/G5-DECOMPOSE-a01.log`。
+
+### I4. G5 audit 完成（2026-10-30–31）
+
+- 实际 PID 18191，GPU4（逻辑 cuda:0），2026-10-30 23:37:45 启动，结束 2026-10-31 00:15:22；elapsed 2256.3s。
+- 全量离线调用：Qwen 3420（E/RAW/O_STATE_R/E_STATE_R ×855）、AgentRM 7695（3 representations ×3 candidates ×855）；总计到 audit 为止累计 Qwen 3420、AgentRM 7695；invalid extract/score 均为0；token max 1256。
+- 预检（CPU，只读 predictions；最终分析在闭环后统一写 run.json）：E audit state accuracy 0.9137（macro over mechanisms 0.9151）；dangerous audit: unknown→positive 25、bad→good 1；evidence valid citation precision 0.9927（1226 citations，9 个无效引用输出）。
+- 预检离线 regret（audit primary, macro equal-cell）：Qwen RAW 9.734→RAW_CAL 5.580；AgentRM RAW 9.124→RAW_CAL 5.122；E_CPU 1.385；O_CPU 0.0；O_STATE_R Qwen 6.684 / AgentRM 12.377；E_STATE_R Qwen 7.608 / AgentRM 12.377。E_CPU 优于两个 RAW_CAL（配对 CI 下界<0），但劣于 always_query 0.625（E_CPU−always_query=+0.760，CI [+0.326,+1.240]），因此尚未达到进入外部验证的门槛。
+- 闭环与最终分析已完成，见 I5/I6；上述预检与最终离线结果一致。
+
+### I5. G5 最终结果（CPU 汇总，唯一 attempt）
+
+**证据解析（E，audit）**：state accuracy 0.9137（625/684；dev 0.9006）；mechanism-macro 0.9151。分机制：versioned_report 0.7931、scoped_authorization 0.9909、exactly_once 0.9612。危险混淆：unknown→positive 25、bad→good 1（overall 26/684=3.80%；versioned_report 26/232=11.21%）；invalid state 0；evidence 引用 precision 0.9927（1226 citations；9 个输出含无效ID，0 空引用）。
+
+**离线 audit primary（macro equal-cell；越低越好）**：
+
+| 方法 | Regret | 最优率 |
+|---|---:|---:|
+| Qwen RAW | 9.734 | 0.453 |
+| Qwen RAW_CAL | 5.580 | 0.545 |
+| AgentRM RAW | 9.124 | 0.423 |
+| AgentRM RAW_CAL | 5.122 | 0.417 |
+| Qwen O_STATE_R（oracle state 诊断） | 6.684 | 0.590 |
+| AgentRM O_STATE_R（oracle state 诊断） | 12.377 | 0.377 |
+| Qwen E_STATE_R | 7.608 | 0.524 |
+| AgentRM E_STATE_R | 12.377 | 0.377 |
+| **E_CPU** | **1.385** | **0.868** |
+| O_CPU（规则上界） | 0.000 | 1.000 |
+| always_query | 0.625 | 0.375 |
+
+关键配对：E_CPU−Qwen RAW_CAL = −4.194，95% CI [−5.538,−3.031]；E_CPU−AgentRM RAW_CAL = −3.736 [−4.865,−2.750]；E_CPU−always_query = **+0.760 [+0.326,+1.240]**（E_CPU 仍更差）；E_STATE_R−相应 RAW_CAL：Qwen +2.028 [+0.389,+3.618]、AgentRM +7.255 [+5.479,+9.085]。
+
+**闭环（36 audit families；posterior 加权，越低/越高按列）**：
+
+| 策略 | Utility↑ | 95% CI | safe↑ | total errors↓ | queries | incomplete |
+|---|---:|---|---:|---:|---:|---:|
+| AgentRM RAW_CAL | −3.000 | [−5.688,−0.583] | 0.340 | 0.188 | 0.778 | 0.472 |
+| Qwen RAW_CAL | −3.458 | [−7.069,0.382] | 0.653 | 0.319 | 0.403 | 0.028 |
+| **E_CPU** | **4.965** | **[3.681,6.194]** | **0.688** | **0.056** | **0.243** | 0.257 |
+| AgentRM E_STATE_R | −6.056 | [−10.139,−1.944] | 0.590 | 0.389 | 0.292 | 0.021 |
+| Qwen E_STATE_R | −1.576 | [−4.889,1.493] | 0.632 | 0.236 | 0.812 | 0.132 |
+
+CPU 基线：π0 6.806、always_query −2.750、always_direct −6.389、always_stop 1.250。E_CPU−Qwen RAW_CAL = +8.424 [+5.292,+11.569]；E_CPU−AgentRM RAW_CAL = +7.965 [+5.368,+10.688]；E_CPU−Qwen E_STATE_R = +6.542 [+3.965,+9.549]。
+
+**预注册外部验证门槛**：accuracy≥90% 通过；overall dangerous≤5% 通过（但 versioned_report 11.21% 暴露局部失败）；primary improvement CI 下界>0 通过；E_CPU<always_query **未通过**；闭环 utility 改善且 total errors 不升通过。**总 gate 未通过，不进入外部验证，不把 E_CPU 称为已验证方法。**
+
+### I6. 本轮判断与唯一下一方向
+
+- **问题主要不是普遍证据解析失败**：E 的 audit accuracy 0.9137、mechanism-macro 0.9151，evidence precision 0.9927；错误集中在 stale-revision 的 unknown→positive（versioned_report），这是局部而关键的证据解析缺陷。
+- **主要限制是价值排序/冻结 scorer 适配**：即使给 oracle state，O_STATE_R 仍为 Qwen 6.684 / AgentRM 12.377；E_STATE_R 为 7.608/12.377，远差于 E_CPU 的 1.385。E_CPU 的主要错误来自 E 的 stale unknown 误判（如 F0006）；但当前两个 AgentRM/Qwen 标量 scorer 在 state-only 表示上不构成可用价值头。不能称“普遍 PRM 失效”，只能说该表示/目标与这两个冻结 scorer 不适配。
+- **唯一后续方向**：**退出当前冻结标量 scorer + toy 组合**；下一步只做外部真实工具任务的问题定义与验证，比较“grounded state extraction + deterministic Q（E_CPU）”与 always_query，并把当前 AgentRM/Qwen 仅作负对照。不再对这两个 scorer 做 prompt/表示修补、不再增加同模板 toy 数据、不训练当前 scorer。
+- 实际错误例（最多6个）：F0006 stale E 预测 good（真 unknown，证据e3）→E_CPU direct、闭环 utility −30；F0008 secondary 新 query=good 仍报 bad（证据e3）；F0007 Qwen O_STATE_R 给 c1=70 选 direct（gold c0，Q=−30）；F0007 AgentRM O_STATE_R 给 c1=0.625>c0=0.543 选 direct；F0006 AgentRM O_STATE_R 选 c0（gold c2=4，regret14）；F0006 E_CPU stale 分支单步 direct、utility −30。
+- G4 保留与更正：G4 原始 primary 指标、模型闭环 utility、Delta_specific 负结论保留；35 个 scoped_authorization secondary 的 gold/Q 已更正（primary 0）；π0 6.583→6.694；action counts 改语义 kind；secondary 改均匀并列质量；gold strata 按每个 primary prefix 后按 family 聚类；C horizon 仅改 flags；旧 tie 不伪装反事实。
+
+**预算/产物（G5）**：GPU-hours 0.904（≤4，含失败重试；成功阶段 0.871）；Qwen 3,767 calls（≤6,984）、AgentRM 8,427 scores（≤12,690），invalid 0/0；训练 run/checkpoint/adapter/optimizer 均为 0；新源文件 0、修改源文件2；数据2文件+run2文件+日志1；新增非模型产物约8.9MiB；模型均为本地既有 snapshot（AgentRM `411ac92b...`，Qwen `2de2439...`）。最终 run.json 见 `runs/G5-DECOMPOSE-a01/run.json`（`decision`/`g4_corrected_analysis`/`metrics.g5`），predictions `384d2960...`，日志 `logs/G5-DECOMPOSE-a01.log`。

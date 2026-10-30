@@ -133,19 +133,22 @@ def mechanism_text(mechanism: str, variant: int) -> tuple[str, str, str]:
         )
         rules = (
             "1. Grants and denials are bound to one resource and one request pair.\n"
-            "2. A grant for the target pair authorizes that request until it is explicitly revoked. "
-            "An explicit revocation of the target grant means the current authorization is deny.\n"
+            "2. A valid grant scoped to the target pair is evidence that the current authorization is "
+            "allow until it is explicitly revoked. An explicit revocation of the target grant means "
+            "deny; an accurate query returning deny also establishes deny.\n"
             "3. A grant for a different resource or request provides no information about the target "
-            "authorization; the target remains at the public prior 1/2.\n"
+            "authorization. If no applicable target evidence exists, the target state is unknown and "
+            "the public prior 1/2 applies; no separate certificate or possession check is required.\n"
             "4. Revoking a different grant does not affect the target authorization.\n"
             "5. Querying reads the current state accurately and cannot restore a revoked grant. No "
             "external authorization changes occur after this decision point."
             if variant == 0 else
-            "Evidence is scoped to one (resource, request) pair. The target pair is authorized only "
-            "by a grant to that pair that has not been explicitly revoked; revoking the target grant "
-            "means deny. Grants and revocations for other pairs do not inform the target, which stays "
-            "at prior 1/2. Queries only read the state and cannot re-grant. No external authorization "
-            "changes occur after this point."
+            "Evidence is scoped to one (resource, request) pair. A valid grant to the target pair is "
+            "evidence of allow until explicitly revoked; explicit revocation or an accurate query "
+            "returning deny establishes deny. Grants and revocations for other pairs do not inform "
+            "the target; with no applicable target evidence the state is unknown under prior 1/2, not "
+            "automatically negative and not conditional on possessing a certificate. Queries only "
+            "read the state and cannot re-grant. No external authorization changes occur after this point."
         )
         return tool_spec, rules, "Complete request {request} for resource {resource} under the authorization rules."
     if mechanism == "exactly_once":
@@ -361,6 +364,90 @@ def target_of(mechanism: str, builder: FamilyBuilder) -> dict[str, str]:
     return {"operation_id": builder.operation}
 
 
+ALLOWED_STATES = {
+    "versioned_report": ("good", "bad", "unknown"),
+    "scoped_authorization": ("allow", "deny", "unknown"),
+    "exactly_once": ("not_committed", "committed", "unknown"),
+}
+
+
+def allowed_states(mechanism: str) -> tuple[str, ...]:
+    return ALLOWED_STATES[mechanism]
+
+
+def target_from_public(mechanism: str, public: dict[str, Any]) -> dict[str, str]:
+    """Recover public target identifiers from candidate arguments only."""
+    candidates = public["candidates"]
+    if mechanism == "exactly_once":
+        for candidate in candidates:
+            operation = candidate.get("arguments", {}).get("operation_id")
+            if operation:
+                return {"operation_id": operation}
+    else:
+        for candidate in candidates:
+            arguments = candidate.get("arguments", {})
+            if arguments.get("resource_id") and arguments.get("request_id"):
+                return {"resource_id": arguments["resource_id"],
+                        "request_id": arguments["request_id"]}
+    raise ValueError(f"cannot recover target identifiers for {mechanism}")
+
+
+def public_target_text(mechanism: str, target: dict[str, str]) -> str:
+    if mechanism == "exactly_once":
+        return f"operation_id={target['operation_id']}"
+    return f"resource_id={target['resource_id']}, request_id={target['request_id']}"
+
+
+def state_from_worlds(mechanism: str, worlds: list[dict[str, Any]]) -> str:
+    if len(worlds) != 1:
+        return "unknown"
+    world = worlds[0]
+    if mechanism == "versioned_report":
+        return world["condition"]
+    if mechanism == "scoped_authorization":
+        return world["authorization"]
+    return "committed" if world["committed"] else "not_committed"
+
+
+def information_state(mechanism: str, history: list[dict[str, Any]],
+                      target: dict[str, str]) -> str:
+    """O_STATE: the information state implied by public history, not a hidden bit."""
+    worlds, _ = posterior(mechanism, history, target)
+    return state_from_worlds(mechanism, worlds)
+
+
+def state_q_table(mechanism: str, state: str, remaining: int) -> dict[str, float]:
+    """The fixed CPU Q table in the G5 protocol (sections 7 and 5)."""
+    if mechanism == "versioned_report":
+        rows = {
+            "good": {"query": 9.0, "direct": 10.0, "stop": 0.0},
+            "bad": {"query": -1.0, "direct": -30.0, "stop": 0.0},
+            "unknown": {"query": 4.0, "direct": -10.0, "stop": 0.0},
+        }
+    elif mechanism == "scoped_authorization":
+        rows = {
+            "allow": {"query": 9.0, "direct": 10.0, "stop": 0.0},
+            "deny": {"query": -1.0, "direct": -30.0, "stop": 0.0},
+            "unknown": {"query": 4.0, "direct": -10.0, "stop": 0.0},
+        }
+    else:
+        rows = {
+            "not_committed": {"query": 9.0, "direct": 10.0, "stop": 0.0},
+            "committed": {"query": 9.0, "direct": -30.0, "stop": 10.0},
+            "unknown": {"query": 9.0, "direct": -10.0, "stop": 5.0},
+        }
+    if state == "unknown" and mechanism == "exactly_once":
+        rows["unknown"] = {"query": 9.0, "direct": -10.0, "stop": 5.0}
+    values = dict(rows[state])
+    if remaining <= 1:
+        if mechanism == "exactly_once":
+            close_value = {"not_committed": 0.0, "committed": 10.0, "unknown": 5.0}[state]
+            values["query"] = -1.0 + close_value
+        else:
+            values["query"] = -1.0
+    return values
+
+
 def posterior(mechanism: str, history: list[dict[str, Any]], target: dict[str, str]
               ) -> tuple[list[dict[str, Any]], list[float]]:
     """Exact posterior over hidden worlds from public history only."""
@@ -389,8 +476,10 @@ def posterior(mechanism: str, history: list[dict[str, Any]], target: dict[str, s
                 continue
             if obs.get("revoked") is True:
                 state = "deny"
-            elif obs.get("authorization") == "allow":
-                state = "allow"
+            elif obs.get("authorization") in {"allow", "deny"}:
+                # An accurate query returning deny is evidence, just like a
+                # grant/revocation. G4 omitted this branch.
+                state = obs["authorization"]
         if state is not None:
             return [{"authorization": state}], [1.0]
         return [{"authorization": "allow"}, {"authorization": "deny"}], [0.5, 0.5]
@@ -438,6 +527,14 @@ def q_value(mechanism: str, history: list[dict[str, Any]], target: dict[str, str
     """Q^{pi0}(h,a) for one candidate category (query/direct/stop)."""
     worlds, weights = posterior(mechanism, history, target)
     if kind == "query":
+        if remaining <= 1:
+            # No action follows the query inside the declared horizon. For
+            # execution status the horizon closes the operation implicitly.
+            if mechanism == "exactly_once":
+                close = sum(weight * _terminal_utility(mechanism, "stop", world)
+                            for world, weight in zip(worlds, weights))
+                return -1.0 + close
+            return -1.0
         total = 0.0
         for world, weight in zip(worlds, weights):
             # The query reveals the truth to pi0; it then acts without further search.
@@ -789,13 +886,14 @@ def construct_families(data_seed: int = DATA_SEED, split_seed: int = SPLIT_SEED
     return families, cell_counts, dict(rejections)
 
 
-def build_dataset(output_dir: Path, data_seed: int = DATA_SEED, split_seed: int = SPLIT_SEED) -> dict[str, Any]:
+def build_dataset(output_dir: Path, data_seed: int = DATA_SEED, split_seed: int = SPLIT_SEED,
+                  dataset_version: str = "g4-evidence-v1") -> dict[str, Any]:
     verify_analytic_table()
     output_dir.mkdir(parents=True, exist_ok=True)
     cases_path = output_dir / "cases.jsonl"
     manifest_path = output_dir / "manifest.json"
     if cases_path.exists() or manifest_path.exists():
-        raise FileExistsError("G4 data already exist; data are generated exactly once")
+        raise FileExistsError("dataset already exists; data are generated exactly once")
 
     families, cell_counts, rejections = construct_families(data_seed, split_seed)
 
@@ -820,7 +918,9 @@ def build_dataset(output_dir: Path, data_seed: int = DATA_SEED, split_seed: int 
         for split in ("dev", "audit")
     }
     manifest = {
-        "dataset": "G4 evidence-sensitivity trajectories; exact-expectation hidden-world labels",
+        "dataset": "Evidence-sensitivity trajectories; exact-expectation hidden-world labels",
+        "dataset_version": dataset_version,
+        "call_key_namespace": f"{dataset_version}:{data_seed}:{split_seed}",
         "data_seed": data_seed, "split_seed": split_seed, "bootstrap_seed": 23,
         "family_counts": dict(split_counts),
         "cell_counts": cell_counts,
@@ -915,6 +1015,7 @@ def main() -> None:
     parser.add_argument("--self-test", action="store_true", help="Run the CPU verification only and exit")
     parser.add_argument("--data-seed", type=int, default=DATA_SEED)
     parser.add_argument("--split-seed", type=int, default=SPLIT_SEED)
+    parser.add_argument("--dataset-version", default="g4-evidence-v1")
     args = parser.parse_args()
     if args.self_test:
         verify_analytic_table()
@@ -957,7 +1058,7 @@ def main() -> None:
             "secondary_branches_per_variant": dict(prefix_counts),
         }, indent=2))
         return
-    manifest = build_dataset(args.output_dir, args.data_seed, args.split_seed)
+    manifest = build_dataset(args.output_dir, args.data_seed, args.split_seed, args.dataset_version)
     cases = load_cases(args.output_dir / "cases.jsonl")
     baselines = evaluate_cpu_baselines(cases)
     manifest["cpu_baselines"] = baselines

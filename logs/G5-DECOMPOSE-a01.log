@@ -1,0 +1,958 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1739, in <module>
+    main()
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1662, in main
+    run_g4_correct(args, load_cases(args.g4_cases))
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1499, in run_g4_correct
+    analysis = g4_corrected_analysis(g4_cases, Path(__file__).parent)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1245, in g4_corrected_analysis
+    raise RuntimeError(f"G4 corrected-analysis sanity checks failed: {failed}")
+RuntimeError: G4 corrected-analysis sanity checks failed: ['changed_secondary_35_and_no_primary']
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1746, in <module>
+    main()
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1669, in main
+    run_g4_correct(args, load_cases(args.g4_cases))
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1506, in run_g4_correct
+    analysis = g4_corrected_analysis(g4_cases, Path(__file__).parent)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1197, in g4_corrected_analysis
+    and all(Counter(key[4] for key in changed_unique).keys() <= {"scoped_authorization"}),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'bool' object is not iterable
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1746, in <module>
+    main()
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1669, in main
+    run_g4_correct(args, load_cases(args.g4_cases))
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1517, in run_g4_correct
+    "changed_labels": analysis["changed_labels"]["total"],
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+KeyError: 'total'
+{
+  "G4-CPU-CORRECT": "COMPLETED",
+  "changed_labels": 35,
+  "sanity_checks": {
+    "agentrm/RAW/primary_regret": true,
+    "agentrm/RAW/action_distribution": true,
+    "agentrm/RAW/secondary_correct": true,
+    "agentrm/FORMAT/primary_regret": true,
+    "agentrm/FORMAT/action_distribution": true,
+    "agentrm/FORMAT/secondary_correct": true,
+    "agentrm/LEDGER/primary_regret": true,
+    "agentrm/LEDGER/action_distribution": true,
+    "agentrm/LEDGER/secondary_correct": true,
+    "qwen/RAW/primary_regret": true,
+    "qwen/RAW/action_distribution": true,
+    "qwen/RAW/secondary_correct": true,
+    "qwen/FORMAT/primary_regret": true,
+    "qwen/FORMAT/action_distribution": true,
+    "qwen/FORMAT/secondary_correct": true,
+    "qwen/LEDGER/primary_regret": true,
+    "qwen/LEDGER/action_distribution": true,
+    "qwen/LEDGER/secondary_correct": true,
+    "changed_secondary_35_and_no_primary": true,
+    "pi0_6.694444": true,
+    "format_ledger_232_of_288": true,
+    "changed_subset_regret": true
+  },
+  "pi0": 6.694444444444444
+}
+{
+  "manifest": {
+    "dataset": "Evidence-sensitivity trajectories; exact-expectation hidden-world labels",
+    "dataset_version": "g5-decompose-v1",
+    "call_key_namespace": "g5-decompose-v1:501:502",
+    "data_seed": 501,
+    "split_seed": 502,
+    "bootstrap_seed": 23,
+    "family_counts": {
+      "dev": 36,
+      "audit": 144
+    },
+    "cell_counts": {
+      "versioned_report:reversal": {
+        "attempted": 30,
+        "accepted": 30
+      },
+      "versioned_report:invariant": {
+        "attempted": 30,
+        "accepted": 30
+      },
+      "scoped_authorization:reversal": {
+        "attempted": 30,
+        "accepted": 30
+      },
+      "scoped_authorization:invariant": {
+        "attempted": 30,
+        "accepted": 30
+      },
+      "exactly_once:reversal": {
+        "attempted": 30,
+        "accepted": 30
+      },
+      "exactly_once:invariant": {
+        "attempted": 30,
+        "accepted": 30
+      }
+    },
+    "pair_type_counts": {
+      "reversal": 90,
+      "invariant": 90
+    },
+    "subtype_counts": {
+      "reversal_good": 15,
+      "reversal_bad": 15,
+      "invariant_bad": 10,
+      "invariant_unknown": 30,
+      "invariant_good": 10,
+      "reversal_other_scope": 15,
+      "reversal_revoked": 15,
+      "invariant_allow": 10,
+      "invariant_deny": 10,
+      "reversal_committed": 15,
+      "reversal_not_committed": 15,
+      "invariant_committed": 10,
+      "invariant_not_committed": 10
+    },
+    "mechanism_counts": {
+      "versioned_report": 60,
+      "scoped_authorization": 60,
+      "exactly_once": 60
+    },
+    "prefix_counts": {
+      "dev": 171,
+      "audit": 684
+    },
+    "rejections": {},
+    "analytic_table_verified": true,
+    "closed_loop_family_ids": [
+      "F0006",
+      "F0007",
+      "F0008",
+      "F0009",
+      "F0010",
+      "F0011",
+      "F0036",
+      "F0037",
+      "F0038",
+      "F0039",
+      "F0040",
+      "F0041",
+      "F0066",
+      "F0067",
+      "F0068",
+      "F0069",
+      "F0070",
+      "F0071",
+      "F0096",
+      "F0097",
+      "F0098",
+      "F0099",
+      "F0100",
+      "F0101",
+      "F0126",
+      "F0127",
+      "F0128",
+      "F0129",
+      "F0130",
+      "F0131",
+      "F0156",
+      "F0157",
+      "F0158",
+      "F0159",
+      "F0160",
+      "F0161"
+    ],
+    "closed_loop_counts": {
+      "versioned_report:reversal": 6,
+      "versioned_report:invariant": 6,
+      "scoped_authorization:reversal": 6,
+      "scoped_authorization:invariant": 6,
+      "exactly_once:reversal": 6,
+      "exactly_once:invariant": 6
+    },
+    "candidate_permutation": "per-family seeded shuffle; both variants and all prefixes share the mapping; c0 is not always gold",
+    "split_unit": "whole family (both variants, all prefixes and views)",
+    "prompt_visibility": "public block only; private worlds/posterior/gold never enter model inputs",
+    "focus": "finite local tool simulator; 3-5 historical rounds; max 4 actions from the primary decision",
+    "counterfactual_rule": "same family fixes task, tools, candidates and continuation; only relevant evidence or one unrelated event differs",
+    "created_at_utc": "2026-10-30T15:17:09.692896+00:00",
+    "frozen": true,
+    "cpu_baselines": {
+      "pi0": {
+        "macro_regret": 0.0,
+        "macro_optimal_action_rate": 1.0,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean_regret": 0.0,
+            "optimal_action_rate": 1.0,
+            "n_families": 24
+          },
+          "versioned_report:invariant": {
+            "mean_regret": 0.0,
+            "optimal_action_rate": 1.0,
+            "n_families": 24
+          },
+          "scoped_authorization:reversal": {
+            "mean_regret": 0.0,
+            "optimal_action_rate": 1.0,
+            "n_families": 24
+          },
+          "scoped_authorization:invariant": {
+            "mean_regret": 0.0,
+            "optimal_action_rate": 1.0,
+            "n_families": 24
+          },
+          "exactly_once:reversal": {
+            "mean_regret": 0.0,
+            "optimal_action_rate": 1.0,
+            "n_families": 24
+          },
+          "exactly_once:invariant": {
+            "mean_regret": 0.0,
+            "optimal_action_rate": 1.0,
+            "n_families": 24
+          }
+        }
+      },
+      "exact_planner": {
+        "macro_regret": 0.0,
+        "macro_optimal_action_rate": 1.0,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean_regret": 0.0,
+            "optimal_action_rate": 1.0,
+            "n_families": 24
+          },
+          "versioned_report:invariant": {
+            "mean_regret": 0.0,
+            "optimal_action_rate": 1.0,
+            "n_families": 24
+          },
+          "scoped_authorization:reversal": {
+            "mean_regret": 0.0,
+            "optimal_action_rate": 1.0,
+            "n_families": 24
+          },
+          "scoped_authorization:invariant": {
+            "mean_regret": 0.0,
+            "optimal_action_rate": 1.0,
+            "n_families": 24
+          },
+          "exactly_once:reversal": {
+            "mean_regret": 0.0,
+            "optimal_action_rate": 1.0,
+            "n_families": 24
+          },
+          "exactly_once:invariant": {
+            "mean_regret": 0.0,
+            "optimal_action_rate": 1.0,
+            "n_families": 24
+          }
+        }
+      },
+      "always_query": {
+        "macro_regret": 0.6249999999999999,
+        "macro_optimal_action_rate": 0.375,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean_regret": 0.5,
+            "optimal_action_rate": 0.5,
+            "n_families": 24
+          },
+          "versioned_report:invariant": {
+            "mean_regret": 0.6666666666666666,
+            "optimal_action_rate": 0.3333333333333333,
+            "n_families": 24
+          },
+          "scoped_authorization:reversal": {
+            "mean_regret": 0.75,
+            "optimal_action_rate": 0.25,
+            "n_families": 24
+          },
+          "scoped_authorization:invariant": {
+            "mean_regret": 0.6666666666666666,
+            "optimal_action_rate": 0.3333333333333333,
+            "n_families": 24
+          },
+          "exactly_once:reversal": {
+            "mean_regret": 0.5,
+            "optimal_action_rate": 0.5,
+            "n_families": 24
+          },
+          "exactly_once:invariant": {
+            "mean_regret": 0.6666666666666666,
+            "optimal_action_rate": 0.3333333333333333,
+            "n_families": 24
+          }
+        }
+      },
+      "always_direct": {
+        "macro_regret": 15.666666666666666,
+        "macro_optimal_action_rate": 0.3333333333333333,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean_regret": 14.5,
+            "optimal_action_rate": 0.25,
+            "n_families": 24
+          },
+          "versioned_report:invariant": {
+            "mean_regret": 14.666666666666666,
+            "optimal_action_rate": 0.3333333333333333,
+            "n_families": 24
+          },
+          "scoped_authorization:reversal": {
+            "mean_regret": 11.0,
+            "optimal_action_rate": 0.5,
+            "n_families": 24
+          },
+          "scoped_authorization:invariant": {
+            "mean_regret": 14.666666666666666,
+            "optimal_action_rate": 0.3333333333333333,
+            "n_families": 24
+          },
+          "exactly_once:reversal": {
+            "mean_regret": 19.5,
+            "optimal_action_rate": 0.25,
+            "n_families": 24
+          },
+          "exactly_once:invariant": {
+            "mean_regret": 19.666666666666668,
+            "optimal_action_rate": 0.3333333333333333,
+            "n_families": 24
+          }
+        }
+      },
+      "always_stop": {
+        "macro_regret": 4.833333333333334,
+        "macro_optimal_action_rate": 0.29166666666666663,
+        "cells": {
+          "versioned_report:reversal": {
+            "mean_regret": 4.5,
+            "optimal_action_rate": 0.25,
+            "n_families": 24
+          },
+          "versioned_report:invariant": {
+            "mean_regret": 4.666666666666667,
+            "optimal_action_rate": 0.3333333333333333,
+            "n_families": 24
+          },
+          "scoped_authorization:reversal": {
+            "mean_regret": 6.0,
+            "optimal_action_rate": 0.25,
+            "n_families": 24
+          },
+          "scoped_authorization:invariant": {
+            "mean_regret": 4.666666666666667,
+            "optimal_action_rate": 0.3333333333333333,
+            "n_families": 24
+          },
+          "exactly_once:reversal": {
+            "mean_regret": 4.5,
+            "optimal_action_rate": 0.25,
+            "n_families": 24
+          },
+          "exactly_once:invariant": {
+            "mean_regret": 4.666666666666667,
+            "optimal_action_rate": 0.3333333333333333,
+            "n_families": 24
+          }
+        }
+      }
+    }
+  },
+  "baselines": {
+    "pi0": {
+      "macro_regret": 0.0,
+      "macro_optimal_action_rate": 1.0,
+      "cells": {
+        "versioned_report:reversal": {
+          "mean_regret": 0.0,
+          "optimal_action_rate": 1.0,
+          "n_families": 24
+        },
+        "versioned_report:invariant": {
+          "mean_regret": 0.0,
+          "optimal_action_rate": 1.0,
+          "n_families": 24
+        },
+        "scoped_authorization:reversal": {
+          "mean_regret": 0.0,
+          "optimal_action_rate": 1.0,
+          "n_families": 24
+        },
+        "scoped_authorization:invariant": {
+          "mean_regret": 0.0,
+          "optimal_action_rate": 1.0,
+          "n_families": 24
+        },
+        "exactly_once:reversal": {
+          "mean_regret": 0.0,
+          "optimal_action_rate": 1.0,
+          "n_families": 24
+        },
+        "exactly_once:invariant": {
+          "mean_regret": 0.0,
+          "optimal_action_rate": 1.0,
+          "n_families": 24
+        }
+      }
+    },
+    "exact_planner": {
+      "macro_regret": 0.0,
+      "macro_optimal_action_rate": 1.0,
+      "cells": {
+        "versioned_report:reversal": {
+          "mean_regret": 0.0,
+          "optimal_action_rate": 1.0,
+          "n_families": 24
+        },
+        "versioned_report:invariant": {
+          "mean_regret": 0.0,
+          "optimal_action_rate": 1.0,
+          "n_families": 24
+        },
+        "scoped_authorization:reversal": {
+          "mean_regret": 0.0,
+          "optimal_action_rate": 1.0,
+          "n_families": 24
+        },
+        "scoped_authorization:invariant": {
+          "mean_regret": 0.0,
+          "optimal_action_rate": 1.0,
+          "n_families": 24
+        },
+        "exactly_once:reversal": {
+          "mean_regret": 0.0,
+          "optimal_action_rate": 1.0,
+          "n_families": 24
+        },
+        "exactly_once:invariant": {
+          "mean_regret": 0.0,
+          "optimal_action_rate": 1.0,
+          "n_families": 24
+        }
+      }
+    },
+    "always_query": {
+      "macro_regret": 0.6249999999999999,
+      "macro_optimal_action_rate": 0.375,
+      "cells": {
+        "versioned_report:reversal": {
+          "mean_regret": 0.5,
+          "optimal_action_rate": 0.5,
+          "n_families": 24
+        },
+        "versioned_report:invariant": {
+          "mean_regret": 0.6666666666666666,
+          "optimal_action_rate": 0.3333333333333333,
+          "n_families": 24
+        },
+        "scoped_authorization:reversal": {
+          "mean_regret": 0.75,
+          "optimal_action_rate": 0.25,
+          "n_families": 24
+        },
+        "scoped_authorization:invariant": {
+          "mean_regret": 0.6666666666666666,
+          "optimal_action_rate": 0.3333333333333333,
+          "n_families": 24
+        },
+        "exactly_once:reversal": {
+          "mean_regret": 0.5,
+          "optimal_action_rate": 0.5,
+          "n_families": 24
+        },
+        "exactly_once:invariant": {
+          "mean_regret": 0.6666666666666666,
+          "optimal_action_rate": 0.3333333333333333,
+          "n_families": 24
+        }
+      }
+    },
+    "always_direct": {
+      "macro_regret": 15.666666666666666,
+      "macro_optimal_action_rate": 0.3333333333333333,
+      "cells": {
+        "versioned_report:reversal": {
+          "mean_regret": 14.5,
+          "optimal_action_rate": 0.25,
+          "n_families": 24
+        },
+        "versioned_report:invariant": {
+          "mean_regret": 14.666666666666666,
+          "optimal_action_rate": 0.3333333333333333,
+          "n_families": 24
+        },
+        "scoped_authorization:reversal": {
+          "mean_regret": 11.0,
+          "optimal_action_rate": 0.5,
+          "n_families": 24
+        },
+        "scoped_authorization:invariant": {
+          "mean_regret": 14.666666666666666,
+          "optimal_action_rate": 0.3333333333333333,
+          "n_families": 24
+        },
+        "exactly_once:reversal": {
+          "mean_regret": 19.5,
+          "optimal_action_rate": 0.25,
+          "n_families": 24
+        },
+        "exactly_once:invariant": {
+          "mean_regret": 19.666666666666668,
+          "optimal_action_rate": 0.3333333333333333,
+          "n_families": 24
+        }
+      }
+    },
+    "always_stop": {
+      "macro_regret": 4.833333333333334,
+      "macro_optimal_action_rate": 0.29166666666666663,
+      "cells": {
+        "versioned_report:reversal": {
+          "mean_regret": 4.5,
+          "optimal_action_rate": 0.25,
+          "n_families": 24
+        },
+        "versioned_report:invariant": {
+          "mean_regret": 4.666666666666667,
+          "optimal_action_rate": 0.3333333333333333,
+          "n_families": 24
+        },
+        "scoped_authorization:reversal": {
+          "mean_regret": 6.0,
+          "optimal_action_rate": 0.25,
+          "n_families": 24
+        },
+        "scoped_authorization:invariant": {
+          "mean_regret": 4.666666666666667,
+          "optimal_action_rate": 0.3333333333333333,
+          "n_families": 24
+        },
+        "exactly_once:reversal": {
+          "mean_regret": 4.5,
+          "optimal_action_rate": 0.25,
+          "n_families": 24
+        },
+        "exactly_once:invariant": {
+          "mean_regret": 4.666666666666667,
+          "optimal_action_rate": 0.3333333333333333,
+          "n_families": 24
+        }
+      }
+    }
+  }
+}
+0fc3c83373c4f8fa864c9713918e9ffe719a9f65fb571633e058259204d6ab7a  data/g5_state/cases.jsonl
+78fda62857a517b26359aba1e579e626bbe45ed737d251270e2f9a9447a76d87  data/g5_state/manifest.json
+aabd069606b7600477d19dd43fe6cb2abc854edae132ff24e673133585e04317  runs/G5-DECOMPOSE-a01/run.json
+=== 2026-10-30 23:20:43 CST START G5 dev ===
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 8761.62it/s]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 2770, in <module>
+    main()
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 2678, in main
+    runner = G5Runner(attempt, args.device)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1794, in __init__
+    self.agent = AgentRMScorer(attempt, resolve_agentrm_snapshot(), device)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 2763, in resolve_agentrm_snapshot
+    return snapshot_download(
+           ^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/alignment/safety-component/.venv-v31/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/alignment/safety-component/.venv-v31/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 310, in snapshot_download
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: Cannot find an appropriate cached snapshot folder for the specified revision on the local disk and outgoing traffic has been disabled. To enable repo look-ups and downloads online, pass 'local_files_only=False' as input.
+=== 2026-10-30 23:22:35 CST RETRY G5 dev (local AgentRM snapshot; no model calls in failed start) ===
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 8106.51it/s]
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:  11%|█         | 32/291 [00:00<00:00, 317.37it/s]Loading weights:  26%|██▋       | 77/291 [00:00<00:00, 390.71it/s]Loading weights:  45%|████▍     | 130/291 [00:00<00:00, 452.29it/s]Loading weights:  60%|██████    | 176/291 [00:00<00:00, 393.90it/s]Loading weights:  75%|███████▍  | 217/291 [00:00<00:00, 376.21it/s]Loading weights:  88%|████████▊ | 256/291 [00:00<00:00, 345.98it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 372.92it/s]
+[transformers] The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 2775, in <module>
+    main()
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 2691, in main
+    run_g5_offline_phase(runner, cases, "dev")
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1918, in run_g5_offline_phase
+    extraction = runner.extract(phase, family, variant["variant_id"], prefix_id, public)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1820, in extract
+    raw, tokens, generation_error = self.qwen._generate(
+                                    ^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 726, in _generate
+    output = self.model.generate(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/alignment/safety-component/.venv-v31/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/alignment/safety-component/.venv-v31/lib/python3.11/site-packages/transformers/generation/utils.py", line 2377, in generate
+    self._validate_model_kwargs(model_kwargs.copy())
+  File "/data4/sjj/catelogue/alignment/safety-component/.venv-v31/lib/python3.11/site-packages/transformers/generation/utils.py", line 1578, in _validate_model_kwargs
+    raise ValueError(
+ValueError: The following `model_kwargs` are not used by the model: ['use_model_defaults'] (note: typos in the generate arguments will also show up in this list)
+=== 2026-10-30 23:24:25 CST RETRY2 G5 dev (generation config fix; no successful model calls before) ===
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7508.19it/s]
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:  13%|█▎        | 39/291 [00:00<00:00, 366.64it/s]Loading weights:  32%|███▏      | 93/291 [00:00<00:00, 452.57it/s]Loading weights:  48%|████▊     | 140/291 [00:00<00:00, 456.61it/s]Loading weights:  68%|██████▊   | 198/291 [00:00<00:00, 503.78it/s]Loading weights:  86%|████████▌ | 249/291 [00:00<00:00, 500.99it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 491.13it/s]
+[transformers] The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 2773, in <module>
+    main()
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 2689, in main
+    run_g5_offline_phase(runner, cases, "dev")
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1916, in run_g5_offline_phase
+    extraction = runner.extract(phase, family, variant["variant_id"], prefix_id, public)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1818, in extract
+    raw, tokens, generation_error = self.qwen._generate(
+                                    ^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 721, in _generate
+    output = self.model.generate(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/alignment/safety-component/.venv-v31/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/alignment/safety-component/.venv-v31/lib/python3.11/site-packages/transformers/generation/utils.py", line 2377, in generate
+    self._validate_model_kwargs(model_kwargs.copy())
+  File "/data4/sjj/catelogue/alignment/safety-component/.venv-v31/lib/python3.11/site-packages/transformers/generation/utils.py", line 1578, in _validate_model_kwargs
+    raise ValueError(
+ValueError: The following `model_kwargs` are not used by the model: ['use_model_defaults'] (note: typos in the generate arguments will also show up in this list)
+=== 2026-10-30 23:26:31 CST RETRY3 G5 dev (project venv /data/sjj/process_reward_venv; no successful model calls before) ===
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 57.68it/s]
+Loading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]Loading checkpoint shards:  14%|█▍        | 1/7 [00:00<00:01,  3.43it/s]Loading checkpoint shards:  29%|██▊       | 2/7 [00:00<00:01,  3.73it/s]Loading checkpoint shards:  43%|████▎     | 3/7 [00:00<00:01,  3.74it/s]Loading checkpoint shards:  57%|█████▋    | 4/7 [00:01<00:00,  3.67it/s]Loading checkpoint shards:  71%|███████▏  | 5/7 [00:01<00:00,  3.72it/s]Loading checkpoint shards:  86%|████████▌ | 6/7 [00:01<00:00,  3.72it/s]Loading checkpoint shards: 100%|██████████| 7/7 [00:01<00:00,  4.25it/s]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 2773, in <module>
+    main()
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 2689, in main
+    run_g5_offline_phase(runner, cases, "dev")
+  File "/data4/sjj/catelogue/process_reward/trajectory_score.py", line 1927, in run_g5_offline_phase
+    public, state=extraction["state"])
+                  ~~~~~~~~~~^^^^^^^^^
+KeyError: 'state'
+=== 2026-10-30 23:27:26 CST RETRY4 G5 dev (fixed extract return; resume cached E/raw calls) ===
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 54.81it/s]
+Loading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]Loading checkpoint shards:  14%|█▍        | 1/7 [00:00<00:01,  3.47it/s]Loading checkpoint shards:  29%|██▊       | 2/7 [00:00<00:01,  3.80it/s]Loading checkpoint shards:  43%|████▎     | 3/7 [00:00<00:01,  3.84it/s]Loading checkpoint shards:  57%|█████▋    | 4/7 [00:01<00:00,  3.77it/s]Loading checkpoint shards:  71%|███████▏  | 5/7 [00:01<00:00,  3.84it/s]Loading checkpoint shards:  86%|████████▌ | 6/7 [00:01<00:00,  3.64it/s]Loading checkpoint shards: 100%|██████████| 7/7 [00:01<00:00,  4.25it/s]
+{"phase": "dev", "prefixes": 25, "qwen_calls": 100, "agentrm_scores": 225}
+{"phase": "dev", "prefixes": 50, "qwen_calls": 200, "agentrm_scores": 450}
+{"phase": "dev", "prefixes": 75, "qwen_calls": 300, "agentrm_scores": 675}
+{"phase": "dev", "prefixes": 100, "qwen_calls": 400, "agentrm_scores": 900}
+{"phase": "dev", "prefixes": 125, "qwen_calls": 500, "agentrm_scores": 1125}
+{"phase": "dev", "prefixes": 150, "qwen_calls": 600, "agentrm_scores": 1350}
+=== 2026-10-30 23:37:45 CST START G5 audit ===
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 54.64it/s]
+Loading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]Loading checkpoint shards:  14%|█▍        | 1/7 [00:00<00:01,  3.43it/s]Loading checkpoint shards:  29%|██▊       | 2/7 [00:00<00:01,  3.77it/s]Loading checkpoint shards:  43%|████▎     | 3/7 [00:00<00:01,  3.74it/s]Loading checkpoint shards:  57%|█████▋    | 4/7 [00:01<00:00,  3.77it/s]Loading checkpoint shards:  71%|███████▏  | 5/7 [00:01<00:00,  3.83it/s]Loading checkpoint shards:  86%|████████▌ | 6/7 [00:01<00:00,  3.81it/s]Loading checkpoint shards: 100%|██████████| 7/7 [00:01<00:00,  4.33it/s]
+{"phase": "audit", "prefixes": 25, "qwen_calls": 784, "agentrm_scores": 1764}
+{"phase": "audit", "prefixes": 50, "qwen_calls": 884, "agentrm_scores": 1989}
+{"phase": "audit", "prefixes": 75, "qwen_calls": 984, "agentrm_scores": 2214}
+{"phase": "audit", "prefixes": 100, "qwen_calls": 1084, "agentrm_scores": 2439}
+{"phase": "audit", "prefixes": 125, "qwen_calls": 1184, "agentrm_scores": 2664}
+{"phase": "audit", "prefixes": 150, "qwen_calls": 1284, "agentrm_scores": 2889}
+{"phase": "audit", "prefixes": 175, "qwen_calls": 1384, "agentrm_scores": 3114}
+{"phase": "audit", "prefixes": 200, "qwen_calls": 1484, "agentrm_scores": 3339}
+{"phase": "audit", "prefixes": 225, "qwen_calls": 1584, "agentrm_scores": 3564}
+{"phase": "audit", "prefixes": 250, "qwen_calls": 1684, "agentrm_scores": 3789}
+{"phase": "audit", "prefixes": 275, "qwen_calls": 1784, "agentrm_scores": 4014}
+{"phase": "audit", "prefixes": 300, "qwen_calls": 1884, "agentrm_scores": 4239}
+{"phase": "audit", "prefixes": 325, "qwen_calls": 1984, "agentrm_scores": 4464}
+{"phase": "audit", "prefixes": 350, "qwen_calls": 2084, "agentrm_scores": 4689}
+{"phase": "audit", "prefixes": 375, "qwen_calls": 2184, "agentrm_scores": 4914}
+{"phase": "audit", "prefixes": 400, "qwen_calls": 2284, "agentrm_scores": 5139}
+{"phase": "audit", "prefixes": 425, "qwen_calls": 2384, "agentrm_scores": 5364}
+{"phase": "audit", "prefixes": 450, "qwen_calls": 2484, "agentrm_scores": 5589}
+{"phase": "audit", "prefixes": 475, "qwen_calls": 2584, "agentrm_scores": 5814}
+{"phase": "audit", "prefixes": 500, "qwen_calls": 2684, "agentrm_scores": 6039}
+{"phase": "audit", "prefixes": 525, "qwen_calls": 2784, "agentrm_scores": 6264}
+{"phase": "audit", "prefixes": 550, "qwen_calls": 2884, "agentrm_scores": 6489}
+{"phase": "audit", "prefixes": 575, "qwen_calls": 2984, "agentrm_scores": 6714}
+{"phase": "audit", "prefixes": 600, "qwen_calls": 3084, "agentrm_scores": 6939}
+{"phase": "audit", "prefixes": 625, "qwen_calls": 3184, "agentrm_scores": 7164}
+{"phase": "audit", "prefixes": 650, "qwen_calls": 3284, "agentrm_scores": 7389}
+{"phase": "audit", "prefixes": 675, "qwen_calls": 3384, "agentrm_scores": 7614}
+=== 2026-10-31 00:16:51 CST START G5 closed_loop ===
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 59.94it/s]
+Loading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]Loading checkpoint shards:  14%|█▍        | 1/7 [00:00<00:02,  2.52it/s]Loading checkpoint shards:  29%|██▊       | 2/7 [00:00<00:01,  3.16it/s]Loading checkpoint shards:  43%|████▎     | 3/7 [00:00<00:01,  3.36it/s]Loading checkpoint shards:  57%|█████▋    | 4/7 [00:01<00:00,  3.50it/s]Loading checkpoint shards:  71%|███████▏  | 5/7 [00:01<00:00,  3.55it/s]Loading checkpoint shards:  86%|████████▌ | 6/7 [00:01<00:00,  3.56it/s]Loading checkpoint shards: 100%|██████████| 7/7 [00:01<00:00,  3.93it/s]
+{"phase": "closed_loop", "family": "F0006", "qwen_calls": 3424, "agentrm_scores": 7707}
+{"phase": "closed_loop", "family": "F0007", "qwen_calls": 3428, "agentrm_scores": 7719}
+{"phase": "closed_loop", "family": "F0008", "qwen_calls": 3450, "agentrm_scores": 7731}
+{"phase": "closed_loop", "family": "F0009", "qwen_calls": 3454, "agentrm_scores": 7743}
+{"phase": "closed_loop", "family": "F0010", "qwen_calls": 3458, "agentrm_scores": 7755}
+{"phase": "closed_loop", "family": "F0011", "qwen_calls": 3462, "agentrm_scores": 7767}
+{"phase": "closed_loop", "family": "F0036", "qwen_calls": 3474, "agentrm_scores": 7779}
+{"phase": "closed_loop", "family": "F0037", "qwen_calls": 3478, "agentrm_scores": 7791}
+{"phase": "closed_loop", "family": "F0038", "qwen_calls": 3482, "agentrm_scores": 7809}
+{"phase": "closed_loop", "family": "F0039", "qwen_calls": 3486, "agentrm_scores": 7821}
+{"phase": "closed_loop", "family": "F0040", "qwen_calls": 3490, "agentrm_scores": 7836}
+{"phase": "closed_loop", "family": "F0041", "qwen_calls": 3494, "agentrm_scores": 7848}
+{"phase": "closed_loop", "family": "F0066", "qwen_calls": 3508, "agentrm_scores": 7863}
+{"phase": "closed_loop", "family": "F0067", "qwen_calls": 3516, "agentrm_scores": 7884}
+{"phase": "closed_loop", "family": "F0068", "qwen_calls": 3526, "agentrm_scores": 7902}
+{"phase": "closed_loop", "family": "F0069", "qwen_calls": 3536, "agentrm_scores": 7926}
+{"phase": "closed_loop", "family": "F0070", "qwen_calls": 3543, "agentrm_scores": 7947}
+{"phase": "closed_loop", "family": "F0071", "qwen_calls": 3553, "agentrm_scores": 7968}
+{"phase": "closed_loop", "family": "F0096", "qwen_calls": 3573, "agentrm_scores": 7995}
+{"phase": "closed_loop", "family": "F0097", "qwen_calls": 3577, "agentrm_scores": 8013}
+{"phase": "closed_loop", "family": "F0098", "qwen_calls": 3581, "agentrm_scores": 8031}
+{"phase": "closed_loop", "family": "F0099", "qwen_calls": 3587, "agentrm_scores": 8049}
+{"phase": "closed_loop", "family": "F0100", "qwen_calls": 3600, "agentrm_scores": 8067}
+{"phase": "closed_loop", "family": "F0101", "qwen_calls": 3616, "agentrm_scores": 8088}
+{"phase": "closed_loop", "family": "F0126", "qwen_calls": 3627, "agentrm_scores": 8112}
+{"phase": "closed_loop", "family": "F0127", "qwen_calls": 3639, "agentrm_scores": 8148}
+{"phase": "closed_loop", "family": "F0128", "qwen_calls": 3650, "agentrm_scores": 8172}
+{"phase": "closed_loop", "family": "F0129", "qwen_calls": 3659, "agentrm_scores": 8202}
+{"phase": "closed_loop", "family": "F0130", "qwen_calls": 3673, "agentrm_scores": 8220}
+{"phase": "closed_loop", "family": "F0131", "qwen_calls": 3690, "agentrm_scores": 8283}
+{"phase": "closed_loop", "family": "F0156", "qwen_calls": 3722, "agentrm_scores": 8304}
+{"phase": "closed_loop", "family": "F0157", "qwen_calls": 3734, "agentrm_scores": 8358}
+{"phase": "closed_loop", "family": "F0158", "qwen_calls": 3752, "agentrm_scores": 8376}
+{"phase": "closed_loop", "family": "F0159", "qwen_calls": 3756, "agentrm_scores": 8391}
+{"phase": "closed_loop", "family": "F0160", "qwen_calls": 3760, "agentrm_scores": 8403}
+{"phase": "closed_loop", "family": "F0161", "qwen_calls": 3767, "agentrm_scores": 8427}
+=== 2026-10-31 00:23:03 CST START G5 analyze ===
+{
+  "state_extraction": {
+    "by_split": {
+      "dev": {
+        "accuracy": 0.9005847953216374,
+        "n": 171,
+        "correct": 154
+      },
+      "audit": {
+        "accuracy": 0.9137426900584795,
+        "n": 684,
+        "correct": 625
+      }
+    },
+    "by_mechanism": {
+      "dev": {
+        "versioned_report": {
+          "accuracy": 0.7586206896551724,
+          "n": 58,
+          "confusion": {
+            "good->good": 21,
+            "unknown->good": 5,
+            "bad->bad": 21,
+            "unknown->bad": 3,
+            "good->bad": 3,
+            "bad->good": 1,
+            "bad->unknown": 2,
+            "unknown->unknown": 2
+          }
+        },
+        "scoped_authorization": {
+          "accuracy": 0.9818181818181818,
+          "n": 55,
+          "confusion": {
+            "allow->allow": 26,
+            "unknown->unknown": 7,
+            "allow->unknown": 1,
+            "deny->deny": 21
+          }
+        },
+        "exactly_once": {
+          "accuracy": 0.9655172413793104,
+          "n": 58,
+          "confusion": {
+            "committed->committed": 24,
+            "unknown->unknown": 10,
+            "not_committed->not_committed": 22,
+            "not_committed->unknown": 2
+          }
+        }
+      },
+      "audit": {
+        "versioned_report": {
+          "accuracy": 0.7931034482758621,
+          "n": 232,
+          "confusion": {
+            "good->good": 87,
+            "unknown->good": 25,
+            "bad->bad": 94,
+            "unknown->bad": 12,
+            "good->bad": 9,
+            "bad->good": 1,
+            "bad->unknown": 1,
+            "unknown->unknown": 3
+          }
+        },
+        "scoped_authorization": {
+          "accuracy": 0.990909090909091,
+          "n": 220,
+          "confusion": {
+            "allow->allow": 106,
+            "deny->deny": 84,
+            "unknown->unknown": 28,
+            "allow->unknown": 2
+          }
+        },
+        "exactly_once": {
+          "accuracy": 0.9612068965517241,
+          "n": 232,
+          "confusion": {
+            "committed->committed": 96,
+            "unknown->unknown": 40,
+            "not_committed->not_committed": 87,
+            "not_committed->unknown": 9
+          }
+        }
+      }
+    },
+    "dangerous": {
+      "dev": {
+        "unknown_to_positive": 5,
+        "bad_to_good": 1
+      },
+      "audit": {
+        "unknown_to_positive": 25,
+        "bad_to_good": 1
+      }
+    },
+    "invalid": 0,
+    "missing": 0,
+    "evidence": {
+      "citations": 1226,
+      "valid_citations": 1217,
+      "valid_citation_precision": 0.9926590538336052,
+      "invalid_evidence_outputs": 9,
+      "empty_evidence_outputs": 0
+    },
+    "macro_accuracy_audit_mechanism": 0.915073145245559
+  },
+  "offline_comparisons": {
+    "Qwen_RAW_CAL__minus__Qwen_RAW": {
+      "delta": -4.154513888888888,
+      "ci95": [
+        -5.258680555555555,
+        -3.142361111111111
+      ],
+      "n_families": 144
+    },
+    "AgentRM_RAW_CAL__minus__AgentRM_RAW": {
+      "delta": -4.002893518518518,
+      "ci95": [
+        -5.373263888888889,
+        -2.730324074074074
+      ],
+      "n_families": 144
+    },
+    "E_CPU__minus__Qwen_RAW_CAL": {
+      "delta": -4.194444444444445,
+      "ci95": [
+        -5.538194444444444,
+        -3.03125
+      ],
+      "n_families": 144
+    },
+    "E_CPU__minus__AgentRM_RAW_CAL": {
+      "delta": -3.736111111111111,
+      "ci95": [
+        -4.864583333333333,
+        -2.75
+      ],
+      "n_families": 144
+    },
+    "E_CPU__minus__Qwen_E_STATE_R": {
+      "delta": -6.222222222222222,
+      "ci95": [
+        -7.916666666666667,
+        -4.524305555555555
+      ],
+      "n_families": 144
+    },
+    "E_CPU__minus__AgentRM_E_STATE_R": {
+      "delta": -10.991319444444445,
+      "ci95": [
+        -12.902777777777779,
+        -9.142361111111112
+      ],
+      "n_families": 144
+    },
+    "Qwen_E_STATE_R__minus__Qwen_RAW_CAL": {
+      "delta": 2.027777777777778,
+      "ci95": [
+        0.3888888888888889,
+        3.6180555555555554
+      ],
+      "n_families": 144
+    },
+    "AgentRM_E_STATE_R__minus__AgentRM_RAW_CAL": {
+      "delta": 7.255208333333333,
+      "ci95": [
+        5.479166666666667,
+        9.085069444444445
+      ],
+      "n_families": 144
+    }
+  },
+  "closed_loop": {
+    "E_CPU__minus__Qwen_RAW_CAL": {
+      "delta": 8.42361111111111,
+      "ci95": [
+        5.291666666666667,
+        11.569444444444445
+      ],
+      "n_families": 36
+    },
+    "E_CPU__minus__AgentRM_RAW_CAL": {
+      "delta": 7.965277777777779,
+      "ci95": [
+        5.368055555555556,
+        10.6875
+      ],
+      "n_families": 36
+    },
+    "E_CPU__minus__Qwen_E_STATE_R": {
+      "delta": 6.541666666666667,
+      "ci95": [
+        3.965277777777778,
+        9.54861111111111
+      ],
+      "n_families": 36
+    },
+    "E_CPU__minus__AgentRM_E_STATE_R": {
+      "delta": 11.020833333333334,
+      "ci95": [
+        7.618055555555556,
+        14.708333333333334
+      ],
+      "n_families": 36
+    },
+    "Qwen_E_STATE_R__minus__Qwen_RAW_CAL": {
+      "delta": 1.8819444444444444,
+      "ci95": [
+        -0.14583333333333331,
+        4.138888888888888
+      ],
+      "n_families": 36
+    }
+  },
+  "budget": {
+    "g5_qwen_calls": 3767,
+    "g5_agentrm_scores": 8427,
+    "g5_qwen_call_limit": 6984,
+    "g5_agentrm_score_limit": 12690,
+    "g4_gpu_inference": 0,
+    "invalid_extract": 0,
+    "invalid_scores": 0
+  }
+}
