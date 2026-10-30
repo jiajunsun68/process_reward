@@ -1,0 +1,2484 @@
+=== 2026-10-31 03:21:05 CST START G6 dev ===
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 59.77it/s]
+{"phase": "dev", "nodes": 25, "calls": 75, "invalid": {"review_generic": 1}}
+{"phase": "dev", "nodes": 50, "calls": 150, "invalid": {"review_generic": 2}}
+{"phase": "dev", "nodes": 75, "calls": 225, "invalid": {"review_generic": 2}}
+{"phase": "dev", "nodes": 100, "calls": 300, "invalid": {"review_generic": 3}}
+{"phase": "dev", "nodes": 125, "calls": 375, "invalid": {"review_generic": 3}}
+{"phase": "dev", "nodes": 150, "calls": 450, "invalid": {"review_generic": 4}}
+{"phase": "dev", "nodes": 175, "calls": 525, "invalid": {"review_generic": 4}}
+{"phase": "dev", "nodes": 200, "calls": 600, "invalid": {"review_generic": 4}}
+{
+  "phase": "dev",
+  "completed": true,
+  "nodes": 216,
+  "calls_new": 648,
+  "invalid": {
+    "review_generic": 4
+  },
+  "elapsed_seconds": 616.8918410986662
+}
+=== 2026-10-31 03:32:41 CST START G6 audit ===
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 60.60it/s]
+{"phase": "audit", "nodes": 25, "calls": 75, "invalid": {"review_generic": 1}}
+{"phase": "audit", "nodes": 50, "calls": 150, "invalid": {"review_generic": 1}}
+{"phase": "audit", "nodes": 75, "calls": 225, "invalid": {"review_generic": 2}}
+{"phase": "audit", "nodes": 100, "calls": 300, "invalid": {"review_generic": 3}}
+{"phase": "audit", "nodes": 125, "calls": 375, "invalid": {"review_generic": 3}}
+{"phase": "audit", "nodes": 150, "calls": 450, "invalid": {"review_generic": 4}}
+{"phase": "audit", "nodes": 175, "calls": 525, "invalid": {"review_generic": 5}}
+{"phase": "audit", "nodes": 200, "calls": 600, "invalid": {"review_generic": 5}}
+{"phase": "audit", "nodes": 225, "calls": 675, "invalid": {"review_generic": 8}}
+{"phase": "audit", "nodes": 250, "calls": 750, "invalid": {"review_generic": 9}}
+{"phase": "audit", "nodes": 275, "calls": 825, "invalid": {"review_generic": 10}}
+{"phase": "audit", "nodes": 300, "calls": 900, "invalid": {"review_generic": 10}}
+{"phase": "audit", "nodes": 325, "calls": 975, "invalid": {"review_generic": 11}}
+{"phase": "audit", "nodes": 350, "calls": 1050, "invalid": {"review_generic": 12}}
+{"phase": "audit", "nodes": 375, "calls": 1125, "invalid": {"review_generic": 12}}
+{"phase": "audit", "nodes": 400, "calls": 1200, "invalid": {"review_generic": 13}}
+{"phase": "audit", "nodes": 425, "calls": 1275, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 450, "calls": 1350, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 475, "calls": 1425, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 500, "calls": 1500, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 525, "calls": 1575, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 550, "calls": 1650, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 575, "calls": 1725, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 600, "calls": 1800, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 625, "calls": 1875, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 650, "calls": 1950, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 675, "calls": 2025, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 700, "calls": 2100, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 725, "calls": 2175, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 750, "calls": 2250, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 775, "calls": 2325, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 800, "calls": 2400, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 825, "calls": 2475, "invalid": {"review_generic": 14}}
+{"phase": "audit", "nodes": 850, "calls": 2550, "invalid": {"review_generic": 14}}
+{
+  "phase": "audit",
+  "completed": true,
+  "nodes": 864,
+  "calls_new": 2592,
+  "invalid": {
+    "review_generic": 14
+  },
+  "elapsed_seconds": 2490.634792328812
+}
+=== 2026-10-31 04:14:39 CST START G6 execute ===
+{"phase": "execution", "family": "G6F0000", "new_trajectories": 50}
+{"phase": "execution", "family": "G6F0001", "new_trajectories": 100}
+{"phase": "execution", "family": "G6F0002", "new_trajectories": 150}
+{"phase": "execution", "family": "G6F0005", "new_trajectories": 200}
+{"phase": "execution", "family": "G6F0006", "new_trajectories": 250}
+{"phase": "execution", "family": "G6F0008", "new_trajectories": 300}
+{"phase": "execution", "family": "G6F0009", "new_trajectories": 350}
+{"phase": "execution", "family": "G6F0010", "new_trajectories": 400}
+{"phase": "execution", "family": "G6F0011", "new_trajectories": 450}
+{"phase": "execution", "family": "G6F0012", "new_trajectories": 500}
+{"phase": "execution", "family": "G6F0013", "new_trajectories": 550}
+{"phase": "execution", "family": "G6F0014", "new_trajectories": 600}
+{"phase": "execution", "family": "G6F0015", "new_trajectories": 650}
+{"phase": "execution", "family": "G6F0016", "new_trajectories": 700}
+{"phase": "execution", "family": "G6F0018", "new_trajectories": 750}
+{"phase": "execution", "family": "G6F0020", "new_trajectories": 800}
+{"phase": "execution", "family": "G6F0021", "new_trajectories": 850}
+{"phase": "execution", "family": "G6F0022", "new_trajectories": 900}
+{"phase": "execution", "family": "G6F0023", "new_trajectories": 950}
+{"phase": "execution", "family": "G6F0024", "new_trajectories": 1000}
+{"phase": "execution", "family": "G6F0025", "new_trajectories": 1050}
+{"phase": "execution", "family": "G6F0026", "new_trajectories": 1100}
+{"phase": "execution", "family": "G6F0027", "new_trajectories": 1150}
+{"phase": "execution", "family": "G6F0029", "new_trajectories": 1200}
+{"phase": "execution", "family": "G6F0030", "new_trajectories": 1250}
+{"phase": "execution", "family": "G6F0031", "new_trajectories": 1300}
+{"phase": "execution", "family": "G6F0032", "new_trajectories": 1350}
+{"phase": "execution", "family": "G6F0034", "new_trajectories": 1400}
+{"phase": "execution", "family": "G6F0035", "new_trajectories": 1450}
+{"phase": "execution", "family": "G6F0036", "new_trajectories": 1500}
+{"phase": "execution", "family": "G6F0037", "new_trajectories": 1550}
+{"phase": "execution", "family": "G6F0038", "new_trajectories": 1600}
+{"phase": "execution", "family": "G6F0039", "new_trajectories": 1650}
+{"phase": "execution", "family": "G6F0040", "new_trajectories": 1700}
+{"phase": "execution", "family": "G6F0041", "new_trajectories": 1750}
+{"phase": "execution", "family": "G6F0042", "new_trajectories": 1800}
+{"phase": "execution", "family": "G6F0043", "new_trajectories": 1850}
+{"phase": "execution", "family": "G6F0044", "new_trajectories": 1900}
+{"phase": "execution", "family": "G6F0045", "new_trajectories": 1950}
+{"phase": "execution", "family": "G6F0046", "new_trajectories": 2000}
+{"phase": "execution", "family": "G6F0047", "new_trajectories": 2050}
+{"phase": "execution", "family": "G6F0049", "new_trajectories": 2100}
+{"phase": "execution", "family": "G6F0050", "new_trajectories": 2150}
+{"phase": "execution", "family": "G6F0051", "new_trajectories": 2200}
+{"phase": "execution", "family": "G6F0052", "new_trajectories": 2250}
+{"phase": "execution", "family": "G6F0056", "new_trajectories": 2300}
+{"phase": "execution", "family": "G6F0057", "new_trajectories": 2350}
+{"phase": "execution", "family": "G6F0059", "new_trajectories": 2400}
+{
+  "G6-EXECUTE": "COMPLETED",
+  "new_trajectories": 2400,
+  "tool_worker_calls": 2400,
+  "elapsed_seconds": 43.83776716142893
+}
+Traceback (most recent call last):
+  File "/data4/sjj/catelogue/process_reward/validity_experiment.py", line 1916, in <module>
+    main()
+  File "/data4/sjj/catelogue/process_reward/validity_experiment.py", line 1907, in main
+    run_analysis()
+  File "/data4/sjj/catelogue/process_reward/validity_experiment.py", line 1865, in run_analysis
+    strategy_metrics = analyze_strategies(cases, trajectories, run)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/process_reward/validity_experiment.py", line 1685, in analyze_strategies
+    field: _stratified_bootstrap(family_values, field)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/process_reward/validity_experiment.py", line 1461, in _stratified_bootstrap
+    samples.append(statistics.fmean(means))
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/anaconda3/lib/python3.12/statistics.py", line 512, in fmean
+    raise StatisticsError('fmean requires at least one data point')
+statistics.StatisticsError: fmean requires at least one data point
+Traceback (most recent call last):
+  File "/data4/sjj/catelogue/process_reward/validity_experiment.py", line 1916, in <module>
+    main()
+  File "/data4/sjj/catelogue/process_reward/validity_experiment.py", line 1907, in main
+    run_analysis()
+  File "/data4/sjj/catelogue/process_reward/validity_experiment.py", line 1866, in run_analysis
+    decision = _build_decision(node_metrics, strategy_metrics, run)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data4/sjj/catelogue/process_reward/validity_experiment.py", line 1823, in _build_decision
+    elif learning_case["rule_solved"] or (rule["utility"] >= v["utility"] and rule["model_calls"] < v["model_calls"]):
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'rule_solved'
+{
+  "decision": {
+    "phenomenon": {
+      "by_workflow_representation": {
+        "contact:J": {
+          "retract_correct": 0.0,
+          "old_value_use": 0.041666666666666664,
+          "n": 24
+        },
+        "contact:N": {
+          "retract_correct": 0.0,
+          "old_value_use": 0.041666666666666664,
+          "n": 24
+        },
+        "reminder:J": {
+          "retract_correct": 0.0,
+          "old_value_use": 0.041666666666666664,
+          "n": 24
+        },
+        "reminder:N": {
+          "retract_correct": 0.0,
+          "old_value_use": 0.041666666666666664,
+          "n": 24
+        }
+      },
+      "both_workflow_retract_ge_95": false,
+      "judgement": "REPRODUCED_LOCALLY"
+    },
+    "intervention": {
+      "V_minus_R_joint_N": {
+        "delta": 0.20833333333333331,
+        "ci95": [
+          0.08333333333333333,
+          0.33333333333333337
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.3333333333333333,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.08333333333333333,
+            "n": 24
+          }
+        }
+      },
+      "S_O_erroneous_retraction": {
+        "contact": {
+          "V_S": 0,
+          "V_O": 2,
+          "R_S": 1,
+          "R_O": 1,
+          "max_V_minus_R": 1
+        },
+        "reminder": {
+          "V_S": 1,
+          "V_O": 19,
+          "R_S": 0,
+          "R_O": 0,
+          "max_V_minus_R": 19
+        }
+      },
+      "threshold": "delta>=0.10, CI lower>0, V retraction <= R + 5pp",
+      "pass": false
+    },
+    "deployment": {
+      "VALIDITY_REVIEW": {
+        "utility": 8.1875,
+        "success": 0.9479166666666667,
+        "wrong_side_effect": 0.03125,
+        "tool_error": 0.020833333333333332,
+        "abort": 0.0,
+        "queries": 0.35416666666666663,
+        "model_calls": 2.708333333333333,
+        "input_tokens": 1249.6666666666667,
+        "output_tokens": 71.15625
+      },
+      "QUERY_ONCE_V": {
+        "utility": 8.791666666666668,
+        "success": 0.9947916666666667,
+        "wrong_side_effect": 0.005208333333333333,
+        "tool_error": 0.0,
+        "abort": 0.0,
+        "queries": 1.0,
+        "model_calls": 2.0,
+        "input_tokens": 1047.5,
+        "output_tokens": 57.3125
+      },
+      "V_minus_Q": {
+        "utility": {
+          "delta": -0.6041666666666667,
+          "ci95": [
+            -1.9583333333333333,
+            0.609375
+          ],
+          "n_families": 48,
+          "cells": {
+            "contact": {
+              "mean": -1.3541666666666667,
+              "n": 24
+            },
+            "reminder": {
+              "mean": 0.14583333333333334,
+              "n": 24
+            }
+          }
+        },
+        "success": {
+          "delta": -0.046875,
+          "ci95": [
+            -0.08333333333333334,
+            -0.010416666666666666
+          ],
+          "n_families": 48,
+          "cells": {
+            "contact": {
+              "mean": -0.052083333333333336,
+              "n": 24
+            },
+            "reminder": {
+              "mean": -0.041666666666666664,
+              "n": 24
+            }
+          }
+        },
+        "wrong_side_effect": {
+          "delta": 0.026041666666666668,
+          "ci95": [
+            -0.005208333333333333,
+            0.057291666666666664
+          ],
+          "n_families": 48,
+          "cells": {
+            "contact": {
+              "mean": 0.052083333333333336,
+              "n": 24
+            },
+            "reminder": {
+              "mean": 0.0,
+              "n": 24
+            }
+          }
+        },
+        "queries": {
+          "delta": -0.6458333333333333,
+          "ci95": [
+            -0.6770833333333334,
+            -0.6145833333333333
+          ],
+          "n_families": 48,
+          "cells": {
+            "contact": {
+              "mean": -0.7291666666666666,
+              "n": 24
+            },
+            "reminder": {
+              "mean": -0.5625,
+              "n": 24
+            }
+          }
+        }
+      },
+      "threshold": "utility>=0.25, CI lower>0, no error increase, success drop<=1pp, query saving>=0.25",
+      "pass": false
+    },
+    "learning_case": {
+      "rule": {
+        "utility": 9.75,
+        "success": 1.0,
+        "wrong_side_effect": 0.0,
+        "tool_error": 0.0,
+        "abort": 0.0,
+        "queries": 0.25,
+        "model_calls": 0.0,
+        "input_tokens": 0.0,
+        "output_tokens": 0.0
+      },
+      "VALIDITY_REVIEW": {
+        "utility": 8.1875,
+        "success": 0.9479166666666667,
+        "wrong_side_effect": 0.03125,
+        "tool_error": 0.020833333333333332,
+        "abort": 0.0,
+        "queries": 0.35416666666666663,
+        "model_calls": 2.708333333333333,
+        "input_tokens": 1249.6666666666667,
+        "output_tokens": 71.15625
+      },
+      "rule_minus_V_utility": 1.5625,
+      "rule_minus_V_success": 0.05208333333333326,
+      "rule_minus_V_wrong": -0.03125,
+      "rule_model_calls": 0.0,
+      "rule_solved_all": true,
+      "learning_needed": false
+    },
+    "relation_composition": {
+      "J": {
+        "relation_accuracy": 0.7129629629629629,
+        "relation_correct_final_wrong": 1,
+        "n": 432
+      },
+      "N": {
+        "relation_accuracy": 0.9398148148148148,
+        "relation_correct_final_wrong": 7,
+        "n": 432
+      }
+    },
+    "next_direction": "Strong dependency rule is sufficient at this task; keep it as an engineering result and do not start process-supervision training from G6.",
+    "not_claims": [
+      "not a ToolSandbox benchmark score",
+      "not a new PRM method",
+      "not evidence of general asynchronous-change or TOCTOU safety"
+    ]
+  },
+  "offline": {
+    "E": {
+      "contact": {
+        "root": {
+          "U": {
+            "correct": 0,
+            "total": 24,
+            "accuracy": 0.0,
+            "invalid": 0,
+            "retract_correct": 0,
+            "old_value_use": 1
+          },
+          "F": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0,
+            "new_value_adopt": 24,
+            "old_value_use": 0
+          },
+          "S": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0,
+            "erroneous_retraction": 0
+          },
+          "O": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0,
+            "erroneous_retraction": 0
+          }
+        },
+        "after": {
+          "U": {
+            "correct": 48,
+            "total": 48,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "F": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "S": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "O": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          }
+        },
+        "joint_by_condition": {},
+        "joint": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n_families": 24,
+          "cells": {
+            "contact": {
+              "mean": 0.0,
+              "n": 24
+            }
+          }
+        }
+      },
+      "reminder": {
+        "root": {
+          "U": {
+            "correct": 0,
+            "total": 24,
+            "accuracy": 0.0,
+            "invalid": 0,
+            "retract_correct": 0,
+            "old_value_use": 1
+          },
+          "F": {
+            "correct": 12,
+            "total": 24,
+            "accuracy": 0.5,
+            "invalid": 0,
+            "new_value_adopt": 12,
+            "old_value_use": 0
+          },
+          "S": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0,
+            "erroneous_retraction": 0
+          },
+          "O": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0,
+            "erroneous_retraction": 0
+          }
+        },
+        "after": {
+          "U": {
+            "correct": 48,
+            "total": 48,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "F": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "S": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "O": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          }
+        },
+        "joint_by_condition": {},
+        "joint": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n_families": 24,
+          "cells": {
+            "reminder": {
+              "mean": 0.0,
+              "n": 24
+            }
+          }
+        }
+      }
+    },
+    "R": {
+      "contact": {
+        "root": {
+          "U": {
+            "correct": 12,
+            "total": 24,
+            "accuracy": 0.5,
+            "invalid": 12,
+            "retract_correct": 12,
+            "old_value_use": 1
+          },
+          "F": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0,
+            "new_value_adopt": 24,
+            "old_value_use": 0
+          },
+          "S": {
+            "correct": 21,
+            "total": 24,
+            "accuracy": 0.875,
+            "invalid": 1,
+            "erroneous_retraction": 1
+          },
+          "O": {
+            "correct": 23,
+            "total": 24,
+            "accuracy": 0.9583333333333334,
+            "invalid": 1,
+            "erroneous_retraction": 1
+          }
+        },
+        "after": {
+          "U": {
+            "correct": 48,
+            "total": 48,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "F": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "S": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "O": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          }
+        },
+        "joint_by_condition": {},
+        "joint": {
+          "mean": 0.4166666666666667,
+          "ci95": [
+            0.20833333333333334,
+            0.625
+          ],
+          "n_families": 24,
+          "cells": {
+            "contact": {
+              "mean": 0.4166666666666667,
+              "n": 24
+            }
+          }
+        }
+      },
+      "reminder": {
+        "root": {
+          "U": {
+            "correct": 0,
+            "total": 24,
+            "accuracy": 0.0,
+            "invalid": 0,
+            "retract_correct": 0,
+            "old_value_use": 0
+          },
+          "F": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0,
+            "new_value_adopt": 24,
+            "old_value_use": 0
+          },
+          "S": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0,
+            "erroneous_retraction": 0
+          },
+          "O": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0,
+            "erroneous_retraction": 0
+          }
+        },
+        "after": {
+          "U": {
+            "correct": 48,
+            "total": 48,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "F": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "S": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "O": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          }
+        },
+        "joint_by_condition": {},
+        "joint": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n_families": 24,
+          "cells": {
+            "reminder": {
+              "mean": 0.0,
+              "n": 24
+            }
+          }
+        }
+      }
+    },
+    "V": {
+      "contact": {
+        "root": {
+          "U": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0,
+            "retract_correct": 24,
+            "old_value_use": 0
+          },
+          "F": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0,
+            "new_value_adopt": 24,
+            "old_value_use": 0
+          },
+          "S": {
+            "correct": 20,
+            "total": 24,
+            "accuracy": 0.8333333333333334,
+            "invalid": 0,
+            "erroneous_retraction": 0
+          },
+          "O": {
+            "correct": 20,
+            "total": 24,
+            "accuracy": 0.8333333333333334,
+            "invalid": 0,
+            "erroneous_retraction": 2
+          }
+        },
+        "after": {
+          "U": {
+            "correct": 48,
+            "total": 48,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "F": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "S": {
+            "correct": 23,
+            "total": 24,
+            "accuracy": 0.9583333333333334,
+            "invalid": 0
+          },
+          "O": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          }
+        },
+        "joint_by_condition": {},
+        "joint": {
+          "mean": 0.75,
+          "ci95": [
+            0.5833333333333334,
+            0.9166666666666666
+          ],
+          "n_families": 24,
+          "cells": {
+            "contact": {
+              "mean": 0.75,
+              "n": 24
+            }
+          }
+        }
+      },
+      "reminder": {
+        "root": {
+          "U": {
+            "correct": 22,
+            "total": 24,
+            "accuracy": 0.9166666666666666,
+            "invalid": 0,
+            "retract_correct": 22,
+            "old_value_use": 0
+          },
+          "F": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0,
+            "new_value_adopt": 24,
+            "old_value_use": 0
+          },
+          "S": {
+            "correct": 23,
+            "total": 24,
+            "accuracy": 0.9583333333333334,
+            "invalid": 0,
+            "erroneous_retraction": 1
+          },
+          "O": {
+            "correct": 3,
+            "total": 24,
+            "accuracy": 0.125,
+            "invalid": 0,
+            "erroneous_retraction": 19
+          }
+        },
+        "after": {
+          "U": {
+            "correct": 48,
+            "total": 48,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "F": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "S": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          },
+          "O": {
+            "correct": 24,
+            "total": 24,
+            "accuracy": 1.0,
+            "invalid": 0
+          }
+        },
+        "joint_by_condition": {},
+        "joint": {
+          "mean": 0.08333333333333333,
+          "ci95": [
+            0.0,
+            0.20833333333333334
+          ],
+          "n_families": 24,
+          "cells": {
+            "reminder": {
+              "mean": 0.08333333333333333,
+              "n": 24
+            }
+          }
+        }
+      }
+    }
+  },
+  "main_N": {
+    "DIRECT_E": {
+      "utility": {
+        "mean": -2.5,
+        "ci95": [
+          -3.5416666666666665,
+          -1.4583333333333333
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": -5.0,
+            "n": 24
+          }
+        }
+      },
+      "success": {
+        "mean": 0.6875,
+        "ci95": [
+          0.6614583333333333,
+          0.7135416666666667
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.75,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.625,
+            "n": 24
+          }
+        }
+      },
+      "wrong_side_effect": {
+        "mean": 0.3125,
+        "ci95": [
+          0.28645833333333337,
+          0.33854166666666663
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.25,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.375,
+            "n": 24
+          }
+        }
+      },
+      "tool_error": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "abort": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "queries": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "model_calls": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 1.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 1.0,
+            "n": 24
+          }
+        }
+      },
+      "input_tokens": {
+        "mean": 426.25,
+        "ci95": [
+          425.9375,
+          426.54166666666663
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 424.125,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 428.375,
+            "n": 24
+          }
+        }
+      },
+      "output_tokens": {
+        "mean": 25.375,
+        "ci95": [
+          25.322916666666664,
+          25.427083333333336
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 25.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 25.75,
+            "n": 24
+          }
+        }
+      },
+      "rule_fallback_root": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "rule_fallback_after": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_0": {
+        "mean": -2.5,
+        "ci95": [
+          -3.5416666666666665,
+          -1.4583333333333333
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": -5.0,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_0.25": {
+        "mean": -2.5,
+        "ci95": [
+          -3.5416666666666665,
+          -1.4583333333333333
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": -5.0,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_1": {
+        "mean": -2.5,
+        "ci95": [
+          -3.5416666666666665,
+          -1.4583333333333333
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": -5.0,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_4": {
+        "mean": -2.5,
+        "ci95": [
+          -3.5416666666666665,
+          -1.4583333333333333
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": -5.0,
+            "n": 24
+          }
+        }
+      }
+    },
+    "GENERIC_REVIEW": {
+      "utility": {
+        "mean": 5.760416666666666,
+        "ci95": [
+          4.541666666666667,
+          6.786458333333334
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 4.020833333333333,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 7.5,
+            "n": 24
+          }
+        }
+      },
+      "success": {
+        "mean": 0.8020833333333333,
+        "ci95": [
+          0.7708333333333333,
+          0.828125
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.8541666666666666,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.75,
+            "n": 24
+          }
+        }
+      },
+      "wrong_side_effect": {
+        "mean": 0.07291666666666667,
+        "ci95": [
+          0.046875,
+          0.10416666666666667
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.14583333333333334,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "tool_error": {
+        "mean": 0.125,
+        "ci95": [
+          0.125,
+          0.125
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.25,
+            "n": 24
+          }
+        }
+      },
+      "abort": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "queries": {
+        "mean": 0.07291666666666667,
+        "ci95": [
+          0.041666666666666664,
+          0.109375
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.14583333333333334,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "model_calls": {
+        "mean": 2.145833333333333,
+        "ci95": [
+          2.083333333333333,
+          2.21875
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 2.2916666666666665,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 2.0,
+            "n": 24
+          }
+        }
+      },
+      "input_tokens": {
+        "mean": 910.5104166666667,
+        "ci95": [
+          879.4375,
+          946.203125
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 978.2708333333334,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 842.75,
+            "n": 24
+          }
+        }
+      },
+      "output_tokens": {
+        "mean": 57.10416666666667,
+        "ci95": [
+          55.5625,
+          58.890625
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 61.208333333333336,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 53.0,
+            "n": 24
+          }
+        }
+      },
+      "rule_fallback_root": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "rule_fallback_after": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_0": {
+        "mean": 5.833333333333334,
+        "ci95": [
+          4.583333333333333,
+          6.875
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 4.166666666666667,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 7.5,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_0.25": {
+        "mean": 5.815104166666666,
+        "ci95": [
+          4.572916666666667,
+          6.852864583333334
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 4.130208333333333,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 7.5,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_1": {
+        "mean": 5.760416666666666,
+        "ci95": [
+          4.541666666666667,
+          6.786458333333334
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 4.020833333333333,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 7.5,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_4": {
+        "mean": 5.541666666666667,
+        "ci95": [
+          4.416666666666667,
+          6.520833333333334
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 3.5833333333333335,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 7.5,
+            "n": 24
+          }
+        }
+      }
+    },
+    "VALIDITY_REVIEW": {
+      "utility": {
+        "mean": 8.1875,
+        "ci95": [
+          6.890625,
+          9.270833333333334
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 7.229166666666667,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 9.145833333333334,
+            "n": 24
+          }
+        }
+      },
+      "success": {
+        "mean": 0.9479166666666667,
+        "ci95": [
+          0.9114583333333333,
+          0.9791666666666667
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.9375,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.9583333333333334,
+            "n": 24
+          }
+        }
+      },
+      "wrong_side_effect": {
+        "mean": 0.03125,
+        "ci95": [
+          0.005208333333333333,
+          0.0625
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0625,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "tool_error": {
+        "mean": 0.020833333333333332,
+        "ci95": [
+          0.005208333333333333,
+          0.041666666666666664
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.041666666666666664,
+            "n": 24
+          }
+        }
+      },
+      "abort": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "queries": {
+        "mean": 0.35416666666666663,
+        "ci95": [
+          0.32291666666666663,
+          0.38541666666666663
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.2708333333333333,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.4375,
+            "n": 24
+          }
+        }
+      },
+      "model_calls": {
+        "mean": 2.708333333333333,
+        "ci95": [
+          2.645833333333333,
+          2.770833333333333
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 2.5416666666666665,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 2.875,
+            "n": 24
+          }
+        }
+      },
+      "input_tokens": {
+        "mean": 1249.6666666666667,
+        "ci95": [
+          1216.015625,
+          1282.6197916666665
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 1150.2916666666667,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 1349.0416666666667,
+            "n": 24
+          }
+        }
+      },
+      "output_tokens": {
+        "mean": 71.15625,
+        "ci95": [
+          69.515625,
+          72.75520833333333
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 66.75,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 75.5625,
+            "n": 24
+          }
+        }
+      },
+      "rule_fallback_root": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "rule_fallback_after": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_0": {
+        "mean": 8.541666666666668,
+        "ci95": [
+          7.239583333333333,
+          9.635416666666668
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 7.5,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 9.583333333333334,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_0.25": {
+        "mean": 8.453125,
+        "ci95": [
+          7.15234375,
+          9.544270833333334
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 7.432291666666667,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 9.473958333333334,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_1": {
+        "mean": 8.1875,
+        "ci95": [
+          6.890625,
+          9.270833333333334
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 7.229166666666667,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 9.145833333333334,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_4": {
+        "mean": 7.125,
+        "ci95": [
+          5.854166666666667,
+          8.1875
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 6.416666666666667,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 7.833333333333333,
+            "n": 24
+          }
+        }
+      }
+    },
+    "QUERY_ONCE_V": {
+      "utility": {
+        "mean": 8.791666666666668,
+        "ci95": [
+          8.375,
+          9.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 8.583333333333334,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 9.0,
+            "n": 24
+          }
+        }
+      },
+      "success": {
+        "mean": 0.9947916666666667,
+        "ci95": [
+          0.984375,
+          1.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.9895833333333334,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 1.0,
+            "n": 24
+          }
+        }
+      },
+      "wrong_side_effect": {
+        "mean": 0.005208333333333333,
+        "ci95": [
+          0.0,
+          0.015625
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.010416666666666666,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "tool_error": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "abort": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "queries": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 1.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 1.0,
+            "n": 24
+          }
+        }
+      },
+      "model_calls": {
+        "mean": 2.0,
+        "ci95": [
+          2.0,
+          2.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 2.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 2.0,
+            "n": 24
+          }
+        }
+      },
+      "input_tokens": {
+        "mean": 1047.5,
+        "ci95": [
+          1046.6354166666667,
+          1048.328125
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 1021.375,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 1073.625,
+            "n": 24
+          }
+        }
+      },
+      "output_tokens": {
+        "mean": 57.3125,
+        "ci95": [
+          57.24479166666667,
+          57.375
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 57.489583333333336,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 57.135416666666664,
+            "n": 24
+          }
+        }
+      },
+      "rule_fallback_root": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "rule_fallback_after": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_0": {
+        "mean": 9.791666666666668,
+        "ci95": [
+          9.375,
+          10.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 9.583333333333334,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 10.0,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_0.25": {
+        "mean": 9.541666666666668,
+        "ci95": [
+          9.125,
+          9.75
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 9.333333333333334,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 9.75,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_1": {
+        "mean": 8.791666666666668,
+        "ci95": [
+          8.375,
+          9.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 8.583333333333334,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 9.0,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_4": {
+        "mean": 5.791666666666666,
+        "ci95": [
+          5.375,
+          6.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 5.583333333333333,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 6.0,
+            "n": 24
+          }
+        }
+      }
+    },
+    "DEPENDENCY_RULE": {
+      "utility": {
+        "mean": 9.75,
+        "ci95": [
+          9.75,
+          9.75
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 9.75,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 9.75,
+            "n": 24
+          }
+        }
+      },
+      "success": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 1.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 1.0,
+            "n": 24
+          }
+        }
+      },
+      "wrong_side_effect": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "tool_error": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "abort": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "queries": {
+        "mean": 0.25,
+        "ci95": [
+          0.25,
+          0.25
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.25,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.25,
+            "n": 24
+          }
+        }
+      },
+      "model_calls": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "input_tokens": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "output_tokens": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "rule_fallback_root": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "rule_fallback_after": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_0": {
+        "mean": 10.0,
+        "ci95": [
+          10.0,
+          10.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 10.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 10.0,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_0.25": {
+        "mean": 9.9375,
+        "ci95": [
+          9.9375,
+          9.9375
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 9.9375,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 9.9375,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_1": {
+        "mean": 9.75,
+        "ci95": [
+          9.75,
+          9.75
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 9.75,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 9.75,
+            "n": 24
+          }
+        }
+      },
+      "utility_cost_4": {
+        "mean": 9.0,
+        "ci95": [
+          9.0,
+          9.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 9.0,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 9.0,
+            "n": 24
+          }
+        }
+      }
+    }
+  },
+  "comparisons": {
+    "VALIDITY_REVIEW__minus__QUERY_ONCE_V": {
+      "utility": {
+        "delta": -0.6041666666666667,
+        "ci95": [
+          -1.9583333333333333,
+          0.609375
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": -1.3541666666666667,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.14583333333333334,
+            "n": 24
+          }
+        }
+      },
+      "success": {
+        "delta": -0.046875,
+        "ci95": [
+          -0.08333333333333334,
+          -0.010416666666666666
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": -0.052083333333333336,
+            "n": 24
+          },
+          "reminder": {
+            "mean": -0.041666666666666664,
+            "n": 24
+          }
+        }
+      },
+      "wrong_side_effect": {
+        "delta": 0.026041666666666668,
+        "ci95": [
+          -0.005208333333333333,
+          0.057291666666666664
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.052083333333333336,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "queries": {
+        "delta": -0.6458333333333333,
+        "ci95": [
+          -0.6770833333333334,
+          -0.6145833333333333
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": -0.7291666666666666,
+            "n": 24
+          },
+          "reminder": {
+            "mean": -0.5625,
+            "n": 24
+          }
+        }
+      }
+    },
+    "VALIDITY_REVIEW__minus__GENERIC_REVIEW": {
+      "utility": {
+        "delta": 2.4270833333333335,
+        "ci95": [
+          0.796875,
+          4.09375
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 3.2083333333333335,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 1.6458333333333333,
+            "n": 24
+          }
+        }
+      },
+      "success": {
+        "delta": 0.14583333333333334,
+        "ci95": [
+          0.09895833333333334,
+          0.19270833333333331
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.08333333333333333,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.20833333333333334,
+            "n": 24
+          }
+        }
+      },
+      "wrong_side_effect": {
+        "delta": -0.041666666666666664,
+        "ci95": [
+          -0.08333333333333333,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": -0.08333333333333333,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "queries": {
+        "delta": 0.28125,
+        "ci95": [
+          0.22916666666666666,
+          0.328125
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.125,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.4375,
+            "n": 24
+          }
+        }
+      }
+    },
+    "DEPENDENCY_RULE__minus__VALIDITY_REVIEW": {
+      "utility": {
+        "delta": 1.5625,
+        "ci95": [
+          0.47916666666666663,
+          2.859375
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 2.5208333333333335,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.6041666666666666,
+            "n": 24
+          }
+        }
+      },
+      "success": {
+        "delta": 0.05208333333333333,
+        "ci95": [
+          0.020833333333333332,
+          0.08854166666666667
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.0625,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.041666666666666664,
+            "n": 24
+          }
+        }
+      },
+      "wrong_side_effect": {
+        "delta": -0.03125,
+        "ci95": [
+          -0.0625,
+          -0.005208333333333333
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": -0.0625,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "queries": {
+        "delta": -0.10416666666666667,
+        "ci95": [
+          -0.13541666666666666,
+          -0.07291666666666666
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": -0.020833333333333332,
+            "n": 24
+          },
+          "reminder": {
+            "mean": -0.1875,
+            "n": 24
+          }
+        }
+      }
+    },
+    "DEPENDENCY_RULE__minus__QUERY_ONCE_V": {
+      "utility": {
+        "delta": 0.9583333333333334,
+        "ci95": [
+          0.75,
+          1.375
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 1.1666666666666667,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.75,
+            "n": 24
+          }
+        }
+      },
+      "success": {
+        "delta": 0.005208333333333333,
+        "ci95": [
+          0.0,
+          0.015625
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": 0.010416666666666666,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "wrong_side_effect": {
+        "delta": -0.005208333333333333,
+        "ci95": [
+          -0.015625,
+          0.0
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": -0.010416666666666666,
+            "n": 24
+          },
+          "reminder": {
+            "mean": 0.0,
+            "n": 24
+          }
+        }
+      },
+      "queries": {
+        "delta": -0.75,
+        "ci95": [
+          -0.75,
+          -0.75
+        ],
+        "n_families": 48,
+        "cells": {
+          "contact": {
+            "mean": -0.75,
+            "n": 24
+          },
+          "reminder": {
+            "mean": -0.75,
+            "n": 24
+          }
+        }
+      }
+    }
+  }
+}

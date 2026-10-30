@@ -1,10 +1,10 @@
 # 实验状态
 
-最后维护：2026-10-31 00:27 +08:00（Asia/Shanghai）。
-当前阶段：G0–G4保留；G5证据解析—价值排序分解轮次已完成（见I节）。G4 CPU更正完成但原始G4未覆盖；G5实际运行完成 dev/audit/closed_loop/analyze，无运行中或排队任务。依据预注册门槛，G5不进入外部验证、不宣称方法收益；唯一后续方向是退出当前冻结标量scorer+toy组合，转向外部真实任务的问题定义。
-本项目在本会话中已登记的直接运行attempt数：G0–G4为35个，G5新增1个逻辑attempt（G4-CPU-CORRECT/G5-DATA/G5-DEV/G5-AUDIT/G5-CLOSED_LOOP/G5-ANALYZE六个phase）；G5全部COMPLETED，无FAILED/CANCELED、无运行中或排队任务。G5早先三次启动失败均无成功模型调用或只是后续已缓存的前9次调用，最终成功路径使用项目venv；细节见I3。当前主机未安装Slurm命令，因此无Slurm队列可查。
+最后维护：2026-10-31 04:20 +08:00（Asia/Shanghai）。
+当前阶段：G0–G5保留；G6外部原生ToolSandbox证据失效与最小修复联合实验已完成（见J节）。G6完成G5 CPU重分析、60-family固定数据、216/864节点dev/audit、3,240次Qwen推理、2,400条原生工具轨迹和最终分析；无运行中或排队任务。结果：DIRECT_E复现旧值继续使用（U root old-use 100%、retract 0%）；VALIDITY_REVIEW改善U但reminder的other-object over-retraction严重（V 79.17% vs R 0），未过intervention gate；QUERY_ONCE_V优于V（utility +0.604，CI含0；V query少但success低4.69pp、wrong高2.60pp）；强DEPENDENCY_RULE solved all，utility9.75、success1.0、0模型调用。结论：无进入过程监督训练的明确理由；保留规则作为工程基线，不自动启动G7。
+本项目在本会话中已登记的直接运行attempt数：G0–G4为35个，G5新增1个逻辑attempt（六phase），G6新增1个逻辑attempt（G6-CPU-REANALYSIS/G6-TOOLS-DATA/G6-DEV/G6-AUDIT/G6-EXECUTE/G6-ANALYZE六phase）；G5/G6全部COMPLETED，无当前运行中或排队任务。G6 dev仅4个R invalid、audit 14个R invalid，均为模型schema不一致，未改prompt；无GPU/模型调用失败。当前主机未安装Slurm命令，因此无Slurm队列可查。
 
-执行边界：G0–G5均已完成；任何新阶段（PRM、在线RL、训练scorer、外部benchmark）须由用户显式新决策与预算，不自动启动。G5的唯一下一步仅是外部真实任务的问题定义，不在本attempt自动执行。协调者是status.md唯一writer；脚本和子agent不直接修改此表。详细规则见README第12节和AGENT_PROMPT.md。
+执行边界：G0–G6均已完成；任何新阶段（PRM、在线RL、训练scorer、外部benchmark）须由用户显式新决策与预算，不自动启动。G6的唯一后续动作是保留强依赖规则作为工程基线并收紧论文主张；不启动G7过程监督训练，不追加同模板数据。协调者是status.md唯一writer；脚本和子agent不直接修改此表。详细规则见README第12节和AGENT_PROMPT.md。
 
 ## A. 已完成实验与工程核验
 
@@ -489,3 +489,100 @@ CPU 基线：π0 6.806、always_query −2.750、always_direct −6.389、always
 - G4 保留与更正：G4 原始 primary 指标、模型闭环 utility、Delta_specific 负结论保留；35 个 scoped_authorization secondary 的 gold/Q 已更正（primary 0）；π0 6.583→6.694；action counts 改语义 kind；secondary 改均匀并列质量；gold strata 按每个 primary prefix 后按 family 聚类；C horizon 仅改 flags；旧 tie 不伪装反事实。
 
 **预算/产物（G5）**：GPU-hours 0.904（≤4，含失败重试；成功阶段 0.871）；Qwen 3,767 calls（≤6,984）、AgentRM 8,427 scores（≤12,690），invalid 0/0；训练 run/checkpoint/adapter/optimizer 均为 0；新源文件 0、修改源文件2；数据2文件+run2文件+日志1；新增非模型产物约8.9MiB；模型均为本地既有 snapshot（AgentRM `411ac92b...`，Qwen `2de2439...`）。最终 run.json 见 `runs/G5-DECOMPOSE-a01/run.json`（`decision`/`g4_corrected_analysis`/`metrics.g5`），predictions `384d2960...`，日志 `logs/G5-DECOMPOSE-a01.log`。
+## J. G6 外部原生 ToolSandbox 证据失效与最小修复联合实验（用户2026-10-31显式新决策）
+
+固定依据：`patchs/G6_VALIDITY_INSIGHT_EXPERIMENT_PROMPT.md`。仅复用一个冻结 Qwen3-4B；不训练、不下载模型、不保存 checkpoint/adapter；不重跑 G4/G5；不继续调 AgentRM；不扩大同模板 toy 数据。新增项目源文件仅 `validity_experiment.py`。
+
+### J0. 登记
+
+| RUN_ID / phase | 状态 | 主机/PID | GPU | 起止时间 | 完成节点/总节点 | 模型调用/上限 | GPU-hours | 产物/阻塞 |
+|---|---|---|---|---|---|---|---|---|
+| G6-VALIDITY-a01 / G6-CPU-REANALYSIS | COMPLETED | CPU | 0 | 2026-10-31 03:20:06 | 全部只读分析 | 0 | 0 | `g5_reanalysis` in run.json；不改 G5 |
+| G6-VALIDITY-a01 / G6-TOOLS-DATA | COMPLETED | CPU worker `/data/sjj/g6_tools_venv` | 0 | 2026-10-31 03:20:17 | 60 families / 1080 public nodes | 0 | 0 | `data/g6_validity/`；240次原生工具调用 |
+| G6-VALIDITY-a01 / G6-DEV | COMPLETED | local PID 388944 | 4→cuda:0 | 2026-10-31 03:21:10–03:31:27 | 216/216 | 648/648 | 0.171 | invalid: R=4（known+null），E/V=0；格式检查通过，不改prompt |
+| G6-VALIDITY-a01 / G6-AUDIT | COMPLETED | local PID 407171 | 4→cuda:0 | 2026-10-31 03:32:47–04:14:17 | 864/864 | 2,592/2,592（累计3,240） | 0.863 | E/V invalid=0，R invalid=14 |
+| G6-VALIDITY-a01 / G6-EXECUTE | COMPLETED | local PID 477831 + CPU worker | 0 | 2026-10-31 04:14:40–04:15:23 | 2400/2400 | 0 | 0 | 2,400条原生工具轨迹；2,400 worker calls |
+| G6-VALIDITY-a01 / G6-ANALYZE | COMPLETED | CPU | 0 | 2026-10-31 04:17:15 | 全部 | 0 | 0 | metrics/decision 写入 run.json |
+
+### J1. G5 CPU 重分析（只读，不改 G5）
+
+- audit primary：总体 250/288=86.81%；secondary 375/396=94.70%；versioned_report 58/96=60.42%，scoped_authorization 96/96，exactly_once 96/96。
+- primary versioned_report 的 40 个真实 unknown：预测 unknown 3、good 25、bad 12。
+- E_CPU primary regret 总和 399：U 的 unknown→good 25×14=350，unknown→bad 12×4=48，bad→unknown 1。
+- reversal：current 23/24；stale 0/24。
+- secondary：versioned_report 126/136，scoped_authorization 122/124，exactly_once 127/136。
+- 没有新增 G5 模型调用；G5 run/predictions 未覆盖。
+
+### J2. 原生工具接入与数据冻结
+
+- ToolSandbox 固定 checkout：`external/ToolSandbox`，commit `c8571d7854316d2e1c5f288e59fe1e34e53f6dd1`，2.4MiB。
+- CPU 专用环境：`/data/sjj/g6_tools_venv`（只安装原生工具需要的 CPU 包；GPU 项目 venv 未修改）。原生联系人/提醒查询、modify、消息写入和 reminder modify 已实际执行；两条工具联调成功。
+- 数据：`data/g6_validity/cases.jsonl`（60 families，30 contact +30 reminder；dev 12 / audit 48）、`manifest.json`。每 family 4 条件×2 表示 root=8，U 两世界+其余3世界×2 表示=10，共1080 public nodes（dev216/audit864）。
+- 固定通知 J 结构化模板与 N 自然语言模板；U/F/S/O 条件、J/N 表示均冻结；隐藏新值只在 cases private。原生 snapshot 冻结在每个 post-event 分支，策略执行从同一 snapshot 重启；没有重新注入变化。
+- 预算：模型调用 0（此阶段）；ToolSandbox worker 调用 240；训练/checkpoint/adapter=0。
+
+### J3. 当前运行状态
+
+G6 全部 phase 已完成：dev（648 calls）→ audit（2,592 calls）→ execution（2,400 trajectories）→ analyze。当前无模型进程、无排队任务。
+
+
+### J4. G6 正式结果（audit，n=48 families；J/N 不增加独立n）
+
+**DIRECT_E root U/S/O/F（E 状态准确率；U 两个隐藏世界同root，只计一次）**：
+
+| workflow/rep | U acc | U retract | U old-value use | F acc | S acc | O acc |
+|---|---:|---:|---:|---:|---:|---:|
+| contact/J | 0.00 | 0/24 | 24/24=100% | 0.9167 | 1.00 | 1.00 |
+| contact/N | 0.00 | 0/24 | 24/24=100% | 1.00 | 1.00 | 1.00 |
+| reminder/J | 0.00 | 0/24 | 24/24=100% | 1.00 | 1.00 | 1.00 |
+| reminder/N | 0.00 | 0/24 | 24/24=100% | 0.50 | 1.00 | 1.00 |
+
+**R/V root 关键对照（N 主分析；U 为 unknown/null 正确率）**：
+
+| workflow | method | U acc / retract | F acc | S acc | O acc / erroneous retraction |
+|---|---|---:|---:|---:|---:|
+| contact | R | 0.50 / 12/24 | 1.00 | 0.875 | 0.958 / 1/24 |
+| contact | V | 1.00 / 24/24 | 1.00 | 0.833 | 0.833 / 2/24 |
+| reminder | R | 0.00 / 0/24 | 1.00 | 1.00 | 1.00 / 0/24 |
+| reminder | V | 0.9167 / 22/24 | 1.00 | 0.958 | 0.125 / 19/24 |
+
+- **主要机制比较**：`JointSuccess(V)−JointSuccess(R)` on audit N = **+0.2083**，95% CI [0.0833,0.3333]；按 workflow：contact +0.3333、reminder +0.0833。V 改善 U，但 reminder 的 other-object over-retraction 为 **79.17% vs R 0%**；S/O 错误撤销门槛失败 → **intervention pass=false**。
+- **部署主表（audit N；utility/错误/完成/查询/逻辑调用；规则始终列入）**：
+
+| strategy | utility | success | wrong side effect | tool error | queries | model calls |
+|---|---:|---:|---:|---:|---:|---:|
+| DIRECT_E | −2.500 | 0.688 | 0.313 | 0.000 | 0.000 | 1.000 |
+| GENERIC_REVIEW | 5.760 | 0.802 | 0.073 | 0.125 | 0.073 | 2.146 |
+| VALIDITY_REVIEW | 8.188 | 0.948 | 0.031 | 0.021 | 0.354 | 2.708 |
+| QUERY_ONCE_V | 8.792 | 0.995 | 0.005 | 0.000 | 1.000 | 2.000 |
+| **DEPENDENCY_RULE** | **9.750** | **1.000** | **0.000** | **0.000** | **0.250** | **0.000** |
+
+- V−QUERY_ONCE_V：utility **−0.6042**，CI [−1.9583,+0.6094]；success **−4.69pp**，wrong +2.60pp，queries **−0.646**，model calls 2.708 vs 2.000。V 节省 query 但降低完成率/增加错误，**选择性收益门槛 pass=false**。
+- Rule−V：utility **+1.5625**，success +5.21pp，wrong −3.13pp，queries 0.250 vs 0.354，模型调用 0；`rule_solved_all=true`。规则已解决全部条件。
+- V relation（root+after）：N accuracy **0.9398**，relation 正确但最终 knowledge/value 错误 **7/432**；J accuracy 0.7130、组合错误1/432。V 的 relation 判断并非唯一瓶颈，但存在组合脱节。
+- E/R/V invalid：E 0、V 0、R 18（4 dev +14 audit，均为 `known+null` 等 schema 不一致；模型原始输出保留）。
+
+**实际失败例（最多6）**：
+1. G6F0000 contact/U/N：E 给出旧号码 `+14155559946`（证据 e1），DIRECT_E 未查询直接发送，utility −30。
+2. G6F0009 contact/S/N：V relation=KEEP、给出错误号码 `+1415555871`，发送产生错误副作用 utility −30；同一条件 QUERY_ONCE_V 查询后成功 utility 9。
+3. G6F0030 reminder/O/N：V 把 other-object 更新判为 INVALIDATE/unknown（证据 e2），造成不必要查询；reminder O 的 V over-retraction 19/24。
+4. G6F0000 reminder/U/N：E 输出旧时间戳（证据 e1），DIRECT_E 直接写入错误时间，utility −30。
+5. G6F0000 contact/U/N：V 正确撤销旧号码（unknown/null，e2），查询后成功 utility 9。
+6. G6F0000 contact/U/N：DEPENDENCY_RULE 仅 1 次查询、0 模型调用，utility 9，成功；与 V 相同实际结果但无Qwen成本。
+
+### J5. 四项判断与唯一后续方向
+
+- **phenomenon = REPRODUCED_LOCALLY**：四组 workflow×J/N 的 DIRECT_E U retract 均为 0/24，old-value use 均为 100%；F/S/O 大多正确（例外 reminder/N F new adoption 50%，旧值继续50%）。外部原生工具接口复现了“证据失效后继续采用旧值”，但现象只在 U。
+- **intervention = NOT_PASS**：V−R 联合成功率 +0.208（CI 下界0.083>0）方向正向，但 V 在 reminder/O 的 over-retraction 79.17% vs R 0%，S/O 错误撤销门槛不通过；不能称有效复核已优于普通复核。
+- **deployment = NOT_PASS**：V utility低于QUERY_ONCE_V 0.604（CI含0），success低4.69pp，wrong高2.60pp；虽然 query 少0.646、模型调用并不更少（2.708 vs2），无实际选择性收益。
+- **learning_case = NO**：DEPENDENCY_RULE utility9.75、success1.0、wrong0、tool_error0、0模型调用，且只对U查询；规则已解决当前所有条件，不能为过程监督训练提供理由。
+- **relation**：V N relation accuracy0.9398，relation正确但最终值错误7/432；V 的局部关系判断可改进，但当前规则不需要它，且 V 的 O over-retraction 是更直接的失败。
+- **唯一下一方向**：**停止 G6 的学习型扩展，保留强依赖规则作为当前任务的工程基线并收紧论文主张；不启动 G7 过程监督训练，不追加同模板数据。** 本轮不声称新 PRM，也不将规则辅助包装成学习算法。
+
+### J6. 预算/产物/状态
+
+- GPU：1×A800（GPU4，逻辑 cuda:0），累计 **0.863 GPU-hours**（dev0.171 + audit0.692；execution/analyze无GPU）；≤4h。
+- Qwen 调用 **3,240/3,888**（dev648 + audit2592；execution 0）；input/output tokens **1,564,824 / 90,767**；AgentRM调用0；新模型下载0；训练/checkpoint/adapter/optimizer=0。
+- ToolSandbox：fixed commit `c8571d7854316d2e1c5f288e59fe1e34e53f6dd1`；源码2.6MiB；CPU venv `/data/sjj/g6_tools_venv` 275MiB；GPU项目venv未修改。
+- 数据：`data/g6_validity/cases.jsonl` + `manifest.json`（716KiB）；attempt：`runs/G6-VALIDITY-a01/run.json`（186KiB）+ `predictions.jsonl`（10MiB，5640 records：3240 E/R/V +2400 trajectories）+ `logs/G6-VALIDITY-a01.log`（60KiB）。新增非模型产物约11MiB≤128MiB；新项目源文件1个（`validity_experiment.py`）。
+- 运行/排队：全部 G6 phases COMPLETED；当前无运行中、无真实 Slurm/排队任务；G4/G5原始predictions/run未覆盖。

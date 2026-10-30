@@ -1,0 +1,6485 @@
+{
+  "attempt_id": "G6-VALIDITY-a01",
+  "dataset_version": "g6-validity-v1",
+  "tool_sandbox_revision": "c8571d7854316d2e1c5f288e59fe1e34e53f6dd1",
+  "started_at": "2026-10-31 03:20:03 CST",
+  "phase_status": {
+    "G6-CPU-REANALYSIS": "COMPLETED",
+    "G6-TOOLS-DATA": "COMPLETED",
+    "G6-DEV": "COMPLETED",
+    "G6-AUDIT": "COMPLETED",
+    "G6-EXECUTE": "COMPLETED",
+    "G6-ANALYZE": "COMPLETED"
+  },
+  "phase_attempts": [],
+  "budget": {
+    "model_calls": 3240,
+    "model_call_limit": 3888,
+    "input_tokens": 1564824,
+    "output_tokens": 90767,
+    "gpu_hours": 0.863201842618744,
+    "training_runs": 0,
+    "checkpoints": 0,
+    "adapters": 0,
+    "tool_worker_calls_execution": 2400,
+    "tool_worker_calls_data": 240,
+    "tool_worker_calls_total": 2640
+  },
+  "metrics": {
+    "g6": {
+      "nodes": {
+        "methods": {
+          "E": {
+            "by_representation": {
+              "J": {
+                "by_workflow": {
+                  "contact": {
+                    "root": {
+                      "U": {
+                        "correct": 0,
+                        "total": 24,
+                        "accuracy": 0.0,
+                        "invalid": 0,
+                        "retract_correct": 0,
+                        "old_value_use": 24
+                      },
+                      "F": {
+                        "correct": 22,
+                        "total": 24,
+                        "accuracy": 0.9166666666666666,
+                        "invalid": 0,
+                        "new_value_adopt": 22,
+                        "old_value_use": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      }
+                    },
+                    "after": {
+                      "U": {
+                        "correct": 48,
+                        "total": 48,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      }
+                    },
+                    "joint_by_condition": {},
+                    "joint": {
+                      "mean": 0.0,
+                      "ci95": [
+                        0.0,
+                        0.0
+                      ],
+                      "n_families": 24,
+                      "cells": {
+                        "contact": {
+                          "mean": 0.0,
+                          "n": 24
+                        }
+                      }
+                    }
+                  },
+                  "reminder": {
+                    "root": {
+                      "U": {
+                        "correct": 0,
+                        "total": 24,
+                        "accuracy": 0.0,
+                        "invalid": 0,
+                        "retract_correct": 0,
+                        "old_value_use": 24
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "new_value_adopt": 24,
+                        "old_value_use": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      }
+                    },
+                    "after": {
+                      "U": {
+                        "correct": 48,
+                        "total": 48,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      }
+                    },
+                    "joint_by_condition": {},
+                    "joint": {
+                      "mean": 0.0,
+                      "ci95": [
+                        0.0,
+                        0.0
+                      ],
+                      "n_families": 24,
+                      "cells": {
+                        "reminder": {
+                          "mean": 0.0,
+                          "n": 24
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "N": {
+                "by_workflow": {
+                  "contact": {
+                    "root": {
+                      "U": {
+                        "correct": 0,
+                        "total": 24,
+                        "accuracy": 0.0,
+                        "invalid": 0,
+                        "retract_correct": 0,
+                        "old_value_use": 24
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "new_value_adopt": 24,
+                        "old_value_use": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      }
+                    },
+                    "after": {
+                      "U": {
+                        "correct": 48,
+                        "total": 48,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      }
+                    },
+                    "joint_by_condition": {},
+                    "joint": {
+                      "mean": 0.0,
+                      "ci95": [
+                        0.0,
+                        0.0
+                      ],
+                      "n_families": 24,
+                      "cells": {
+                        "contact": {
+                          "mean": 0.0,
+                          "n": 24
+                        }
+                      }
+                    }
+                  },
+                  "reminder": {
+                    "root": {
+                      "U": {
+                        "correct": 0,
+                        "total": 24,
+                        "accuracy": 0.0,
+                        "invalid": 0,
+                        "retract_correct": 0,
+                        "old_value_use": 24
+                      },
+                      "F": {
+                        "correct": 12,
+                        "total": 24,
+                        "accuracy": 0.5,
+                        "invalid": 0,
+                        "new_value_adopt": 12,
+                        "old_value_use": 12
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      }
+                    },
+                    "after": {
+                      "U": {
+                        "correct": 48,
+                        "total": 48,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      }
+                    },
+                    "joint_by_condition": {},
+                    "joint": {
+                      "mean": 0.0,
+                      "ci95": [
+                        0.0,
+                        0.0
+                      ],
+                      "n_families": 24,
+                      "cells": {
+                        "reminder": {
+                          "mean": 0.0,
+                          "n": 24
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "R": {
+            "by_representation": {
+              "J": {
+                "by_workflow": {
+                  "contact": {
+                    "root": {
+                      "U": {
+                        "correct": 0,
+                        "total": 24,
+                        "accuracy": 0.0,
+                        "invalid": 0,
+                        "retract_correct": 0,
+                        "old_value_use": 24
+                      },
+                      "F": {
+                        "correct": 23,
+                        "total": 24,
+                        "accuracy": 0.9583333333333334,
+                        "invalid": 0,
+                        "new_value_adopt": 23,
+                        "old_value_use": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      },
+                      "O": {
+                        "correct": 23,
+                        "total": 24,
+                        "accuracy": 0.9583333333333334,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      }
+                    },
+                    "after": {
+                      "U": {
+                        "correct": 48,
+                        "total": 48,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      }
+                    },
+                    "joint_by_condition": {},
+                    "joint": {
+                      "mean": 0.0,
+                      "ci95": [
+                        0.0,
+                        0.0
+                      ],
+                      "n_families": 24,
+                      "cells": {
+                        "contact": {
+                          "mean": 0.0,
+                          "n": 24
+                        }
+                      }
+                    }
+                  },
+                  "reminder": {
+                    "root": {
+                      "U": {
+                        "correct": 0,
+                        "total": 24,
+                        "accuracy": 0.0,
+                        "invalid": 0,
+                        "retract_correct": 0,
+                        "old_value_use": 1
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "new_value_adopt": 24,
+                        "old_value_use": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      },
+                      "O": {
+                        "correct": 8,
+                        "total": 24,
+                        "accuracy": 0.3333333333333333,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      }
+                    },
+                    "after": {
+                      "U": {
+                        "correct": 48,
+                        "total": 48,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      }
+                    },
+                    "joint_by_condition": {},
+                    "joint": {
+                      "mean": 0.0,
+                      "ci95": [
+                        0.0,
+                        0.0
+                      ],
+                      "n_families": 24,
+                      "cells": {
+                        "reminder": {
+                          "mean": 0.0,
+                          "n": 24
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "N": {
+                "by_workflow": {
+                  "contact": {
+                    "root": {
+                      "U": {
+                        "correct": 12,
+                        "total": 24,
+                        "accuracy": 0.5,
+                        "invalid": 12,
+                        "retract_correct": 12,
+                        "old_value_use": 12
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "new_value_adopt": 24,
+                        "old_value_use": 0
+                      },
+                      "S": {
+                        "correct": 21,
+                        "total": 24,
+                        "accuracy": 0.875,
+                        "invalid": 1,
+                        "erroneous_retraction": 1
+                      },
+                      "O": {
+                        "correct": 23,
+                        "total": 24,
+                        "accuracy": 0.9583333333333334,
+                        "invalid": 1,
+                        "erroneous_retraction": 1
+                      }
+                    },
+                    "after": {
+                      "U": {
+                        "correct": 48,
+                        "total": 48,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      }
+                    },
+                    "joint_by_condition": {},
+                    "joint": {
+                      "mean": 0.4166666666666667,
+                      "ci95": [
+                        0.20833333333333334,
+                        0.625
+                      ],
+                      "n_families": 24,
+                      "cells": {
+                        "contact": {
+                          "mean": 0.4166666666666667,
+                          "n": 24
+                        }
+                      }
+                    }
+                  },
+                  "reminder": {
+                    "root": {
+                      "U": {
+                        "correct": 0,
+                        "total": 24,
+                        "accuracy": 0.0,
+                        "invalid": 0,
+                        "retract_correct": 0,
+                        "old_value_use": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "new_value_adopt": 24,
+                        "old_value_use": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      }
+                    },
+                    "after": {
+                      "U": {
+                        "correct": 48,
+                        "total": 48,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      }
+                    },
+                    "joint_by_condition": {},
+                    "joint": {
+                      "mean": 0.0,
+                      "ci95": [
+                        0.0,
+                        0.0
+                      ],
+                      "n_families": 24,
+                      "cells": {
+                        "reminder": {
+                          "mean": 0.0,
+                          "n": 24
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "V": {
+            "by_representation": {
+              "J": {
+                "by_workflow": {
+                  "contact": {
+                    "root": {
+                      "U": {
+                        "correct": 0,
+                        "total": 24,
+                        "accuracy": 0.0,
+                        "invalid": 0,
+                        "retract_correct": 0,
+                        "old_value_use": 21
+                      },
+                      "F": {
+                        "correct": 23,
+                        "total": 24,
+                        "accuracy": 0.9583333333333334,
+                        "invalid": 0,
+                        "new_value_adopt": 23,
+                        "old_value_use": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      },
+                      "O": {
+                        "correct": 0,
+                        "total": 24,
+                        "accuracy": 0.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 24
+                      }
+                    },
+                    "after": {
+                      "U": {
+                        "correct": 48,
+                        "total": 48,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      }
+                    },
+                    "joint_by_condition": {},
+                    "joint": {
+                      "mean": 0.0,
+                      "ci95": [
+                        0.0,
+                        0.0
+                      ],
+                      "n_families": 24,
+                      "cells": {
+                        "contact": {
+                          "mean": 0.0,
+                          "n": 24
+                        }
+                      }
+                    }
+                  },
+                  "reminder": {
+                    "root": {
+                      "U": {
+                        "correct": 0,
+                        "total": 24,
+                        "accuracy": 0.0,
+                        "invalid": 0,
+                        "retract_correct": 0,
+                        "old_value_use": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "new_value_adopt": 24,
+                        "old_value_use": 0
+                      },
+                      "S": {
+                        "correct": 0,
+                        "total": 24,
+                        "accuracy": 0.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      },
+                      "O": {
+                        "correct": 0,
+                        "total": 24,
+                        "accuracy": 0.0,
+                        "invalid": 0,
+                        "erroneous_retraction": 3
+                      }
+                    },
+                    "after": {
+                      "U": {
+                        "correct": 48,
+                        "total": 48,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "S": {
+                        "correct": 21,
+                        "total": 24,
+                        "accuracy": 0.875,
+                        "invalid": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      }
+                    },
+                    "joint_by_condition": {},
+                    "joint": {
+                      "mean": 0.0,
+                      "ci95": [
+                        0.0,
+                        0.0
+                      ],
+                      "n_families": 24,
+                      "cells": {
+                        "reminder": {
+                          "mean": 0.0,
+                          "n": 24
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "N": {
+                "by_workflow": {
+                  "contact": {
+                    "root": {
+                      "U": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "retract_correct": 24,
+                        "old_value_use": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "new_value_adopt": 24,
+                        "old_value_use": 0
+                      },
+                      "S": {
+                        "correct": 20,
+                        "total": 24,
+                        "accuracy": 0.8333333333333334,
+                        "invalid": 0,
+                        "erroneous_retraction": 0
+                      },
+                      "O": {
+                        "correct": 20,
+                        "total": 24,
+                        "accuracy": 0.8333333333333334,
+                        "invalid": 0,
+                        "erroneous_retraction": 2
+                      }
+                    },
+                    "after": {
+                      "U": {
+                        "correct": 48,
+                        "total": 48,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "S": {
+                        "correct": 23,
+                        "total": 24,
+                        "accuracy": 0.9583333333333334,
+                        "invalid": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      }
+                    },
+                    "joint_by_condition": {},
+                    "joint": {
+                      "mean": 0.75,
+                      "ci95": [
+                        0.5833333333333334,
+                        0.9166666666666666
+                      ],
+                      "n_families": 24,
+                      "cells": {
+                        "contact": {
+                          "mean": 0.75,
+                          "n": 24
+                        }
+                      }
+                    }
+                  },
+                  "reminder": {
+                    "root": {
+                      "U": {
+                        "correct": 22,
+                        "total": 24,
+                        "accuracy": 0.9166666666666666,
+                        "invalid": 0,
+                        "retract_correct": 22,
+                        "old_value_use": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0,
+                        "new_value_adopt": 24,
+                        "old_value_use": 0
+                      },
+                      "S": {
+                        "correct": 23,
+                        "total": 24,
+                        "accuracy": 0.9583333333333334,
+                        "invalid": 0,
+                        "erroneous_retraction": 1
+                      },
+                      "O": {
+                        "correct": 3,
+                        "total": 24,
+                        "accuracy": 0.125,
+                        "invalid": 0,
+                        "erroneous_retraction": 19
+                      }
+                    },
+                    "after": {
+                      "U": {
+                        "correct": 48,
+                        "total": 48,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "F": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "S": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      },
+                      "O": {
+                        "correct": 24,
+                        "total": 24,
+                        "accuracy": 1.0,
+                        "invalid": 0
+                      }
+                    },
+                    "joint_by_condition": {},
+                    "joint": {
+                      "mean": 0.08333333333333333,
+                      "ci95": [
+                        0.0,
+                        0.20833333333333334
+                      ],
+                      "n_families": 24,
+                      "cells": {
+                        "reminder": {
+                          "mean": 0.08333333333333333,
+                          "n": 24
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "joint_success": {},
+        "relation": {
+          "R": {
+            "J": {
+              "relation_accuracy": 0.7152777777777778,
+              "n": 432,
+              "relation_correct_final_wrong": 1,
+              "by_condition": {
+                "contact:U:root": {
+                  "correct": 0,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:U:after": {
+                  "correct": 48,
+                  "total": 48,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:F:root": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 1
+                },
+                "contact:F:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:S:root": {
+                  "correct": 0,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:S:after": {
+                  "correct": 23,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:O:root": {
+                  "correct": 0,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:O:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:U:root": {
+                  "correct": 0,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:U:after": {
+                  "correct": 48,
+                  "total": 48,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:F:root": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:F:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:S:root": {
+                  "correct": 16,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:S:after": {
+                  "correct": 23,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:O:root": {
+                  "correct": 7,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:O:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                }
+              }
+            },
+            "N": {
+              "relation_accuracy": 0.8819444444444444,
+              "n": 432,
+              "relation_correct_final_wrong": 2,
+              "by_condition": {
+                "contact:U:root": {
+                  "correct": 0,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:U:after": {
+                  "correct": 48,
+                  "total": 48,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:F:root": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:F:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:S:root": {
+                  "correct": 22,
+                  "total": 24,
+                  "relation_correct_final_wrong": 2
+                },
+                "contact:S:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:O:root": {
+                  "correct": 23,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:O:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:U:root": {
+                  "correct": 0,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:U:after": {
+                  "correct": 48,
+                  "total": 48,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:F:root": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:F:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:S:root": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:S:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:O:root": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:O:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                }
+              }
+            }
+          },
+          "V": {
+            "J": {
+              "relation_accuracy": 0.7129629629629629,
+              "n": 432,
+              "relation_correct_final_wrong": 1,
+              "by_condition": {
+                "contact:U:root": {
+                  "correct": 0,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:U:after": {
+                  "correct": 48,
+                  "total": 48,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:F:root": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 1
+                },
+                "contact:F:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:S:root": {
+                  "correct": 23,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:S:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:O:root": {
+                  "correct": 0,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:O:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:U:root": {
+                  "correct": 0,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:U:after": {
+                  "correct": 48,
+                  "total": 48,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:F:root": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:F:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:S:root": {
+                  "correct": 0,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:S:after": {
+                  "correct": 21,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:O:root": {
+                  "correct": 0,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:O:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                }
+              }
+            },
+            "N": {
+              "relation_accuracy": 0.9398148148148148,
+              "n": 432,
+              "relation_correct_final_wrong": 7,
+              "by_condition": {
+                "contact:U:root": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:U:after": {
+                  "correct": 48,
+                  "total": 48,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:F:root": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:F:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "contact:S:root": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 4
+                },
+                "contact:S:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 1
+                },
+                "contact:O:root": {
+                  "correct": 22,
+                  "total": 24,
+                  "relation_correct_final_wrong": 2
+                },
+                "contact:O:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:U:root": {
+                  "correct": 22,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:U:after": {
+                  "correct": 48,
+                  "total": 48,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:F:root": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:F:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:S:root": {
+                  "correct": 23,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:S:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:O:root": {
+                  "correct": 3,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                },
+                "reminder:O:after": {
+                  "correct": 24,
+                  "total": 24,
+                  "relation_correct_final_wrong": 0
+                }
+              }
+            }
+          }
+        },
+        "evidence": {
+          "E": {
+            "citations": 1086,
+            "valid_citations": 1086,
+            "valid_citation_precision": 1.0,
+            "invalid_outputs": 0,
+            "empty_outputs": 0
+          },
+          "R": {
+            "citations": 1099,
+            "valid_citations": 1099,
+            "valid_citation_precision": 1.0,
+            "invalid_outputs": 2,
+            "empty_outputs": 2
+          },
+          "V": {
+            "citations": 1091,
+            "valid_citations": 1091,
+            "valid_citation_precision": 1.0,
+            "invalid_outputs": 0,
+            "empty_outputs": 0
+          }
+        },
+        "main_N_joint_V_minus_R": {
+          "delta": 0.20833333333333331,
+          "ci95": [
+            0.08333333333333333,
+            0.33333333333333337
+          ],
+          "n_families": 48,
+          "cells": {
+            "contact": {
+              "mean": 0.3333333333333333,
+              "n": 24
+            },
+            "reminder": {
+              "mean": 0.08333333333333333,
+              "n": 24
+            }
+          }
+        }
+      },
+      "strategies": {
+        "by_representation": {
+          "J": {
+            "strategies": {
+              "DIRECT_E": {
+                "utility": {
+                  "mean": -0.4166666666666667,
+                  "ci95": [
+                    -1.0416666666666667,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.8333333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "success": {
+                  "mean": 0.7395833333333333,
+                  "ci95": [
+                    0.7239583333333333,
+                    0.75
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.7291666666666666,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.75,
+                      "n": 24
+                    }
+                  }
+                },
+                "wrong_side_effect": {
+                  "mean": 0.26041666666666663,
+                  "ci95": [
+                    0.25,
+                    0.27604166666666663
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.2708333333333333,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.25,
+                      "n": 24
+                    }
+                  }
+                },
+                "tool_error": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "abort": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "queries": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "model_calls": {
+                  "mean": 1.0,
+                  "ci95": [
+                    1.0,
+                    1.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 1.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 1.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "input_tokens": {
+                  "mean": 438.375,
+                  "ci95": [
+                    438.16666666666663,
+                    438.58333333333337
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 435.25,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 441.5,
+                      "n": 24
+                    }
+                  }
+                },
+                "output_tokens": {
+                  "mean": 25.260416666666664,
+                  "ci95": [
+                    25.25,
+                    25.276041666666664
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 25.020833333333332,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 25.5,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_root": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_after": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0": {
+                  "mean": -0.4166666666666667,
+                  "ci95": [
+                    -1.0416666666666667,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.8333333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0.25": {
+                  "mean": -0.4166666666666667,
+                  "ci95": [
+                    -1.0416666666666667,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.8333333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_1": {
+                  "mean": -0.4166666666666667,
+                  "ci95": [
+                    -1.0416666666666667,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.8333333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_4": {
+                  "mean": -0.4166666666666667,
+                  "ci95": [
+                    -1.0416666666666667,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.8333333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                }
+              },
+              "GENERIC_REVIEW": {
+                "utility": {
+                  "mean": 2.34375,
+                  "ci95": [
+                    1.6666666666666665,
+                    2.9166666666666665
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.8333333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 5.520833333333333,
+                      "n": 24
+                    }
+                  }
+                },
+                "success": {
+                  "mean": 0.65625,
+                  "ci95": [
+                    0.6302083333333333,
+                    0.6822916666666667
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.7291666666666666,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.5833333333333334,
+                      "n": 24
+                    }
+                  }
+                },
+                "wrong_side_effect": {
+                  "mean": 0.140625,
+                  "ci95": [
+                    0.125,
+                    0.16145833333333331
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.2708333333333333,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.010416666666666666,
+                      "n": 24
+                    }
+                  }
+                },
+                "tool_error": {
+                  "mean": 0.203125,
+                  "ci95": [
+                    0.171875,
+                    0.22916666666666666
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.40625,
+                      "n": 24
+                    }
+                  }
+                },
+                "abort": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "queries": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "model_calls": {
+                  "mean": 2.0,
+                  "ci95": [
+                    2.0,
+                    2.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 2.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 2.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "input_tokens": {
+                  "mean": 863.2604166666667,
+                  "ci95": [
+                    862.8489583333333,
+                    863.671875
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 857.5208333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 869.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "output_tokens": {
+                  "mean": 54.48958333333333,
+                  "ci95": [
+                    54.36458333333333,
+                    54.64583333333333
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 56.65625,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 52.322916666666664,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_root": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_after": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0": {
+                  "mean": 2.34375,
+                  "ci95": [
+                    1.6666666666666665,
+                    2.9166666666666665
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.8333333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 5.520833333333333,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0.25": {
+                  "mean": 2.34375,
+                  "ci95": [
+                    1.6666666666666665,
+                    2.9166666666666665
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.8333333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 5.520833333333333,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_1": {
+                  "mean": 2.34375,
+                  "ci95": [
+                    1.6666666666666665,
+                    2.9166666666666665
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.8333333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 5.520833333333333,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_4": {
+                  "mean": 2.34375,
+                  "ci95": [
+                    1.6666666666666665,
+                    2.9166666666666665
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.8333333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 5.520833333333333,
+                      "n": 24
+                    }
+                  }
+                }
+              },
+              "VALIDITY_REVIEW": {
+                "utility": {
+                  "mean": 1.0572916666666667,
+                  "ci95": [
+                    0.546875,
+                    1.359375
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.6666666666666666,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 2.78125,
+                      "n": 24
+                    }
+                  }
+                },
+                "success": {
+                  "mean": 0.5104166666666667,
+                  "ci95": [
+                    0.48958333333333337,
+                    0.53125
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.7395833333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.28125,
+                      "n": 24
+                    }
+                  }
+                },
+                "wrong_side_effect": {
+                  "mean": 0.13020833333333334,
+                  "ci95": [
+                    0.125,
+                    0.140625
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.2604166666666667,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "tool_error": {
+                  "mean": 0.359375,
+                  "ci95": [
+                    0.34375,
+                    0.375
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.71875,
+                      "n": 24
+                    }
+                  }
+                },
+                "abort": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "queries": {
+                  "mean": 0.140625,
+                  "ci95": [
+                    0.125,
+                    0.15625
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.25,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.03125,
+                      "n": 24
+                    }
+                  }
+                },
+                "model_calls": {
+                  "mean": 2.28125,
+                  "ci95": [
+                    2.25,
+                    2.3125
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 2.5,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 2.0625,
+                      "n": 24
+                    }
+                  }
+                },
+                "input_tokens": {
+                  "mean": 1047.9635416666665,
+                  "ci95": [
+                    1031.25,
+                    1065.1875
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 1154.2708333333333,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 941.65625,
+                      "n": 24
+                    }
+                  }
+                },
+                "output_tokens": {
+                  "mean": 60.80208333333333,
+                  "ci95": [
+                    59.984375,
+                    61.671875
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 67.96875,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 53.635416666666664,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_root": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_after": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0": {
+                  "mean": 1.1979166666666667,
+                  "ci95": [
+                    0.6770833333333333,
+                    1.5104166666666667
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.4166666666666667,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 2.8125,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0.25": {
+                  "mean": 1.1627604166666667,
+                  "ci95": [
+                    0.64453125,
+                    1.47265625
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.4791666666666667,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 2.8046875,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_1": {
+                  "mean": 1.0572916666666667,
+                  "ci95": [
+                    0.546875,
+                    1.359375
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -0.6666666666666666,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 2.78125,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_4": {
+                  "mean": 0.6354166666666666,
+                  "ci95": [
+                    0.15625,
+                    0.90625
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": -1.4166666666666667,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 2.6875,
+                      "n": 24
+                    }
+                  }
+                }
+              },
+              "QUERY_ONCE_V": {
+                "utility": {
+                  "mean": 8.84375,
+                  "ci95": [
+                    8.635416666666668,
+                    9.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 9.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 8.6875,
+                      "n": 24
+                    }
+                  }
+                },
+                "success": {
+                  "mean": 0.984375,
+                  "ci95": [
+                    0.9635416666666667,
+                    1.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 1.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.96875,
+                      "n": 24
+                    }
+                  }
+                },
+                "wrong_side_effect": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "tool_error": {
+                  "mean": 0.015625,
+                  "ci95": [
+                    0.0,
+                    0.036458333333333336
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.03125,
+                      "n": 24
+                    }
+                  }
+                },
+                "abort": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "queries": {
+                  "mean": 1.0,
+                  "ci95": [
+                    1.0,
+                    1.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 1.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 1.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "model_calls": {
+                  "mean": 2.0,
+                  "ci95": [
+                    2.0,
+                    2.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 2.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 2.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "input_tokens": {
+                  "mean": 1072.375,
+                  "ci95": [
+                    1071.6614583333335,
+                    1073.078125
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 1044.4166666666667,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 1100.3333333333333,
+                      "n": 24
+                    }
+                  }
+                },
+                "output_tokens": {
+                  "mean": 57.375,
+                  "ci95": [
+                    57.15625,
+                    57.578125
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 58.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 56.75,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_root": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_after": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0": {
+                  "mean": 9.84375,
+                  "ci95": [
+                    9.635416666666668,
+                    10.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 10.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.6875,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0.25": {
+                  "mean": 9.59375,
+                  "ci95": [
+                    9.385416666666668,
+                    9.75
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 9.75,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.4375,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_1": {
+                  "mean": 8.84375,
+                  "ci95": [
+                    8.635416666666668,
+                    9.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 9.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 8.6875,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_4": {
+                  "mean": 5.84375,
+                  "ci95": [
+                    5.635416666666666,
+                    6.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 6.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 5.6875,
+                      "n": 24
+                    }
+                  }
+                }
+              },
+              "DEPENDENCY_RULE": {
+                "utility": {
+                  "mean": 9.75,
+                  "ci95": [
+                    9.75,
+                    9.75
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 9.75,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.75,
+                      "n": 24
+                    }
+                  }
+                },
+                "success": {
+                  "mean": 1.0,
+                  "ci95": [
+                    1.0,
+                    1.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 1.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 1.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "wrong_side_effect": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "tool_error": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "abort": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "queries": {
+                  "mean": 0.25,
+                  "ci95": [
+                    0.25,
+                    0.25
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.25,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.25,
+                      "n": 24
+                    }
+                  }
+                },
+                "model_calls": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "input_tokens": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "output_tokens": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_root": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_after": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0": {
+                  "mean": 10.0,
+                  "ci95": [
+                    10.0,
+                    10.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 10.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 10.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0.25": {
+                  "mean": 9.9375,
+                  "ci95": [
+                    9.9375,
+                    9.9375
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 9.9375,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.9375,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_1": {
+                  "mean": 9.75,
+                  "ci95": [
+                    9.75,
+                    9.75
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 9.75,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.75,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_4": {
+                  "mean": 9.0,
+                  "ci95": [
+                    9.0,
+                    9.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 9.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.0,
+                      "n": 24
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "N": {
+            "strategies": {
+              "DIRECT_E": {
+                "utility": {
+                  "mean": -2.5,
+                  "ci95": [
+                    -3.5416666666666665,
+                    -1.4583333333333333
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": -5.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "success": {
+                  "mean": 0.6875,
+                  "ci95": [
+                    0.6614583333333333,
+                    0.7135416666666667
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.75,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.625,
+                      "n": 24
+                    }
+                  }
+                },
+                "wrong_side_effect": {
+                  "mean": 0.3125,
+                  "ci95": [
+                    0.28645833333333337,
+                    0.33854166666666663
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.25,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.375,
+                      "n": 24
+                    }
+                  }
+                },
+                "tool_error": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "abort": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "queries": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "model_calls": {
+                  "mean": 1.0,
+                  "ci95": [
+                    1.0,
+                    1.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 1.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 1.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "input_tokens": {
+                  "mean": 426.25,
+                  "ci95": [
+                    425.9375,
+                    426.54166666666663
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 424.125,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 428.375,
+                      "n": 24
+                    }
+                  }
+                },
+                "output_tokens": {
+                  "mean": 25.375,
+                  "ci95": [
+                    25.322916666666664,
+                    25.427083333333336
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 25.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 25.75,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_root": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_after": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0": {
+                  "mean": -2.5,
+                  "ci95": [
+                    -3.5416666666666665,
+                    -1.4583333333333333
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": -5.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0.25": {
+                  "mean": -2.5,
+                  "ci95": [
+                    -3.5416666666666665,
+                    -1.4583333333333333
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": -5.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_1": {
+                  "mean": -2.5,
+                  "ci95": [
+                    -3.5416666666666665,
+                    -1.4583333333333333
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": -5.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_4": {
+                  "mean": -2.5,
+                  "ci95": [
+                    -3.5416666666666665,
+                    -1.4583333333333333
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": -5.0,
+                      "n": 24
+                    }
+                  }
+                }
+              },
+              "GENERIC_REVIEW": {
+                "utility": {
+                  "mean": 5.760416666666666,
+                  "ci95": [
+                    4.541666666666667,
+                    6.786458333333334
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 4.020833333333333,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 7.5,
+                      "n": 24
+                    }
+                  }
+                },
+                "success": {
+                  "mean": 0.8020833333333333,
+                  "ci95": [
+                    0.7708333333333333,
+                    0.828125
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.8541666666666666,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.75,
+                      "n": 24
+                    }
+                  }
+                },
+                "wrong_side_effect": {
+                  "mean": 0.07291666666666667,
+                  "ci95": [
+                    0.046875,
+                    0.10416666666666667
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.14583333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "tool_error": {
+                  "mean": 0.125,
+                  "ci95": [
+                    0.125,
+                    0.125
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.25,
+                      "n": 24
+                    }
+                  }
+                },
+                "abort": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "queries": {
+                  "mean": 0.07291666666666667,
+                  "ci95": [
+                    0.041666666666666664,
+                    0.109375
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.14583333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "model_calls": {
+                  "mean": 2.145833333333333,
+                  "ci95": [
+                    2.083333333333333,
+                    2.21875
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 2.2916666666666665,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 2.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "input_tokens": {
+                  "mean": 910.5104166666667,
+                  "ci95": [
+                    879.4375,
+                    946.203125
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 978.2708333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 842.75,
+                      "n": 24
+                    }
+                  }
+                },
+                "output_tokens": {
+                  "mean": 57.10416666666667,
+                  "ci95": [
+                    55.5625,
+                    58.890625
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 61.208333333333336,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 53.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_root": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_after": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0": {
+                  "mean": 5.833333333333334,
+                  "ci95": [
+                    4.583333333333333,
+                    6.875
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 4.166666666666667,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 7.5,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0.25": {
+                  "mean": 5.815104166666666,
+                  "ci95": [
+                    4.572916666666667,
+                    6.852864583333334
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 4.130208333333333,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 7.5,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_1": {
+                  "mean": 5.760416666666666,
+                  "ci95": [
+                    4.541666666666667,
+                    6.786458333333334
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 4.020833333333333,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 7.5,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_4": {
+                  "mean": 5.541666666666667,
+                  "ci95": [
+                    4.416666666666667,
+                    6.520833333333334
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 3.5833333333333335,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 7.5,
+                      "n": 24
+                    }
+                  }
+                }
+              },
+              "VALIDITY_REVIEW": {
+                "utility": {
+                  "mean": 8.1875,
+                  "ci95": [
+                    6.890625,
+                    9.270833333333334
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 7.229166666666667,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.145833333333334,
+                      "n": 24
+                    }
+                  }
+                },
+                "success": {
+                  "mean": 0.9479166666666667,
+                  "ci95": [
+                    0.9114583333333333,
+                    0.9791666666666667
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.9375,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.9583333333333334,
+                      "n": 24
+                    }
+                  }
+                },
+                "wrong_side_effect": {
+                  "mean": 0.03125,
+                  "ci95": [
+                    0.005208333333333333,
+                    0.0625
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0625,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "tool_error": {
+                  "mean": 0.020833333333333332,
+                  "ci95": [
+                    0.005208333333333333,
+                    0.041666666666666664
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.041666666666666664,
+                      "n": 24
+                    }
+                  }
+                },
+                "abort": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "queries": {
+                  "mean": 0.35416666666666663,
+                  "ci95": [
+                    0.32291666666666663,
+                    0.38541666666666663
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.2708333333333333,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.4375,
+                      "n": 24
+                    }
+                  }
+                },
+                "model_calls": {
+                  "mean": 2.708333333333333,
+                  "ci95": [
+                    2.645833333333333,
+                    2.770833333333333
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 2.5416666666666665,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 2.875,
+                      "n": 24
+                    }
+                  }
+                },
+                "input_tokens": {
+                  "mean": 1249.6666666666667,
+                  "ci95": [
+                    1216.015625,
+                    1282.6197916666665
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 1150.2916666666667,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 1349.0416666666667,
+                      "n": 24
+                    }
+                  }
+                },
+                "output_tokens": {
+                  "mean": 71.15625,
+                  "ci95": [
+                    69.515625,
+                    72.75520833333333
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 66.75,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 75.5625,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_root": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_after": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0": {
+                  "mean": 8.541666666666668,
+                  "ci95": [
+                    7.239583333333333,
+                    9.635416666666668
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 7.5,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.583333333333334,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0.25": {
+                  "mean": 8.453125,
+                  "ci95": [
+                    7.15234375,
+                    9.544270833333334
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 7.432291666666667,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.473958333333334,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_1": {
+                  "mean": 8.1875,
+                  "ci95": [
+                    6.890625,
+                    9.270833333333334
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 7.229166666666667,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.145833333333334,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_4": {
+                  "mean": 7.125,
+                  "ci95": [
+                    5.854166666666667,
+                    8.1875
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 6.416666666666667,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 7.833333333333333,
+                      "n": 24
+                    }
+                  }
+                }
+              },
+              "QUERY_ONCE_V": {
+                "utility": {
+                  "mean": 8.791666666666668,
+                  "ci95": [
+                    8.375,
+                    9.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 8.583333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "success": {
+                  "mean": 0.9947916666666667,
+                  "ci95": [
+                    0.984375,
+                    1.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.9895833333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 1.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "wrong_side_effect": {
+                  "mean": 0.005208333333333333,
+                  "ci95": [
+                    0.0,
+                    0.015625
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.010416666666666666,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "tool_error": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "abort": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "queries": {
+                  "mean": 1.0,
+                  "ci95": [
+                    1.0,
+                    1.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 1.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 1.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "model_calls": {
+                  "mean": 2.0,
+                  "ci95": [
+                    2.0,
+                    2.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 2.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 2.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "input_tokens": {
+                  "mean": 1047.5,
+                  "ci95": [
+                    1046.6354166666667,
+                    1048.328125
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 1021.375,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 1073.625,
+                      "n": 24
+                    }
+                  }
+                },
+                "output_tokens": {
+                  "mean": 57.3125,
+                  "ci95": [
+                    57.24479166666667,
+                    57.375
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 57.489583333333336,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 57.135416666666664,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_root": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_after": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0": {
+                  "mean": 9.791666666666668,
+                  "ci95": [
+                    9.375,
+                    10.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 9.583333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 10.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0.25": {
+                  "mean": 9.541666666666668,
+                  "ci95": [
+                    9.125,
+                    9.75
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 9.333333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.75,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_1": {
+                  "mean": 8.791666666666668,
+                  "ci95": [
+                    8.375,
+                    9.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 8.583333333333334,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_4": {
+                  "mean": 5.791666666666666,
+                  "ci95": [
+                    5.375,
+                    6.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 5.583333333333333,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 6.0,
+                      "n": 24
+                    }
+                  }
+                }
+              },
+              "DEPENDENCY_RULE": {
+                "utility": {
+                  "mean": 9.75,
+                  "ci95": [
+                    9.75,
+                    9.75
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 9.75,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.75,
+                      "n": 24
+                    }
+                  }
+                },
+                "success": {
+                  "mean": 1.0,
+                  "ci95": [
+                    1.0,
+                    1.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 1.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 1.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "wrong_side_effect": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "tool_error": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "abort": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "queries": {
+                  "mean": 0.25,
+                  "ci95": [
+                    0.25,
+                    0.25
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.25,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.25,
+                      "n": 24
+                    }
+                  }
+                },
+                "model_calls": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "input_tokens": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "output_tokens": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_root": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "rule_fallback_after": {
+                  "mean": 0.0,
+                  "ci95": [
+                    0.0,
+                    0.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 0.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 0.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0": {
+                  "mean": 10.0,
+                  "ci95": [
+                    10.0,
+                    10.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 10.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 10.0,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_0.25": {
+                  "mean": 9.9375,
+                  "ci95": [
+                    9.9375,
+                    9.9375
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 9.9375,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.9375,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_1": {
+                  "mean": 9.75,
+                  "ci95": [
+                    9.75,
+                    9.75
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 9.75,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.75,
+                      "n": 24
+                    }
+                  }
+                },
+                "utility_cost_4": {
+                  "mean": 9.0,
+                  "ci95": [
+                    9.0,
+                    9.0
+                  ],
+                  "n_families": 48,
+                  "cells": {
+                    "contact": {
+                      "mean": 9.0,
+                      "n": 24
+                    },
+                    "reminder": {
+                      "mean": 9.0,
+                      "n": 24
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "main_N": {
+          "DIRECT_E": {
+            "utility": {
+              "mean": -2.5,
+              "ci95": [
+                -3.5416666666666665,
+                -1.4583333333333333
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": -5.0,
+                  "n": 24
+                }
+              }
+            },
+            "success": {
+              "mean": 0.6875,
+              "ci95": [
+                0.6614583333333333,
+                0.7135416666666667
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.75,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.625,
+                  "n": 24
+                }
+              }
+            },
+            "wrong_side_effect": {
+              "mean": 0.3125,
+              "ci95": [
+                0.28645833333333337,
+                0.33854166666666663
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.25,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.375,
+                  "n": 24
+                }
+              }
+            },
+            "tool_error": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "abort": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "queries": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "model_calls": {
+              "mean": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 1.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 1.0,
+                  "n": 24
+                }
+              }
+            },
+            "input_tokens": {
+              "mean": 426.25,
+              "ci95": [
+                425.9375,
+                426.54166666666663
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 424.125,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 428.375,
+                  "n": 24
+                }
+              }
+            },
+            "output_tokens": {
+              "mean": 25.375,
+              "ci95": [
+                25.322916666666664,
+                25.427083333333336
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 25.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 25.75,
+                  "n": 24
+                }
+              }
+            },
+            "rule_fallback_root": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "rule_fallback_after": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_0": {
+              "mean": -2.5,
+              "ci95": [
+                -3.5416666666666665,
+                -1.4583333333333333
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": -5.0,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_0.25": {
+              "mean": -2.5,
+              "ci95": [
+                -3.5416666666666665,
+                -1.4583333333333333
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": -5.0,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_1": {
+              "mean": -2.5,
+              "ci95": [
+                -3.5416666666666665,
+                -1.4583333333333333
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": -5.0,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_4": {
+              "mean": -2.5,
+              "ci95": [
+                -3.5416666666666665,
+                -1.4583333333333333
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": -5.0,
+                  "n": 24
+                }
+              }
+            }
+          },
+          "GENERIC_REVIEW": {
+            "utility": {
+              "mean": 5.760416666666666,
+              "ci95": [
+                4.541666666666667,
+                6.786458333333334
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 4.020833333333333,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 7.5,
+                  "n": 24
+                }
+              }
+            },
+            "success": {
+              "mean": 0.8020833333333333,
+              "ci95": [
+                0.7708333333333333,
+                0.828125
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.8541666666666666,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.75,
+                  "n": 24
+                }
+              }
+            },
+            "wrong_side_effect": {
+              "mean": 0.07291666666666667,
+              "ci95": [
+                0.046875,
+                0.10416666666666667
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.14583333333333334,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "tool_error": {
+              "mean": 0.125,
+              "ci95": [
+                0.125,
+                0.125
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.25,
+                  "n": 24
+                }
+              }
+            },
+            "abort": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "queries": {
+              "mean": 0.07291666666666667,
+              "ci95": [
+                0.041666666666666664,
+                0.109375
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.14583333333333334,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "model_calls": {
+              "mean": 2.145833333333333,
+              "ci95": [
+                2.083333333333333,
+                2.21875
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 2.2916666666666665,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 2.0,
+                  "n": 24
+                }
+              }
+            },
+            "input_tokens": {
+              "mean": 910.5104166666667,
+              "ci95": [
+                879.4375,
+                946.203125
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 978.2708333333334,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 842.75,
+                  "n": 24
+                }
+              }
+            },
+            "output_tokens": {
+              "mean": 57.10416666666667,
+              "ci95": [
+                55.5625,
+                58.890625
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 61.208333333333336,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 53.0,
+                  "n": 24
+                }
+              }
+            },
+            "rule_fallback_root": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "rule_fallback_after": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_0": {
+              "mean": 5.833333333333334,
+              "ci95": [
+                4.583333333333333,
+                6.875
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 4.166666666666667,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 7.5,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_0.25": {
+              "mean": 5.815104166666666,
+              "ci95": [
+                4.572916666666667,
+                6.852864583333334
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 4.130208333333333,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 7.5,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_1": {
+              "mean": 5.760416666666666,
+              "ci95": [
+                4.541666666666667,
+                6.786458333333334
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 4.020833333333333,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 7.5,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_4": {
+              "mean": 5.541666666666667,
+              "ci95": [
+                4.416666666666667,
+                6.520833333333334
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 3.5833333333333335,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 7.5,
+                  "n": 24
+                }
+              }
+            }
+          },
+          "VALIDITY_REVIEW": {
+            "utility": {
+              "mean": 8.1875,
+              "ci95": [
+                6.890625,
+                9.270833333333334
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 7.229166666666667,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 9.145833333333334,
+                  "n": 24
+                }
+              }
+            },
+            "success": {
+              "mean": 0.9479166666666667,
+              "ci95": [
+                0.9114583333333333,
+                0.9791666666666667
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.9375,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.9583333333333334,
+                  "n": 24
+                }
+              }
+            },
+            "wrong_side_effect": {
+              "mean": 0.03125,
+              "ci95": [
+                0.005208333333333333,
+                0.0625
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0625,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "tool_error": {
+              "mean": 0.020833333333333332,
+              "ci95": [
+                0.005208333333333333,
+                0.041666666666666664
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.041666666666666664,
+                  "n": 24
+                }
+              }
+            },
+            "abort": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "queries": {
+              "mean": 0.35416666666666663,
+              "ci95": [
+                0.32291666666666663,
+                0.38541666666666663
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.2708333333333333,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.4375,
+                  "n": 24
+                }
+              }
+            },
+            "model_calls": {
+              "mean": 2.708333333333333,
+              "ci95": [
+                2.645833333333333,
+                2.770833333333333
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 2.5416666666666665,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 2.875,
+                  "n": 24
+                }
+              }
+            },
+            "input_tokens": {
+              "mean": 1249.6666666666667,
+              "ci95": [
+                1216.015625,
+                1282.6197916666665
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 1150.2916666666667,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 1349.0416666666667,
+                  "n": 24
+                }
+              }
+            },
+            "output_tokens": {
+              "mean": 71.15625,
+              "ci95": [
+                69.515625,
+                72.75520833333333
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 66.75,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 75.5625,
+                  "n": 24
+                }
+              }
+            },
+            "rule_fallback_root": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "rule_fallback_after": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_0": {
+              "mean": 8.541666666666668,
+              "ci95": [
+                7.239583333333333,
+                9.635416666666668
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 7.5,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 9.583333333333334,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_0.25": {
+              "mean": 8.453125,
+              "ci95": [
+                7.15234375,
+                9.544270833333334
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 7.432291666666667,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 9.473958333333334,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_1": {
+              "mean": 8.1875,
+              "ci95": [
+                6.890625,
+                9.270833333333334
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 7.229166666666667,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 9.145833333333334,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_4": {
+              "mean": 7.125,
+              "ci95": [
+                5.854166666666667,
+                8.1875
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 6.416666666666667,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 7.833333333333333,
+                  "n": 24
+                }
+              }
+            }
+          },
+          "QUERY_ONCE_V": {
+            "utility": {
+              "mean": 8.791666666666668,
+              "ci95": [
+                8.375,
+                9.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 8.583333333333334,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 9.0,
+                  "n": 24
+                }
+              }
+            },
+            "success": {
+              "mean": 0.9947916666666667,
+              "ci95": [
+                0.984375,
+                1.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.9895833333333334,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 1.0,
+                  "n": 24
+                }
+              }
+            },
+            "wrong_side_effect": {
+              "mean": 0.005208333333333333,
+              "ci95": [
+                0.0,
+                0.015625
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.010416666666666666,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "tool_error": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "abort": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "queries": {
+              "mean": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 1.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 1.0,
+                  "n": 24
+                }
+              }
+            },
+            "model_calls": {
+              "mean": 2.0,
+              "ci95": [
+                2.0,
+                2.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 2.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 2.0,
+                  "n": 24
+                }
+              }
+            },
+            "input_tokens": {
+              "mean": 1047.5,
+              "ci95": [
+                1046.6354166666667,
+                1048.328125
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 1021.375,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 1073.625,
+                  "n": 24
+                }
+              }
+            },
+            "output_tokens": {
+              "mean": 57.3125,
+              "ci95": [
+                57.24479166666667,
+                57.375
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 57.489583333333336,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 57.135416666666664,
+                  "n": 24
+                }
+              }
+            },
+            "rule_fallback_root": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "rule_fallback_after": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_0": {
+              "mean": 9.791666666666668,
+              "ci95": [
+                9.375,
+                10.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 9.583333333333334,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 10.0,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_0.25": {
+              "mean": 9.541666666666668,
+              "ci95": [
+                9.125,
+                9.75
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 9.333333333333334,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 9.75,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_1": {
+              "mean": 8.791666666666668,
+              "ci95": [
+                8.375,
+                9.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 8.583333333333334,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 9.0,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_4": {
+              "mean": 5.791666666666666,
+              "ci95": [
+                5.375,
+                6.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 5.583333333333333,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 6.0,
+                  "n": 24
+                }
+              }
+            }
+          },
+          "DEPENDENCY_RULE": {
+            "utility": {
+              "mean": 9.75,
+              "ci95": [
+                9.75,
+                9.75
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 9.75,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 9.75,
+                  "n": 24
+                }
+              }
+            },
+            "success": {
+              "mean": 1.0,
+              "ci95": [
+                1.0,
+                1.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 1.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 1.0,
+                  "n": 24
+                }
+              }
+            },
+            "wrong_side_effect": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "tool_error": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "abort": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "queries": {
+              "mean": 0.25,
+              "ci95": [
+                0.25,
+                0.25
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.25,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.25,
+                  "n": 24
+                }
+              }
+            },
+            "model_calls": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "input_tokens": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "output_tokens": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "rule_fallback_root": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "rule_fallback_after": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_0": {
+              "mean": 10.0,
+              "ci95": [
+                10.0,
+                10.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 10.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 10.0,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_0.25": {
+              "mean": 9.9375,
+              "ci95": [
+                9.9375,
+                9.9375
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 9.9375,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 9.9375,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_1": {
+              "mean": 9.75,
+              "ci95": [
+                9.75,
+                9.75
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 9.75,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 9.75,
+                  "n": 24
+                }
+              }
+            },
+            "utility_cost_4": {
+              "mean": 9.0,
+              "ci95": [
+                9.0,
+                9.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 9.0,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 9.0,
+                  "n": 24
+                }
+              }
+            }
+          }
+        },
+        "comparisons": {
+          "VALIDITY_REVIEW__minus__QUERY_ONCE_V": {
+            "utility": {
+              "delta": -0.6041666666666667,
+              "ci95": [
+                -1.9583333333333333,
+                0.609375
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": -1.3541666666666667,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.14583333333333334,
+                  "n": 24
+                }
+              }
+            },
+            "success": {
+              "delta": -0.046875,
+              "ci95": [
+                -0.08333333333333334,
+                -0.010416666666666666
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": -0.052083333333333336,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": -0.041666666666666664,
+                  "n": 24
+                }
+              }
+            },
+            "wrong_side_effect": {
+              "delta": 0.026041666666666668,
+              "ci95": [
+                -0.005208333333333333,
+                0.057291666666666664
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.052083333333333336,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "queries": {
+              "delta": -0.6458333333333333,
+              "ci95": [
+                -0.6770833333333334,
+                -0.6145833333333333
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": -0.7291666666666666,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": -0.5625,
+                  "n": 24
+                }
+              }
+            }
+          },
+          "VALIDITY_REVIEW__minus__GENERIC_REVIEW": {
+            "utility": {
+              "delta": 2.4270833333333335,
+              "ci95": [
+                0.796875,
+                4.09375
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 3.2083333333333335,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 1.6458333333333333,
+                  "n": 24
+                }
+              }
+            },
+            "success": {
+              "delta": 0.14583333333333334,
+              "ci95": [
+                0.09895833333333334,
+                0.19270833333333331
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.08333333333333333,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.20833333333333334,
+                  "n": 24
+                }
+              }
+            },
+            "wrong_side_effect": {
+              "delta": -0.041666666666666664,
+              "ci95": [
+                -0.08333333333333333,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": -0.08333333333333333,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "queries": {
+              "delta": 0.28125,
+              "ci95": [
+                0.22916666666666666,
+                0.328125
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.125,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.4375,
+                  "n": 24
+                }
+              }
+            }
+          },
+          "DEPENDENCY_RULE__minus__VALIDITY_REVIEW": {
+            "utility": {
+              "delta": 1.5625,
+              "ci95": [
+                0.47916666666666663,
+                2.859375
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 2.5208333333333335,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.6041666666666666,
+                  "n": 24
+                }
+              }
+            },
+            "success": {
+              "delta": 0.05208333333333333,
+              "ci95": [
+                0.020833333333333332,
+                0.08854166666666667
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.0625,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.041666666666666664,
+                  "n": 24
+                }
+              }
+            },
+            "wrong_side_effect": {
+              "delta": -0.03125,
+              "ci95": [
+                -0.0625,
+                -0.005208333333333333
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": -0.0625,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "queries": {
+              "delta": -0.10416666666666667,
+              "ci95": [
+                -0.13541666666666666,
+                -0.07291666666666666
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": -0.020833333333333332,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": -0.1875,
+                  "n": 24
+                }
+              }
+            }
+          },
+          "DEPENDENCY_RULE__minus__QUERY_ONCE_V": {
+            "utility": {
+              "delta": 0.9583333333333334,
+              "ci95": [
+                0.75,
+                1.375
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 1.1666666666666667,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.75,
+                  "n": 24
+                }
+              }
+            },
+            "success": {
+              "delta": 0.005208333333333333,
+              "ci95": [
+                0.0,
+                0.015625
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.010416666666666666,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "wrong_side_effect": {
+              "delta": -0.005208333333333333,
+              "ci95": [
+                -0.015625,
+                0.0
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": -0.010416666666666666,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "queries": {
+              "delta": -0.75,
+              "ci95": [
+                -0.75,
+                -0.75
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": -0.75,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": -0.75,
+                  "n": 24
+                }
+              }
+            }
+          }
+        },
+        "rule_coverage": {
+          "J:contact": {
+            "n": 120,
+            "fallback_root": 0,
+            "fallback_after": 0,
+            "queries": 0.4,
+            "success_rate": 1.0
+          },
+          "J:reminder": {
+            "n": 120,
+            "fallback_root": 0,
+            "fallback_after": 0,
+            "queries": 0.4,
+            "success_rate": 1.0
+          },
+          "N:contact": {
+            "n": 120,
+            "fallback_root": 0,
+            "fallback_after": 0,
+            "queries": 0.4,
+            "success_rate": 1.0
+          },
+          "N:reminder": {
+            "n": 120,
+            "fallback_root": 0,
+            "fallback_after": 0,
+            "queries": 0.4,
+            "success_rate": 1.0
+          }
+        },
+        "condition_N": {
+          "contact:U": {
+            "DIRECT_E": {
+              "n": 48,
+              "utility": -30.0,
+              "success": 0.0,
+              "queries": 0.0
+            },
+            "GENERIC_REVIEW": {
+              "n": 48,
+              "utility": -10.5,
+              "success": 0.5,
+              "queries": 0.5
+            },
+            "VALIDITY_REVIEW": {
+              "n": 48,
+              "utility": 9.0,
+              "success": 1.0,
+              "queries": 1.0
+            },
+            "QUERY_ONCE_V": {
+              "n": 48,
+              "utility": 9.0,
+              "success": 1.0,
+              "queries": 1.0
+            },
+            "DEPENDENCY_RULE": {
+              "n": 48,
+              "utility": 9.0,
+              "success": 1.0,
+              "queries": 1.0
+            }
+          },
+          "contact:F": {
+            "DIRECT_E": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            },
+            "GENERIC_REVIEW": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            },
+            "VALIDITY_REVIEW": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            },
+            "QUERY_ONCE_V": {
+              "n": 24,
+              "utility": 9.0,
+              "success": 1.0,
+              "queries": 1.0
+            },
+            "DEPENDENCY_RULE": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            }
+          },
+          "contact:S": {
+            "DIRECT_E": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            },
+            "GENERIC_REVIEW": {
+              "n": 24,
+              "utility": 6.625,
+              "success": 0.9166666666666666,
+              "queries": 0.041666666666666664
+            },
+            "VALIDITY_REVIEW": {
+              "n": 24,
+              "utility": 3.3333333333333335,
+              "success": 0.8333333333333334,
+              "queries": 0.0
+            },
+            "QUERY_ONCE_V": {
+              "n": 24,
+              "utility": 7.333333333333333,
+              "success": 0.9583333333333334,
+              "queries": 1.0
+            },
+            "DEPENDENCY_RULE": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            }
+          },
+          "contact:O": {
+            "DIRECT_E": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            },
+            "GENERIC_REVIEW": {
+              "n": 24,
+              "utility": 9.958333333333334,
+              "success": 1.0,
+              "queries": 0.041666666666666664
+            },
+            "VALIDITY_REVIEW": {
+              "n": 24,
+              "utility": 6.583333333333333,
+              "success": 0.9166666666666666,
+              "queries": 0.08333333333333333
+            },
+            "QUERY_ONCE_V": {
+              "n": 24,
+              "utility": 9.0,
+              "success": 1.0,
+              "queries": 1.0
+            },
+            "DEPENDENCY_RULE": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            }
+          },
+          "reminder:U": {
+            "DIRECT_E": {
+              "n": 48,
+              "utility": -30.0,
+              "success": 0.0,
+              "queries": 0.0
+            },
+            "GENERIC_REVIEW": {
+              "n": 48,
+              "utility": 0.0,
+              "success": 0.0,
+              "queries": 0.0
+            },
+            "VALIDITY_REVIEW": {
+              "n": 48,
+              "utility": 8.25,
+              "success": 0.9166666666666666,
+              "queries": 0.9166666666666666
+            },
+            "QUERY_ONCE_V": {
+              "n": 48,
+              "utility": 9.0,
+              "success": 1.0,
+              "queries": 1.0
+            },
+            "DEPENDENCY_RULE": {
+              "n": 48,
+              "utility": 9.0,
+              "success": 1.0,
+              "queries": 1.0
+            }
+          },
+          "reminder:F": {
+            "DIRECT_E": {
+              "n": 24,
+              "utility": -10.0,
+              "success": 0.5,
+              "queries": 0.0
+            },
+            "GENERIC_REVIEW": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            },
+            "VALIDITY_REVIEW": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            },
+            "QUERY_ONCE_V": {
+              "n": 24,
+              "utility": 9.0,
+              "success": 1.0,
+              "queries": 1.0
+            },
+            "DEPENDENCY_RULE": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            }
+          },
+          "reminder:S": {
+            "DIRECT_E": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            },
+            "GENERIC_REVIEW": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            },
+            "VALIDITY_REVIEW": {
+              "n": 24,
+              "utility": 9.958333333333334,
+              "success": 1.0,
+              "queries": 0.041666666666666664
+            },
+            "QUERY_ONCE_V": {
+              "n": 24,
+              "utility": 9.0,
+              "success": 1.0,
+              "queries": 1.0
+            },
+            "DEPENDENCY_RULE": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            }
+          },
+          "reminder:O": {
+            "DIRECT_E": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            },
+            "GENERIC_REVIEW": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            },
+            "VALIDITY_REVIEW": {
+              "n": 24,
+              "utility": 8.375,
+              "success": 0.9166666666666666,
+              "queries": 0.7916666666666666
+            },
+            "QUERY_ONCE_V": {
+              "n": 24,
+              "utility": 9.0,
+              "success": 1.0,
+              "queries": 1.0
+            },
+            "DEPENDENCY_RULE": {
+              "n": 24,
+              "utility": 10.0,
+              "success": 1.0,
+              "queries": 0.0
+            }
+          }
+        },
+        "estimated_sequential_seconds": {
+          "DIRECT_E": 0.6794147456017215,
+          "GENERIC_REVIEW": 1.4556581588174535,
+          "VALIDITY_REVIEW": 1.9870170294204421,
+          "QUERY_ONCE_V": 1.6620556958208734,
+          "DEPENDENCY_RULE": 0.0
+        },
+        "measured_audit_seconds_per_call": 0.9608930525959923
+      },
+      "decision": {
+        "phenomenon": {
+          "by_workflow_representation": {
+            "contact:J": {
+              "retract_correct": 0.0,
+              "old_value_use": 1.0,
+              "n": 24
+            },
+            "contact:N": {
+              "retract_correct": 0.0,
+              "old_value_use": 1.0,
+              "n": 24
+            },
+            "reminder:J": {
+              "retract_correct": 0.0,
+              "old_value_use": 1.0,
+              "n": 24
+            },
+            "reminder:N": {
+              "retract_correct": 0.0,
+              "old_value_use": 1.0,
+              "n": 24
+            }
+          },
+          "both_workflow_retract_ge_95": false,
+          "judgement": "REPRODUCED_LOCALLY"
+        },
+        "intervention": {
+          "V_minus_R_joint_N": {
+            "delta": 0.20833333333333331,
+            "ci95": [
+              0.08333333333333333,
+              0.33333333333333337
+            ],
+            "n_families": 48,
+            "cells": {
+              "contact": {
+                "mean": 0.3333333333333333,
+                "n": 24
+              },
+              "reminder": {
+                "mean": 0.08333333333333333,
+                "n": 24
+              }
+            }
+          },
+          "S_O_erroneous_retraction": {
+            "contact": {
+              "V_S": 0.0,
+              "V_O": 0.08333333333333333,
+              "R_S": 0.041666666666666664,
+              "R_O": 0.041666666666666664,
+              "max_V_minus_R": 0.041666666666666664
+            },
+            "reminder": {
+              "V_S": 0.041666666666666664,
+              "V_O": 0.7916666666666666,
+              "R_S": 0.0,
+              "R_O": 0.0,
+              "max_V_minus_R": 0.7916666666666666
+            }
+          },
+          "threshold": "delta>=0.10, CI lower>0, V retraction <= R + 5pp",
+          "pass": false
+        },
+        "deployment": {
+          "VALIDITY_REVIEW": {
+            "utility": 8.1875,
+            "success": 0.9479166666666667,
+            "wrong_side_effect": 0.03125,
+            "tool_error": 0.020833333333333332,
+            "abort": 0.0,
+            "queries": 0.35416666666666663,
+            "model_calls": 2.708333333333333,
+            "input_tokens": 1249.6666666666667,
+            "output_tokens": 71.15625
+          },
+          "QUERY_ONCE_V": {
+            "utility": 8.791666666666668,
+            "success": 0.9947916666666667,
+            "wrong_side_effect": 0.005208333333333333,
+            "tool_error": 0.0,
+            "abort": 0.0,
+            "queries": 1.0,
+            "model_calls": 2.0,
+            "input_tokens": 1047.5,
+            "output_tokens": 57.3125
+          },
+          "V_minus_Q": {
+            "utility": {
+              "delta": -0.6041666666666667,
+              "ci95": [
+                -1.9583333333333333,
+                0.609375
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": -1.3541666666666667,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.14583333333333334,
+                  "n": 24
+                }
+              }
+            },
+            "success": {
+              "delta": -0.046875,
+              "ci95": [
+                -0.08333333333333334,
+                -0.010416666666666666
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": -0.052083333333333336,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": -0.041666666666666664,
+                  "n": 24
+                }
+              }
+            },
+            "wrong_side_effect": {
+              "delta": 0.026041666666666668,
+              "ci95": [
+                -0.005208333333333333,
+                0.057291666666666664
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": 0.052083333333333336,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": 0.0,
+                  "n": 24
+                }
+              }
+            },
+            "queries": {
+              "delta": -0.6458333333333333,
+              "ci95": [
+                -0.6770833333333334,
+                -0.6145833333333333
+              ],
+              "n_families": 48,
+              "cells": {
+                "contact": {
+                  "mean": -0.7291666666666666,
+                  "n": 24
+                },
+                "reminder": {
+                  "mean": -0.5625,
+                  "n": 24
+                }
+              }
+            }
+          },
+          "threshold": "utility>=0.25, CI lower>0, no error increase, success drop<=1pp, query saving>=0.25",
+          "pass": false
+        },
+        "learning_case": {
+          "rule": {
+            "utility": 9.75,
+            "success": 1.0,
+            "wrong_side_effect": 0.0,
+            "tool_error": 0.0,
+            "abort": 0.0,
+            "queries": 0.25,
+            "model_calls": 0.0,
+            "input_tokens": 0.0,
+            "output_tokens": 0.0
+          },
+          "VALIDITY_REVIEW": {
+            "utility": 8.1875,
+            "success": 0.9479166666666667,
+            "wrong_side_effect": 0.03125,
+            "tool_error": 0.020833333333333332,
+            "abort": 0.0,
+            "queries": 0.35416666666666663,
+            "model_calls": 2.708333333333333,
+            "input_tokens": 1249.6666666666667,
+            "output_tokens": 71.15625
+          },
+          "rule_minus_V_utility": 1.5625,
+          "rule_minus_V_success": 0.05208333333333326,
+          "rule_minus_V_wrong": -0.03125,
+          "rule_model_calls": 0.0,
+          "rule_solved_all": true,
+          "learning_needed": false
+        },
+        "relation_composition": {
+          "J": {
+            "relation_accuracy": 0.7129629629629629,
+            "relation_correct_final_wrong": 1,
+            "n": 432
+          },
+          "N": {
+            "relation_accuracy": 0.9398148148148148,
+            "relation_correct_final_wrong": 7,
+            "n": 432
+          }
+        },
+        "next_direction": "Strong dependency rule is sufficient at this task; keep it as an engineering result and do not start process-supervision training from G6.",
+        "not_claims": [
+          "not a ToolSandbox benchmark score",
+          "not a new PRM method",
+          "not evidence of general asynchronous-change or TOCTOU safety"
+        ]
+      },
+      "trajectory_count": 2400,
+      "notes": "audit-only n=48 families; U uses two hidden worlds with weight 1/2; J/N are not independent samples."
+    }
+  },
+  "updated_at": "2026-10-31 04:17:15 CST",
+  "phase_evidence": {
+    "G6-CPU-REANALYSIS": {
+      "completed_at": "2026-10-31 03:20:06 CST",
+      "model_calls": 0,
+      "gpu_hours": 0.0,
+      "source": {
+        "cases": "/data4/sjj/catelogue/process_reward/data/g5_state/cases.jsonl",
+        "predictions": "/data4/sjj/catelogue/process_reward/runs/G5-DECOMPOSE-a01/predictions.jsonl",
+        "note": "read-only; G5 run.json and predictions are not modified"
+      }
+    },
+    "G6-TOOLS-DATA": {
+      "completed_at": "2026-10-31 03:20:17 CST",
+      "nodes": 1080,
+      "tool_worker_calls": 240,
+      "tool_worker_calls_generation": 240
+    },
+    "G6-DEV": {
+      "started_at": "2026-10-31 03:21:10 CST",
+      "host": "local",
+      "pid": 388944,
+      "gpus": 1,
+      "nodes_total": 216,
+      "model_revision": "2de2439ea21be1dc5cb21f22f88af07e43393cbb",
+      "completed_at": "2026-10-31 03:31:27 CST",
+      "elapsed_seconds": 616.8918410986662,
+      "nodes": 216,
+      "calls_new": 648,
+      "invalid": {
+        "review_generic": 4
+      },
+      "calls_total": 648
+    },
+    "G6-AUDIT": {
+      "started_at": "2026-10-31 03:32:47 CST",
+      "host": "local",
+      "pid": 407171,
+      "gpus": 1,
+      "nodes_total": 864,
+      "model_revision": "2de2439ea21be1dc5cb21f22f88af07e43393cbb",
+      "completed_at": "2026-10-31 04:14:17 CST",
+      "elapsed_seconds": 2490.634792328812,
+      "nodes": 864,
+      "calls_new": 2592,
+      "invalid": {
+        "review_generic": 14
+      },
+      "calls_total": 3240
+    },
+    "G6-EXECUTE": {
+      "started_at": "2026-10-31 04:14:40 CST",
+      "pid": 477831,
+      "gpus": 0,
+      "trajectories_total": 2400,
+      "completed_at": "2026-10-31 04:15:23 CST",
+      "elapsed_seconds": 43.83776716142893,
+      "new_trajectories": 2400,
+      "tool_worker_calls": 2400
+    },
+    "G6-ANALYZE": {
+      "completed_at": "2026-10-31 04:17:15 CST",
+      "model_calls": 0
+    }
+  },
+  "g5_reanalysis": {
+    "status": "COMPLETED",
+    "source": {
+      "cases": "/data4/sjj/catelogue/process_reward/data/g5_state/cases.jsonl",
+      "predictions": "/data4/sjj/catelogue/process_reward/runs/G5-DECOMPOSE-a01/predictions.jsonl",
+      "note": "read-only; G5 run.json and predictions are not modified"
+    },
+    "primary": {
+      "versioned_report": {
+        "correct": 58,
+        "total": 96,
+        "accuracy": 0.6041666666666666,
+        "confusion": {
+          "good->good": 28,
+          "unknown->good": 25,
+          "bad->bad": 27,
+          "unknown->bad": 12,
+          "bad->unknown": 1,
+          "unknown->unknown": 3
+        }
+      },
+      "scoped_authorization": {
+        "correct": 96,
+        "total": 96,
+        "accuracy": 1.0,
+        "confusion": {
+          "allow->allow": 40,
+          "deny->deny": 28,
+          "unknown->unknown": 28
+        }
+      },
+      "exactly_once": {
+        "correct": 96,
+        "total": 96,
+        "accuracy": 1.0,
+        "confusion": {
+          "committed->committed": 28,
+          "unknown->unknown": 40,
+          "not_committed->not_committed": 28
+        }
+      }
+    },
+    "secondary": {
+      "versioned_report": {
+        "correct": 126,
+        "total": 136,
+        "accuracy": 0.9264705882352942,
+        "confusion": {
+          "good->good": 59,
+          "bad->bad": 67,
+          "good->bad": 9,
+          "bad->good": 1
+        }
+      },
+      "scoped_authorization": {
+        "correct": 122,
+        "total": 124,
+        "accuracy": 0.9838709677419355,
+        "confusion": {
+          "allow->allow": 66,
+          "deny->deny": 56,
+          "allow->unknown": 2
+        }
+      },
+      "exactly_once": {
+        "correct": 127,
+        "total": 136,
+        "accuracy": 0.9338235294117647,
+        "confusion": {
+          "committed->committed": 68,
+          "not_committed->not_committed": 59,
+          "not_committed->unknown": 9
+        }
+      }
+    },
+    "versioned_unknown_primary": {
+      "total": 40,
+      "predicted": {
+        "good": 25,
+        "bad": 12,
+        "unknown": 3
+      }
+    },
+    "e_cpu_primary_regret": {
+      "sum": 399.0,
+      "decomposition": {
+        "versioned_report:unknown->good": 350.0,
+        "versioned_report:unknown->bad": 48.0,
+        "versioned_report:bad->unknown": 1.0
+      }
+    },
+    "reversal": {
+      "current": {
+        "correct": 23,
+        "total": 24,
+        "accuracy": 0.9583333333333334
+      },
+      "stale": {
+        "correct": 0,
+        "total": 24,
+        "accuracy": 0.0
+      }
+    },
+    "overall_primary": {
+      "correct": 250,
+      "total": 288,
+      "accuracy": 0.8680555555555556
+    },
+    "overall_secondary": {
+      "correct": 375,
+      "total": 396,
+      "accuracy": 0.946969696969697
+    }
+  },
+  "data": {
+    "cases": "/data4/sjj/catelogue/process_reward/data/g6_validity/cases.jsonl",
+    "manifest": "/data4/sjj/catelogue/process_reward/data/g6_validity/manifest.json",
+    "cases_sha256": "208b8d2789fa1b2efb108c06a14396e0e8130828eb1e9b9e8d981e97fc2cce82",
+    "manifest_sha256": "badbea95261e4d53ff068615c65644c71fe566921dbf38d2aef94103ae1b87df",
+    "family_counts": {
+      "audit": 48,
+      "dev": 12
+    },
+    "workflow_counts": {
+      "contact": 30,
+      "reminder": 30
+    },
+    "node_plan": {
+      "roots": 480,
+      "after_query_unique_worlds": 600,
+      "total_public_nodes": 1080,
+      "dev_nodes": 216,
+      "audit_nodes": 864
+    },
+    "tool_sandbox_revision": "c8571d7854316d2e1c5f288e59fe1e34e53f6dd1",
+    "cpu_environment": "/data/sjj/g6_tools_venv/bin/python",
+    "tool_worker_calls": 0
+  },
+  "model": {
+    "snapshot": "/data4/sjj/.cache/modelscope/models/Qwen--Qwen3-4B-Instruct-2507/snapshots/2de2439ea21be1dc5cb21f22f88af07e43393cbb",
+    "revision": "2de2439ea21be1dc5cb21f22f88af07e43393cbb",
+    "dtype": "bfloat16",
+    "do_sample": false,
+    "max_new_tokens": 128,
+    "use_model_defaults": false
+  },
+  "analysis_completed_at": "2026-10-31 04:17:15 CST",
+  "finalized_at": "2026-10-31 04:17:15 CST"
+}
