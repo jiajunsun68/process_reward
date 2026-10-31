@@ -1,0 +1,172 @@
+{
+  "attempt_id": "G8-SELECTIVE-a01",
+  "protocol_id": "g8-selective-v1",
+  "status": "FAILED",
+  "started_at": "2026-10-31 16:21:24 CST",
+  "pid": 1611743,
+  "device": "cuda:0",
+  "host": "klclab-X660-G45",
+  "gpu_inventory_start": [
+    "0, NVIDIA A800-SXM4-80GB, 28210 MiB, 81920 MiB, 98 %",
+    "1, NVIDIA A800-SXM4-80GB, 39629 MiB, 81920 MiB, 100 %",
+    "2, NVIDIA A800-SXM4-80GB, 74322 MiB, 81920 MiB, 0 %",
+    "3, NVIDIA A800-SXM4-80GB, 74320 MiB, 81920 MiB, 0 %",
+    "4, NVIDIA A800-SXM4-80GB, 31043 MiB, 81920 MiB, 99 %",
+    "5, NVIDIA A800-SXM4-80GB, 76433 MiB, 81920 MiB, 99 %",
+    "6, NVIDIA A800-SXM4-80GB, 31227 MiB, 81920 MiB, 58 %",
+    "7, NVIDIA A800-SXM4-80GB, 75763 MiB, 81920 MiB, 99 %"
+  ],
+  "adapters": {
+    "s11": "/data4/sjj/catelogue/process_reward/runs/G7-PROCESS_SFT-s11-a01/adapter",
+    "s23": "/data4/sjj/catelogue/process_reward/runs/G7-PROCESS_SFT-s23-a01/adapter"
+  },
+  "base_model": "/data4/sjj/.cache/modelscope/models/Qwen--Qwen3-4B-Instruct-2507/snapshots/2de2439ea21be1dc5cb21f22f88af07e43393cbb",
+  "data": {
+    "cases": "/data4/sjj/catelogue/process_reward/data/g8_selective/cases.jsonl",
+    "manifest": {
+      "dataset_version": "g8-selective-v1",
+      "data_seed": 801,
+      "split_seed": 802,
+      "candidate_seed": 803,
+      "n_families": 768,
+      "split_family_counts": {
+        "calibration": 256,
+        "test": 512
+      },
+      "n_prefixes": 3840,
+      "n_worlds": 1344,
+      "test_cell_counts": {
+        "contact|known|4|known": 32,
+        "contact|known|4|unknown": 32,
+        "contact|known|6|known": 32,
+        "contact|known|6|unknown": 32,
+        "contact|unknown|4|known": 32,
+        "contact|unknown|4|unknown": 32,
+        "contact|unknown|6|known": 32,
+        "contact|unknown|6|unknown": 32,
+        "reminder|known|4|known": 32,
+        "reminder|known|4|unknown": 32,
+        "reminder|known|6|known": 32,
+        "reminder|known|6|unknown": 32,
+        "reminder|unknown|4|known": 32,
+        "reminder|unknown|4|unknown": 32,
+        "reminder|unknown|6|known": 32,
+        "reminder|unknown|6|unknown": 32
+      },
+      "calibration_cell_counts": {
+        "contact|known|4|known": 16,
+        "contact|known|4|unknown": 16,
+        "contact|known|6|known": 16,
+        "contact|known|6|unknown": 16,
+        "contact|unknown|4|known": 16,
+        "contact|unknown|4|unknown": 16,
+        "contact|unknown|6|known": 16,
+        "contact|unknown|6|unknown": 16,
+        "reminder|known|4|known": 16,
+        "reminder|known|4|unknown": 16,
+        "reminder|known|6|known": 16,
+        "reminder|known|6|unknown": 16,
+        "reminder|unknown|4|known": 16,
+        "reminder|unknown|4|unknown": 16,
+        "reminder|unknown|6|known": 16,
+        "reminder|unknown|6|unknown": 16
+      },
+      "final_event_counts": {
+        "calibration|known|F": 64,
+        "calibration|known|O": 32,
+        "calibration|known|S": 32,
+        "calibration|unknown|O": 32,
+        "calibration|unknown|S": 32,
+        "calibration|unknown|U": 64,
+        "test|known|F": 128,
+        "test|known|O": 64,
+        "test|known|S": 64,
+        "test|unknown|O": 64,
+        "test|unknown|S": 64,
+        "test|unknown|U": 128
+      },
+      "special_counts": {
+        "recovery_final_u": 32,
+        "unknown_maintained": 64,
+        "no_prior_subset": 128,
+        "reminder_length6_recovery": 16,
+        "reminder_length6_unknown_maintained": 32
+      },
+      "forward_plan": {
+        "calibration_N_same_prefixes_per_adapter": 1280,
+        "test_N_same_prefixes_per_adapter": 2560,
+        "test_N_new_prefixes_per_adapter": 2560,
+        "test_J_prefixes_per_adapter": 2560,
+        "no_prior_prefixes_per_adapter": 768,
+        "adapters": 2,
+        "total_per_adapter": 9728,
+        "total_two_adapters": 19456
+      },
+      "model_forward_limit": 19456,
+      "templates": {
+        "N_same": "G7 event_notice('N','test',...) frozen renderer",
+        "N_new": "G8 fixed renderer in g8_selective.py",
+        "J": "G7 event_notice('J','test',...) frozen renderer"
+      },
+      "cases_path": "/data4/sjj/catelogue/process_reward/data/g8_selective/cases.jsonl",
+      "cases_sha256": "c5dff3da2e38f51dacdc4f9f580476966d155717ac7432ead545cf4d18a9229d",
+      "cases_bytes": 12625472,
+      "created": "2026-10-31T08:16:46.162131+00:00",
+      "reused": true
+    },
+    "cases_sha256": "c5dff3da2e38f51dacdc4f9f580476966d155717ac7432ead545cf4d18a9229d",
+    "manifest_sha256": "7a52e767026dc08e7b158cd7b707952e63844edd330ba3cca23db81cb436863f"
+  },
+  "budget": {
+    "gpu_hours_limit": 4.0,
+    "max_gpus": 2,
+    "model_forward_limit": 19456
+  },
+  "phases": {
+    "G8-DATA": {
+      "status": "COMPLETED",
+      "updated_at": "2026-10-31 16:21:24 CST",
+      "cases": 768,
+      "prefixes": 3840,
+      "worlds": 1344,
+      "forward_plan": {
+        "calibration_N_same_prefixes_per_adapter": 1280,
+        "test_N_same_prefixes_per_adapter": 2560,
+        "test_N_new_prefixes_per_adapter": 2560,
+        "test_J_prefixes_per_adapter": 2560,
+        "no_prior_prefixes_per_adapter": 768,
+        "adapters": 2,
+        "total_per_adapter": 9728,
+        "total_two_adapters": 19456
+      }
+    },
+    "G8-S11-CALIBRATE": {
+      "status": "RUNNING",
+      "updated_at": "2026-10-31 16:21:24 CST",
+      "adapter": "s11"
+    }
+  },
+  "temperatures": {},
+  "analysis": null,
+  "cost": {
+    "started_at": "2026-10-31 16:21:24 CST"
+  },
+  "failures": [],
+  "notes": {
+    "no_training": true,
+    "new_models": 0,
+    "new_adapters": 0,
+    "new_checkpoints": 0,
+    "agentrm_calls": 0,
+    "state_trajectory_shared_across_strategies": true,
+    "state_trajectory_not_repeated_per_world": true,
+    "test_used_after_temperature_freeze_only": true
+  },
+  "updated_at": "2026-10-31 16:21:24 CST",
+  "fail1_error": {
+    "stage": "G8-S11-CALIBRATE",
+    "error_type": "KeyError",
+    "error": "final_logits missing before verifier/predictions fields were added",
+    "forward_calls_completed": 1280
+  }
+}

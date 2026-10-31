@@ -1,3 +1,14 @@
+# CURRENT STATUS — 2026-10-31 17:03 CST
+
+- **G8-SELECTIVE-a01 COMPLETED**；所有 phase 完成，当前无 G8 进程、无 QUEUED。成功运行 GPU **0.5798h**，失败 attempt 约0.083h，总计约**0.663/4 GPU-hours**；模型前向 **19,456/19,456**（含缓存复用1,280），无额外生成。
+- **G8 主结果**：N_same fresh test length6 的 **TEMP_CONF − STRATUM_QUERY** = s11 +0.09375 CI[-0.21875,0.25]、s23 -0.2265625 CI[-0.828125,0.2265625]、adapter mean -0.066406 CI[-0.451172,0.236328]，n=256；**没有超过简单公开分层回退**。TEMP_CONF 超过 ARGMAX/RAW（s23/mean），并减少查询0.25，但多用状态模型。
+- **校准/置信度**：T_s11=2.075137、T_s23=3.203215；NLL改善但仍留高置信错误（temp>=.975 errors s11=1、s23=3）；低置信AUROC s11 .996、s23 .921/.944（N_same）；J无错误不适用。
+- **NO_PRIOR**：adapter mean Δ utility **-3.046875** CI[-4.417969,-1.828125]，状态准确率下降；不修复旧来源复活，prior标签在本测试中有用。
+- **G6更正**：严格joint R0/48、V20/48、V−R+0.416667 CI[0.3125,0.520833]；R U N 0/24、V U contact24/24/reminder22/24；R invalid原始relation INVALIDATE16+KEEP2（总18），parser UNRESOLVED；未重跑G6 GPU。
+- **当前最佳**：PUBLIC_STATE_ORACLE 9.5（信息上界）；STRATUM_QUERY 9.25（模型成本3/family，query .75）；QUERY_ONCE9.0；TEMP_CONF9.184（模型成本6/family，query .504）；ARGMAX7.900；RAW_CONF8.510。
+- **本轮不训练**，不新增LoRA/PRM/RL；不代表以后没有训练理由。失败attempt证据已保留。G8详细结果见下方 N1–N11；旧G7记录保留。
+- 下一步不是自动训练；若提出训练，必须针对局部证据失效/无新证据旧来源复活，共享精确初始参数并记录实际更新，不以加大group/提高lambda/多采样为默认。
+
 # 实验状态
 
 最后维护：2026-10-31 04:20 +08:00（Asia/Shanghai）。
@@ -769,3 +780,192 @@ G6 全部 phase 已完成：dev（648 calls）→ audit（2,592 calls）→ exec
 - **主结论**：在真实 ToolSandbox 指针动作接口下，过程奖励策略训练**没有**优于结果奖励；两者都塌缩为最终查询策略，主比较原生 utility 精确为0。过程标签可用 SFT 学会，但未转化为 composition 上的安全 terminal utility；强依赖规则仍最佳。
 - **主张边界**：不声称新 PRM、不声称过程监督解决 evidence invalidation、不声称 SFT 优于 query/rule；只报告真实训练对比和负结果。
 - **当前状态**：全部 G7 进程结束，无运行中/排队任务。后续若被明确要求再做新实验，需新的独立任务说明；本轮不自动启动。
+
+---
+
+## M. G8 信息状态与执行决策解耦（新任务；实际执行中）
+
+### M1. 固定协议与 G7 事实更正
+
+- 本轮只做决策干预和真实工具执行；**不新增 LoRA/PRM/RL、不训练**，每个已有 PROCESS_SFT adapter 只拟合一个标量温度 T；不下载模型、不新建 adapter/checkpoint。
+- G7 实际参数更新数（来自 metrics.jsonl 中 `actions>0` 的 update，而非128个采样循环）：OUTCOME s11 **3**、s23 **4**；PROCESS s11 **16**、s23 **6**。G7 的 LoRA-A 在设置 seed 前初始化、LoRA-B 非零，因此同 seed 初始策略并不匹配；G8 不复用该初始化做任何推断。
+- G7 SFT 的 J 视图两 seed success 均 **1.000**；N 失败集中在 reminder/length6。s11 有 **5 families / 10 records**（N），s23 有 **15 families / 30 records**；s11 失败 family 全部包含在 s23 的失败 family 中，共同失败最终来源标签为 A/B/C（s23 还含 D）。G8 不加双模型 ensemble。
+- G7 原名为 `DEPENDENCY_RULE` 的方法实际直接读取 `correct_labels`；G8 一律称 **PUBLIC_STATE_ORACLE**，并明确它是公共信息上界，不是自然语言 parser、可部署工程规则或新方法。
+- 旧 G7 的 CPU 后验定位（不是 G8 成绩）：仅 reminder length≥6 查询、其余原 SFT，s11 N utility **9.371094**/success1/query0.628906；s23 **9.218750**/success0.996094/query0.625。这个廉价强对照——G8 的 **STRATUM_QUERY**——保留在固定策略中，条件冻结为 `workflow=reminder and length>=6`，不读事件类型/gold/隐藏状态/template ID。
+- 本轮不训练不代表以后没有训练理由；本轮先隔离行动层，不在同一轮改变初始化/探索/训练目标。
+
+### M2. 数据（已生成）
+
+- 固定 seed=801，split/event schedule=802，candidate order=803；calibration 256 families、fresh test 512 families（16 cells×32）；2 workflow ×2 initial public state × length{4,6} ×2 final public state。
+- 每个 cell 的 final 结构：final unknown = 最后 U 一半、最后 S/O 各四分之一；final known = 最后 F 一半、最后 S/O 各四分之一。长度6/final unknown/final U 的一半包含较早 U→F 恢复→最后 U；长度6/final unknown/final S/O 全部包含 F→U→无目标字段证据的 S/O。
+- 数据：`data/g8_selective/cases.jsonl`（12,625,472 bytes，768 families，3,840 prefixes，1,344 worlds）+ manifest。NO_PRIOR 固定子集为 test reminder length6 N_same **128 families**。test special counts：recovery_final_u 32、unknown_maintained 64、reminder_length6_recovery 16、reminder_length6_unknown_maintained 32。
+- 视图：N_same 复用 G7 held-out test event_notice renderer（calibration与test共享冻结renderer）；N_new 仅 test、固定新模板；J 仅 test、结构化控制。候选、任务、初始观察与 allowed labels 保持 G7；隐藏 U 值未进入 prompt/history。
+- 前向预算：calibration N_same 1,280/adapter；test 三视图 7,680/adapter；NO_PRIOR 768/adapter；每 adapter 9,728，两 adapter 合计 **19,456**。无自回归解释生成。
+
+### M3. 阶段状态（2026-10-31 15:xx CST）
+
+| RUN/phase | 状态 | 实际 PID/Job | GPU | 开始/更新 | 前向进度/19456 | GPU-hours | 产物/下一步 |
+|---|---|---|---|---:|---|---:|---:|---|
+| G8-DATA | COMPLETED | CPU only | — | 15:xx | 0/19456 | 0 | cases/manifest 已生成；下一步 S11-CALIBRATE |
+| G8-S11-CALIBRATE | PLANNED | — | — | — | 0/19456 | 0 | 等待模型进程启动 |
+| G8-S11-EVAL | PLANNED | — | — | — | 0/19456 | 0 | 同上 |
+| G8-S23-CALIBRATE | PLANNED | — | — | — | 0/19456 | 0 | 同上 |
+| G8-S23-EVAL | PLANNED | — | — | — | 0/19456 | 0 | 同上 |
+| G8-NATIVE | PLANNED | — | — | — | — | 0 | 依赖两 adapter logits |
+| G8-ANALYZE | PLANNED | — | — | — | — | 0 | 依赖 native |
+
+- 当前没有 G8 模型进程；PLANNED 不是 QUEUED。预算：GPU ≤4 GPU-hours、≤2×A800 80GB、新增非模型产物≤128MiB、日志≤10MiB、0 新 adapter/checkpoint/模型下载。
+
+### M3a. 实际启动（2026-10-31 16:21 CST）
+
+- G8 协调者：GPU0，PID **1611743**，一个进程顺序加载两个 adapter；`CUDA_VISIBLE_DEVICES=0`。日志 `logs/G8-SELECTIVE-a01.log`。
+- G8-DATA **COMPLETED**；G8-S11-CALIBRATE 实际 RUNNING（base/adapter 加载后开始 1,280 prefix 前向）。前向进度 0/19456 起步；GPU-hours 从模型加载后计时。
+- 其余阶段仍 PLANNED；没有 QUEUED。不会并行加载第二个 adapter，也不会新增训练/模型/checkpoint。
+- 注：M3 表中的 `15:xx` 为协议登记占位；以本 M3a 的实际 PID/时间为准。
+
+### M3b. 首次尝试失败与缓存续行（2026-10-31 16:26 CST）
+
+- 首次 G8 模型尝试（PID 1611743，GPU0）在完成 S11 calibration 的 **256 families / 1,280 前向** 后，写状态轨迹时缺少 `final_logits/final_allowed` 字段，随后在组装温度样本时 `KeyError` 退出；未进入 test/native。
+- 失败证据保留：`runs/G8-SELECTIVE-a01/fail1_run.json`、`fail1_predictions.jsonl`、`logs/G8-SELECTIVE-a01.fail1.log`；未删除。
+- 修复仅限字段补齐、adapter 名称和缓存续行；**已成功的 1,280 次 calibration 前向 logits 从 fail1 predictions 复用**，不重跑。缓存：`runs/G8-SELECTIVE-a01/cache_s11_calibration.jsonl`（256 records，cached input tokens 575,220；这不是新模型调用）。
+- 新尝试将只重跑 S11 test/NO_PRIOR 的 8,448 前向 + S23 全部 9,728 前向；加上复用的 1,280 calibration calls，实验总前向仍 **19,456**。失败尝试的 1,280 calls 已计入实际 GPU 预算，不额外重复。
+
+### M3c. 续行实际进度（2026-10-31 16:32 CST）
+
+- 续行协调者 GPU0，PID **1622101**，仍为单一顺序进程。
+- S11 calibration 由缓存复用 1,280 前向完成；T_s11 = **2.075137**（未触界），NLL 0.027954→0.020075（n=256 families）。
+- S11 EVAL 实际 RUNNING：当前已写 674 条 state records（缓存256+新test/noprior）；计划 1,664 新 test state +128 no-prior，新增8,448前向；总实验前向仍19,456。
+- 无第二个模型进程；无 QUEUED。GPU-hours 见 run.json；下一步 S23 calibration/eval 后 native/analyze。
+
+---
+
+## N. G8 最终结果（2026-10-31 17:02 CST）
+
+### N1. 阶段与实际资源
+
+| RUN/phase | 状态 | 实际 PID/Job | GPU | 开始/更新时间 | 前向进度/19456 | GPU-hours | 产物/下一步 |
+|---|---|---|---|---:|---|---:|---:|---|
+| G8-DATA | COMPLETED | CPU only | — | 16:21–16:21 | 0 | 0 | 768 families / 3,840 prefixes / 1,344 worlds |
+| G8-S11-CALIBRATE | COMPLETED (cache) | 1622101 | 0 | 16:26–16:27 | 1,280/19456 | 含在总.5798 | T=2.075137；缓存复用 |
+| G8-S11-EVAL | COMPLETED | 1622101 | 0 | 16:27–16:44 | 9,728/19456 | — | 1,664 test/no-prior trajectories |
+| G8-S23-CALIBRATE | COMPLETED | 1622101 | 0 | 16:44–16:47 | 11,008/19456 | — | T=3.203215 |
+| G8-S23-EVAL | COMPLETED | 1622101 | 0 | 16:47–17:01 | 19,456/19456 | — | 三视图+NO_PRIOR |
+| G8-NATIVE | COMPLETED | 1622101 | 0 | 17:01–17:02 | 19,456/19456 | — | 1,412 physical / 31,292 cache hits |
+| G8-ANALYZE | COMPLETED | 1622101 | 0 | 17:02 | 19,456/19456 | **0.5798** | run/predictions/status |
+
+- 实际只有 **1×A800（GPU0）** 一个顺序协调进程；无并行、无 QUEUED、当前无运行进程。
+- 成功运行 GPU-hours **0.5798**；首次失败尝试约 **0.083**（16:21:24–16:26:21，1,280个已成功calibration前向被缓存复用），总计约 **0.663 GPU-hours**，≤4。
+- 实验模型前向 **19,456**（= new 18,176 + cached reused 1,280），恰好上限；无自回归生成、无额外重试调用。失败尝试证据保留：`runs/G8-SELECTIVE-a01/fail1_run.json`、`fail1_predictions.jsonl`、`logs/G8-SELECTIVE-a01.fail1.log`、`cache_s11_calibration.jsonl`。
+- 输入 token **9,141,572**（其中 S11 cached 575,220）；native 物理执行 **1,412**、cache 命中 **31,292**、物理查询 **896**、物理直执 **516**。0 新 adapter/checkpoint/模型下载/AgentRM。
+
+### N2. 温度与校准
+
+| adapter | T | 边界 | calibration NLL T=1 → T | test N_same NLL | test N_new NLL | test J NLL |
+|---|---:|---|---:|---:|---:|---:|
+| s11 | **2.075137** | no | 0.027954 → **0.020075** | 0.051427 → **0.029499** | 0.216752 → **0.113494** | 0.023428 → **0.016654** |
+| s23 | **3.203215** | no | 0.238986 → **0.100461** | 0.243596 → **0.103946** | 0.674642 → **0.252678** | 0.016709 → **0.032019** |
+
+- 拟合仅用 calibration N_same 的最后 prefix（256 families/adapter），范围固定 [0.05,100]，一次一维 coarse-grid+golden-section；没有 workflow/length/template 专属 T，没有在 test 选阈值。
+- s23 的 J NLL 在校准后变差；这是表示迁移失败，不能隐藏。
+- 阈值固定 .975；不是 utility 最优搜索。
+
+### N3. 主比较：N_same fresh test、length=6、原生 utility
+
+| strategy | s11 | s23 | adapter mean | queries (s11/s23/mean) | state acc (s11/s23/mean) | logical model calls (mean) |
+|---|---:|---:|---:|---:|---:|---:|
+| ARGMAX | 8.891 | 6.910 | 7.900 | 0.484 / 0.434 / 0.459 | 0.984 / 0.934 / 0.959 | 6 |
+| RAW_CONF | 9.043 | 7.977 | 8.510 | 0.488 / 0.461 / 0.475 | same | 6 |
+| **TEMP_CONF** | **9.344** | **9.023** | **9.184** | 0.500 / 0.508 / 0.504 | same | 6 |
+| **STRATUM_QUERY** | **9.250** | **9.250** | **9.250** | 0.750 / 0.750 / 0.750 | same | 3 |
+| QUERY_ONCE | 9.000 | 9.000 | 9.000 | 1.000 / 1.000 / 1.000 | N/A | 0 |
+| PUBLIC_STATE_ORACLE | 9.500 | 9.500 | 9.500 | 0.500 / 0.500 / 0.500 | N/A | 0 |
+
+- **主 Delta = TEMP_CONF − STRATUM_QUERY**：
+  - s11: **+0.093750**, n=256, 95% CI **[-0.218750, +0.250000]**
+  - s23: **−0.2265625**, n=256, 95% CI **[-0.828125, +0.2265625]**
+  - adapter mean: **−0.066406**, n=256, 95% CI **[-0.451172, +0.236328]**
+- 空间描述：s11 n_pos64/n_neg2、s23 n_pos63/n_neg7、mean n_pos64/n_neg8；大量 family 为0。**区间均覆盖0，TEMP_CONF没有超过STRATUM_QUERY。**
+- **TEMP_CONF − ARGMAX**：s11 +0.4531 CI[-0.0039,+1.0547]；s23 +2.1133 CI[+1.2031,+3.0352]；mean +1.2832 CI[+0.6797,+1.9023]。
+- **TEMP_CONF − RAW_CONF**：s11 +0.3008 CI[-0.0078,+0.7617]；s23 +1.0469 CI[+0.4297,+1.8008]；mean +0.6738 CI[+0.2227,+1.2070]。
+- **TEMP_CONF − QUERY_ONCE**：s11 +0.3438 CI[+0.0313,+0.5000]；s23 +0.0234 CI[-0.5781,+0.4766]；mean +0.1836 CI[-0.2012,+0.4863]。
+- **TEMP_CONF 与 STRATUM 的 terminal 指标（mean）**：TEMP utility9.184、success0.9922、wrong0.0078、queries0.504、direct coverage0.496、条件直执错误0.0229；STRATUM utility9.250、success1.0、wrong0、queries0.750、direct coverage0.25、条件直执错误0；ORACLE9.5/1.0/0/0.5。QUERY_ONCE9.0/1.0/0/1.0。
+- **state accuracy 三路由完全相同**：s11 N_same0.9844、s23 N_same0.9336；N_new s11/s23=0.973/0.887；J=0.990/0.996。路由没有改变状态轨迹，只改变执行/查询。
+- **模型成本**：TEMP/RAW/ARGMAX 在length6 N_same 每个 adapter 1,536 logical calls（6/family）；STRATUM 768（3/family，跳过 reminder length6）；QUERY/ORACLE 0。utility不包含LLM成本；TEMP少查询0.246，但多用状态模型，对STRATUM没有总体部署经济优势。
+- **length4控制**：所有方法 ~9.5；TEMP−STRATUM s11 0、s23 −0.015625 CI[-0.03125,-0.003906]（点估计轻微负），无正收益。
+
+### N4. 视图与固定压力子集
+
+- **N_new（仅次要措辞迁移，不参与T/主结论）**：length6 adapter mean TEMP **8.699** vs STRATUM **6.723** vs ARGMAX6.820 vs QUERY9.0；N_new上TEMP高于STRATUM，但这是不同措辞条件，不能替代N_same主比较。
+- **J（结构化控制）**：length6 adapter mean TEMP9.410 vs STRATUM9.248 vs ARGMAX9.492 vs QUERY9.0；J总体高但TEMP不再超过ARGMAX；N与J分表。
+- **压力子集（reminder length6，N_same）**：
+  - `recovery_final_u`（n=16）：TEMP s11/s23/mean = 6.562/6.562/6.562；STRATUM=9.0；ARGMAX=-12.938（s23）→mean -4.406；TEMP改善ARGMAX但低于STRATUM/QUERY。
+  - `unknown_maintained`（n=32）：TEMP s11/s23/mean = 9.000/6.562/7.781；STRATUM=9.0；ARGMAX s23=-0.75；仍不高于STRATUM。
+- **N_same主层不是N_new**；没有把两视图合并成一个总体n。
+
+### N5. NO_PRIOR（唯一机制干预；reminder length6 N_same固定128 families）
+
+| adapter | original state acc | NO_PRIOR state acc | original utility | NO_PRIOR utility | Δ utility (NO_PRIOR−original) |
+|---|---:|---:|---:|---:|---:|
+| s11 | 0.96875 | 0.88281 | 8.28125 | 4.92969 | −3.3515625, CI[−5.179688,−1.828125] |
+| s23 | 0.86719 | 0.79688 | 4.32031 | 1.57813 | −2.7421875, CI[−4.265625,−1.21875] |
+| adapter mean | — | — | — | — | **−3.046875, CI[−4.417969,−1.828125]**, n=128 |
+
+- NO_PRIOR 只删除整个 prior choices 段，没有追加提醒；仍为 ARGMAX，不拟合 T，不扩展五策略矩阵。
+- **结果：删除 prior labels 使状态准确率和 utility 更差；没有修复旧来源复活**。在本测试中 prior labels 是有用的，不是冗余；旧来源问题不能归因于 prior 显示。
+
+### N6. 校准/置信度诊断
+
+- s11 N_same：source predictions 260、wrong4；raw confidence correct/wrong 1.0000/0.9870；T 后 0.9991/0.9262；`raw >= .975` errors **3**，`temp >= .975` errors **1**；T 后 `>=.975` 总数 256/260。
+- s23 N_same：source predictions 273、wrong17；raw correct/wrong 1.0000/0.9084；T 后 0.9898/0.7947；`raw >= .975` errors **10**，`temp >= .975` errors **3**。
+- **校准降低 NLL 和平均错误置信度，但没有消除高置信错误；状态准确率不因T改变**。错误仍有高置信，且s23的J NLL被N_same温度反向损伤；下一判断不能把校准当作修复状态错误。
+- 缓存 fixed risk–coverage 曲线已写 run.json；没有用test选部署阈值。
+
+### N7. 七个交付项与 A–F 回答
+
+1. **T**：s11 **2.075137**，s23 **3.203215**；均未触界；calibration N_same最后prefix，范围[0.05,100]。
+2. **主比较**：TEMP−STRATUM 见 N3；s11 +0.094 CI含0，s23 −0.227 CI含0，adapter mean −0.066 CI含0；没有超过。
+3. **策略—错误—查询—utility—模型成本**：见 N3；TEMP少查询但多用模型，STRATUM更强且模型成本更低。
+4. **N_same/N_new/J与压力子集**：N_same主无优势；N_new上TEMP较好但不作为主证据；J高且TEMP不再优于ARGMAX；压力子集TEMP改善ARGMAX但不超过STRATUM/QUERY。
+5. **NO_PRIOR**：状态准确率和utility显著下降；不修复。
+6. **能力/信息/收益**：
+   - 状态能力：s11/s23 N_same 0.984/0.934，J 0.990/0.996；N_new 0.973/0.887；状态模型本身仍有高置信错误。
+   - 置信信息：T 改善 NLL和置信分离，但仍存在 temp>=.975错误（1/3）；执行增益主要来自路由，不是状态修复。
+   - 执行收益：TEMP显著超过ARGMAX/RAW（尤其s23），但**不超过STRATUM**；在固定主比较中没有额外收益。
+7. **下一研究问题**：既然固定路由无法超过廉价STRATUM、NO_PRIOR反而更差，而高置信错误集中在reminder length6的局部失效/旧来源复活，下一受控问题应是：**共享完全相同初始adapter参数，只给局部证据失效/无新证据不得复活的反事实过程反馈，并记录实际参数更新与对照**；不以加大group、提高lambda或多采样循环作为默认下一步。本轮不自动启动该训练。
+
+**A**：否；TEMP_CONF没有超过STRATUM_QUERY（三个CI均覆盖0）。
+**B**：它超过ARGMAX/RAW（s23及mean显著），但不超过STRATUM_QUERY；应优先简单回退，不能声称校准有额外工程优势。
+**C**：校准不是全查询（TEMP queries≈0.50），NLL下降；但错误仍高置信（s23 temp>=.975 errors3），且状态预测本身错误；温度无法区分部分正确/错误，s23 J迁移失败。没有新增workflow gate或新模型。
+**D**：NO_PRIOR显著变差；旧来源复活不是“prior显示”可解释的；负结果保留。
+**E**：N_same主无收益，N_new上TEMP较好，J总体高；结论限定在表示/措辞条件，不能合并N_same/N_new/J成一个总体。
+**F**：新测试的原SFT在length4/J仍很强；N_same length6的s11/s23 ARGMAX为8.891/6.910；接受了旧失败范围比预期窄，没有为维持故事挑更难样例。
+
+### N8. 最终判断与状态
+
+- 本轮完成了全部固定数据、两个 adapter 校准、三视图、NO_PRIOR、原生执行、统计与置信度诊断。
+- **主结论**：信息状态与执行决策解耦后，TEMP_CONF的路由相对ARGMAX/RAW有执行收益，但**不优于廉价的STRATUM_QUERY**；它节省查询但增加状态模型成本。校准改善NLL/置信度但没有消除高置信错误。NO_PRIOR使情况变差，不修复旧来源复活。
+- 不声称新PRM、不声称过程奖励RL成功、不声称温度校准修复状态能力；本轮不训练，不代表以后没有训练理由。
+- 当前无 G8 进程、无排队任务；所有 run/metrics/log 完成证据保留（包括失败 attempt）。新增非模型产物约 **43MiB**（data13MiB + run dir30MiB），≤128MiB；日志约8KiB，≤10MiB；新源文件仅 `g8_selective.py`。
+
+### N9. 统计修正与最终审计
+
+- N1 表中把 S11-CALIBRATE 的 GPU-hours 写成 0.08 是**误归属**：0.08 是首次失败尝试的近似值，成功运行的 calibration 只占成功运行 .5798 GPU-hours 的一小部分，不能把两者重复相加或把 .08 计入成功 run。最终口径：成功 run **0.5798 GPU-hours**；失败 attempt 约 **0.083**；总计约 **0.663**；仍≤4。
+- 失败 attempt 只完成了 s11 calibration 的 1,280 个前向；这些 logits 通过 cache 复用。最终实验总前向仍是 **19,456**（new 18,176 + cached 1,280），没有重复成功调用。
+- 最终 `run.json` 为 COMPLETED，错误字段为空；predictions 中 `query_value` 0、隐藏U值不进入预测；数据中的隐藏值只在 cases private world/snapshot。当前无 G8 进程，无 QUEUED。
+- 代表失败例 12 条来自多个 adapter/view/strategy；完整失败保留在 predictions.jsonl。
+- 新增非模型产物：`data/g8_selective` 约13MiB、`runs/G8-SELECTIVE-a01` 约30MiB（含失败证据/cache）、logs约8KiB；≤128MiB。0新adapter/checkpoint/模型下载/AgentRM；新源文件仅 `g8_selective.py`。
+
+### N10. 置信度 AUROC 与最终口径补充
+
+- 用低置信度分数（1−p）检测错误时，s11 N_same 的 raw/temp AUROC 均 **0.996**；s23 N_same **0.921/0.944**；s11 N_new **0.973/0.972**；s23 N_new **0.959/0.964**；J 两 adapter 均无 source 错误，相关 AUROC **不适用**。
+- 因此有限动作概率并非完全无信息；但阈值0.975以上仍存在错误（s11 temp1、s23 temp3），且状态准确率不因T变化。结论应为：**部分可识别，仍属高置信错误 + 状态预测错误**，不是“概率可完全筛选”。
+- 最终口径：主比较无TEMP>STRATUM；TEMP相对ARGMAX/RAW有工程回退收益但无相对STRATUM的额外收益；NO_PRIOR更差；不新增训练/新模型。当前无 G8 进程或 QUEUED。
+
+### N11. 最终产物与状态
+
+- `data/g8_selective/cases.jsonl` + `manifest.json`（768 families；13MiB total）
+- `runs/G8-SELECTIVE-a01/run.json`（377,922 bytes，COMPLETED，含所有分析、12个代表失败例和A–F回答）
+- `runs/G8-SELECTIVE-a01/predictions.jsonl`（22,528 records；30.4MiB；state trajectories + native executions；无 query_value/隐藏值）
+- 失败证据：`fail1_run.json`、`fail1_predictions.jsonl`、`logs/G8-SELECTIVE-a01.fail1.log`、`cache_s11_calibration.jsonl`；未删除。
+- `logs/G8-SELECTIVE-a01.log`（运行日志）；`status.md`（本文件）。
+- 无新 adapter/checkpoint/模型下载/AgentRM；新增源文件只有 `g8_selective.py`。新增非模型产物约43MiB≤128MiB；日志约8KiB≤10MiB；GPU总约0.663≤4；实际最多1张A800。

@@ -1,0 +1,10 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 59.79it/s]
+Traceback (most recent call last):
+  File "/data4/sjj/catelogue/process_reward/g8_selective.py", line 1422, in <module>
+    main()
+  File "/data4/sjj/catelogue/process_reward/g8_selective.py", line 1418, in main
+    run_all(args.device, force_data=args.force_data)
+  File "/data4/sjj/catelogue/process_reward/g8_selective.py", line 1274, in run_all
+    samples = [{"final_logits": record["final_logits"], "allowed": record["final_allowed"],
+                                ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'final_logits'
