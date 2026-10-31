@@ -586,3 +586,186 @@ G6 全部 phase 已完成：dev（648 calls）→ audit（2,592 calls）→ exec
 - ToolSandbox：fixed commit `c8571d7854316d2e1c5f288e59fe1e34e53f6dd1`；源码2.6MiB；CPU venv `/data/sjj/g6_tools_venv` 275MiB；GPU项目venv未修改。
 - 数据：`data/g6_validity/cases.jsonl` + `manifest.json`（716KiB）；attempt：`runs/G6-VALIDITY-a01/run.json`（186KiB）+ `predictions.jsonl`（10MiB，5640 records：3240 E/R/V +2400 trajectories）+ `logs/G6-VALIDITY-a01.log`（60KiB）。新增非模型产物约11MiB≤128MiB；新项目源文件1个（`validity_experiment.py`）。
 - 运行/排队：全部 G6 phases COMPLETED；当前无运行中、无真实 Slurm/排队任务；G4/G5原始predictions/run未覆盖。
+
+---
+
+## K. G7 指针动作策略训练（新任务，覆盖 J5 的“不启动 G7”旧边界）
+
+### K1. 任务与协议
+
+- 本轮按 G7 新任务执行，J5 的“唯一下一方向=停止学习型扩展”只是 G6 结束边界，不是本轮阻塞条件。
+- 接口：模型只输出一个固定短标签（A–J 或 Z=UNKNOWN）；程序复制公开来源值并执行原生 ToolSandbox 操作。模型不生成电话、时间戳或工具参数。
+- 过程奖励来自公开历史规则 verifier（U→unknown；F→采用公开新值；S/O→保留；s_t=±1），不训练神经 PRM，也不把过程 SFT/普通规则包装成新 PRM。
+- 主比较：composition test 上 PROCESS−OUTCOME 的原生 utility。计划 6 个训练 run（OUTCOME/PROCESS/PROCESS_SFT × seeds 11/23）+ BASE_POINTER/QUERY_ONCE/DEPENDENCY_RULE；不自动扩大矩阵。
+- 资源：≤2×A800、≤12 GPU-hours、单 run≤1.5 GPU-hours、≤2 GPU-hours evaluation；LoRA r16/α32、BF16、上下文≤2048；只保存最终 adapter（≤128MiB），无 optimizer/RNG/tokenizer/checkpoint 副本。
+
+### K2. G7 数据与 CPU 接口
+
+- 新增数据：`data/g7_process/cases.jsonl` + `manifest.json`（8,530,866 bytes / 8.2MiB）。
+- 832 families：train 512、dev 64、test 256（IID 128 + composition 128）；contact/reminder 平衡；train 长度 2/4，dev 含 IID 与长度6，test IID 2/4、composition 6。
+- 初始状态 known/unknown 各半；每 family 事件链含 U/F/S/O；公开候选来源含 event/object/field/value，候选标签全家固定、不重排；隐藏 U 值只存 private world/snapshot，从不进入 prompt。
+- 每个 prefix 的 process verifier 与 pointer labels 已落盘；stdout 数据检查确认 histories 无隐藏 U 值。数据生成 ToolSandbox worker 832 calls。
+- 原生 snapshot 执行、查询后绑定、USE 来源复制、wrong/tool error/abort 与 utility 已用真实 contact/reminder 操作测试。
+
+### K3. G6 小更正（先完成，不重跑 G6 GPU 推理）
+
+- `validity_experiment.py::_state_correct` 已改为先要求 `parsed.valid`；无效输出不再计为状态正确。
+- DEPENDENCY_RULE 的 `parsed=False` 分支已改为 truly unknown（`parsed=False, knowledge=unknown`），执行路径会第一次查询后再决定；自然语言未匹配不再返回旧值作为完成。
+- G6 原始 run/predictions/GPU 缓存未覆盖；更新后的严格指标和 raw relation 诊断将在本轮协调 run.json/最终状态中单列。
+
+### K4. 当前真实运行状态（2026-10-31 13:10 CST）
+
+| 任务 | GPU | PID | 状态 |
+|---|---:|---:|---|
+| G7 baselines（BASE_POINTER/QUERY_ONCE/DEPENDENCY_RULE） | 7 | 1273389 | running |
+| G7 PROCESS seed11（RL） | 0 | 1273977 | running |
+
+- 无 Slurm/外部队列；未启动其他 G7 训练进程。后续六 run 按资源上限分批启动，不修改他人任务。
+- 当前代码新增源文件 2 个：`g7_data.py`、`g7_process.py`。日志：`runs/G7-BASELINES-a01.log`、`runs/G7-PROCESS-s11-a01.log`。
+
+### K3a. G6 严格更正结果（CPU 重算，未重跑 G6 GPU）
+
+- 严格 joint（root 四条件，N 主）：R **0/48**；V **20/48**；V−R **+0.416667**，family-paired 95% CI **[0.3125, 0.520833]**，n=48 families。J：R 0/48、V 0/48（严格）。
+- U root（N）：R contact **0/24**、reminder **0/24**；V contact **24/24**、reminder **22/24**。J 的 V U 为 0/24 /0/24（严格 invalid 处理）。
+- R 的 invalid：audit **14**（另有 dev 4，共18）；原始 relation **INVALIDATE 12 + KEEP 2**，parser 均显示 `UNRESOLVED`；V audit invalid **0**。不要把 parser 的 `UNRESOLVED` 当作原始 relation。
+- 部署指标不变（G6 run 原值）：V−R N utility **+2.427083**，CI **[0.796875, 4.09375]**；success **+0.145833**，CI **[0.098958, 0.192708]**。
+- post-hoc support-source cache 诊断（非 G7 主比较，不用于训练）：N utility 9.59375/success1.0/wrong0/queries0.40625；J utility 4.947917/success0.875/wrong0.109375/queries0.40625。
+
+### K4a. 进程更新（2026-10-31 13:14 CST）
+
+- G7 baselines：GPU7，PID **1273389**，running（BASE_POINTER 评估中；QUERY_ONCE/DEPENDENCY_RULE 随后）。
+- G7 PROCESS seed11：GPU0，PID **1280500**，running；已确认使用 seeded LoRA-B 初始化 + frozen initial-adapter KL reference（base 零初始化导致 4-rollout group 大量零方差；该修正在实际训练记录中单列）。已写 2 updates；当前 entropy≈0.407、KL≈0.081、zero-advantage groups=0/4、support≈0.609。
+- 旧 PROCESS PID 1273977 已因该 reference 实现修正在写入 5 updates 后停止；旧 run 目录已清除，不作为结果。
+
+### K4b. Baselines 完成（2026-10-31 13:17 CST）
+
+- G7-BASELINES-a01 COMPLETED；cost **0.1253 GPU-hours**（451.2s，GPU7），worker calls 1067。
+- Test（n=256 families；N 主，J 见 run.json）：BASE_POINTER utility **−15.492**、success **0.363**、wrong **0.637**、queries **0.023**；QUERY_ONCE utility **9.000**、success **1.000**、queries **1.000**；DEPENDENCY_RULE utility **9.496**、success **1.000**、wrong **0**、queries **0.504**。
+- BASE_POINTER 原始 base 在指针接口下仍主要选错来源，说明随机 LoRA/训练信号是必要的；规则基线在无模型调用下仍近乎完成。
+- baseline predictions 中 query 返回的隐藏值字段已从最终文件清除（2922 records；这些值从未进入 prompt/训练标签）。
+- 新 run：OUTCOME seed11 GPU7，PID **1288799**；PROCESS seed11 GPU0，PID **1283286**；二者 running。
+
+### K4c. Seed11 RL 完成与 SFT 启动（2026-10-31 13:49 CST）
+
+- **PROCESS seed11**：COMPLETED；test N utility **9.000**、success **1.000**、wrong/tool/abort **0**、queries **1.000**、process_support **0.500**、final_correct **0.504**；GPU-hours **0.487**；adapter 23.6MiB。dev 曲线在 32/64/128 均为 utility9、query1、support0.516。
+- **OUTCOME seed11**：COMPLETED；test N utility **9.000**、success **1.000**、wrong/tool/abort **0**、queries **1.000**、process_support **0.500**、final_correct **0.504**；GPU-hours **0.501**；adapter 23.6MiB。
+- 两个 RL arm 都在训练后段收敛到“最终 UNKNOWN/查询”策略；4-rollout group 的 zero-advantage groups 常为 4/4。seed11 composition 的 PROCESS−OUTCOME 主比较待统一 bootstrap；当前点估计期望为 0。
+- **PROCESS_SFT seed11**：GPU0 PID **1336405**；已到 update47；dev@32 utility1.8125、success0.8125、query0.6875、support0.516、final_correct0.625；running。
+- **PROCESS_SFT seed23**：GPU7 PID **1344839**；启动加载/训练中。
+- 两个 SFT run 完成后按计划启动 OUTCOME/PROCESS seed23；不扩大矩阵。
+
+### K4d. SFT 初始化修正与 seed23 启动（2026-10-31 14:09 CST）
+
+- seed11 两个 RL arm 的主表已落盘（见 K4c）：两者最终都是 query-only，N test utility 9.000、success 1.000、queries 1.000、final_correct 0.504、process_support 0.500；seed11 composition 主比较尚未统一 bootstrap。
+- 首次 PROCESS_SFT 尝试使用与 RL 相同的随机 LoRA-B 初始化；dev@64→128 明显退化（seed11 dev@64 utility −25、success0.125、query0；test utility −18.434、success0.293、wrong0.707）。该随机初始化为 RL exploration 设计，不应作为 SFT 的“同一基座”标准初始化；属实现选择错误。已停止并清除这两个未完成/失败 SFT artifacts，不纳入最终表。
+- 修正：`PROCESS_SFT` 改为 **zero LoRA-B（标准 PEFT 初始化）**，仍是同一 Qwen base、LoRA r16/α32、lr1e-4、128 updates、24 examples/update（全部 3072 个 train intermediate decisions）；RL arms 仍用 seed-matched nonzero LoRA-B + frozen initial-adapter KL reference，最终表会单列。
+- 新进程：PROCESS seed23（RL）GPU0 PID **1377574**；PROCESS_SFT seed11（zero-init）GPU7 PID **1378529**；running。SFT seed23 与 OUTCOME seed23 待 GPU 空闲后启动。
+
+### K4e. zero-init SFT 结果（2026-10-31 14:32 CST）
+
+- PROCESS_SFT seed11（zero LoRA-B）：训练 loss 收敛到 ~1e-7、batch action accuracy 1.0（训练集，非test）；dev@128 utility **4.5625**、success0.875、wrong0.125、queries0.4375、process_support0.9479、final_correct0.875。
+- test N：utility **8.734**、success **0.980**、wrong **0.0195**、tool_error/abort0、queries **0.484**、process_support **0.9967**、final_correct **0.980**。
+- 这证明过程动作标签本身可学习：SFT 的 support/final_correct 接近 1；但 terminal utility 仍低于 query-only（9.0）和依赖规则（9.496），原因是 1.95% 错误副作用被 utility 重罚。SFT 不是主比较，也不能包装成新 PRM。
+- 当前：PROCESS seed23 GPU0 PID **1377574**（test 中）；PROCESS_SFT seed23 GPU7 PID **1421526**（zero-init，running）；OUTCOME seed23 待 PROCESS seed23 test 释放 GPU0 后启动。
+
+### K4f. SFT seed23 与最后 RL 状态（2026-10-31 15:07 CST）
+
+- PROCESS_SFT seed23（zero-init）COMPLETED：test N utility **7.211**、success **0.941**、wrong **0.0586**、queries **0.445**、process_support **0.9808**、final_correct **0.9414**；composition utility **5.234**、IID **9.188**。seed11 SFT 同 test 指标为 utility8.734、composition7.977、IID9.492；SFT 两 seed 均低于 query-only 9.0 和依赖规则。
+- PROCESS seed23 COMPLETED test N utility9.000、success1、query1、support0.500、final0.504；与 PROCESS/OUTCOME seed11 相同。
+- OUTCOME seed23：GPU0 PID **1443880**；128 updates 已完成，test evaluation running；无其他 G7 训练进程。
+- 当前只有这一实际进程；运行/排队不虚构。全部 run 完成后执行协调 summary、scoped bootstrap 和最终状态。
+
+---
+
+## L. G7 最终结果（2026-10-31 15:20 CST）
+
+### L1. 完成状态
+
+- 6 个训练 run 全部 COMPLETED：OUTCOME/PROCESS × seeds 11/23，PROCESS_SFT × seeds 11/23；baselines COMPLETED；coordinator `runs/G7-COORD-a01/run.json` 已 finalize 为 `completed`。
+- 当前 **没有本项目 G7 训练/评估进程**；无排队的 Slurm/外部队列任务。GPU0/GPU7 已释放（其他用户任务保持不动）。
+- 所有 test 只在最终评估使用；dev 在 updates 32/64/128 就地评估；没有按 test 选模型，也没有自动扩大矩阵。
+
+### L2. 主比较：composition test 原生 utility（N 表述，family-paired）
+
+| seed | PROCESS utility | OUTCOME utility | Δ (PROCESS−OUTCOME) | n families | 95% CI |
+|---:|---:|---:|---:|---:|---:|
+| 11 | 9.000 | 9.000 | **0.000** | 128 | [0.000, 0.000] |
+| 23 | 9.000 | 9.000 | **0.000** | 128 | [0.000, 0.000] |
+| seed mean | 9.000 | 9.000 | **0.000** | — | — |
+
+- success、wrong_side_effect、queries、process_support、final_correct 的 PROCESS−OUTCOME 也都是 **0.000**；每 seed 128/128 个 family 的 delta 都是 0，不是仅均值抵消。
+- IID：两者都 9.000；composition：两者都 9.000；contact/reminder、length 2/4/6、initial known/unknown、J/N 全部 9.000。
+- **结论：在当前指针/group 协议下，PROCESS reward 没有优于 OUTCOME reward。**
+
+### L3. 两个 RL arm 实际收敛到什么
+
+| arm (4 runs) | utility | success | wrong | tool/abort | queries | process_support | final_correct |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| PROCESS s11/s23 | 9.000 | 1.000 | 0 | 0 | 1.000 | 0.500 | 0.5039 |
+| OUTCOME s11/s23 | 9.000 | 1.000 | 0 | 0 | 1.000 | 0.500 | 0.5039 |
+
+- N step 诊断（两 arm 完全相同）：F 0/623、U 664/664、O 276/524=0.5267、S 230/443=0.5192；final-event U 120/120，F 0/99。即策略在**每一步都输出 Z=UNKNOWN**，终端查询一次；U 条件因此“正确”，F 永远错误，O/S 只在公开状态为 unknown 时正确。
+- group 信号：PROCESS zero-advantage groups/update 均值 **3.77–3.92/4**；OUTCOME **3.93–3.96/4**；PROCESS 112–125/128、OUTCOME 124–125/128 个 update 的 4 个 group 全部零方差。T=1.0 的 4 条 rollout 没有稳定留在非平凡策略；两端都走到 query-only（utility9）这个稳定终点。
+- 这不是“PROCESS 优于 OUTCOME 的区别被平均掉”，而是两 arm 在 test 上的每个 family 都相同。
+
+### L4. PROCESS_SFT（zero LoRA-B；不是 PRM）
+
+| seed | N util | success | wrong | query | support | final_correct | composition util | IID util |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 11 | 8.734 | 0.9805 | 0.0195 | 0.4844 | 0.9967 | 0.9805 | **7.977** | 9.492 |
+| 23 | 7.211 | 0.9414 | 0.0586 | 0.4453 | 0.9808 | 0.9414 | **5.234** | 9.188 |
+
+- SFT 训练：128 updates × 24 examples = **3,072 samples**、每个 run **1,243,145 input tokens**，action-label-only CE；最终 loss ~1.1e-7/1.4e-7、train batch action accuracy 1.0。
+- 过程动作标签确实可学：test support **0.9967/0.9808**，F 步骤 1.000，U 步骤 0.9880/0.9458，final_correct 0.9805/0.9414；但 terminal utility 仍低于 query-only 9.0 和 dependency rule 9.496。N composition 尤其差（7.977/5.234）；reminder composition 是主要失败源（s23 reminder util 4.898）。错误副作用 1.95%/5.86% 在 utility 中权重为 −30，非常昂贵。
+- J 表述：s11 util9.496/support1.0/final1.0；s23 util9.484/support0.9971/final0.9883。**N 与 J 的 composition 差异说明表示/解析细节仍影响 SFT 的 terminal 选择**，但 N 主比较仍低于 query/rule。
+- 结论：过程标签 SFT 能改善状态选择，但没有转化为优于安全 query/强规则的原生 utility；不能把它包装为 PRM。
+
+### L5. 基线（test，n=256）
+
+| baseline | N util | success | wrong | queries | support | final_correct | composition util |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| BASE_POINTER | −15.492 | 0.3633 | 0.6367 | 0.0234 | 0.4678 | 0.3633 | −17.195 |
+| QUERY_ONCE | 9.000 | 1.000 | 0 | 1.000 | 0.500 | 0.5039 | 9.000 |
+| DEPENDENCY_RULE | **9.496** | **1.000** | **0** | 0.5039 | **1.000** | **1.000** | **9.500** |
+
+- 无训练、无模型调用的强依赖规则仍最佳；query-only 其次；frozen BASE_POINTER 在 pointer 接口下失败（wrong 63.67%），说明并非“任务/接口本身让模型只能查询”，而是 RL 训练路径收敛到了查询。
+
+### L6. G6 小更正（CPU 重算；未重跑 G6 推理）
+
+- `_state_correct` 已要求 `parsed.valid`；DEPENDENCY_RULE 的 `parsed=False` 已改为真正 unknown 并触发查询。
+- 严格 joint（root 四条件，N）：R **0/48**、V **20/48**、V−R **+0.416667**，95% CI **[0.3125, 0.520833]**；J：R 0/48、V 0/48。
+- U root N：R contact **0/24**、reminder **0/24**；V contact **24/24**、reminder **22/24**。
+- R invalid 总 **18**（audit14+dev4）；原始 relation **INVALIDATE 16 + KEEP 2**；parser 均 `UNRESOLVED`。V invalid 0。不要把 parser 的 UNRESOLVED 当原始 relation。
+- 部署指标不变：V−R N utility **+2.427083**，CI **[0.796875, 4.09375]**；success **+0.145833**，CI **[0.098958, 0.192708]**。
+- post-hoc support-source cache 诊断（非主比较）：N utility9.59375/success1.0/wrong0/query0.40625；J utility4.947917/success0.875/wrong0.109375/query0.40625。
+
+### L7. 实现与可复现性说明
+
+- **数据**：832 families / 2,976 public prefixes / 1,539 worlds；train512、dev64、test256（IID128+composition128）；contact/reminder平衡；初始 known/unknown 各半；U/F/S/O 事件；候选来源与固定标签；公开 history 无隐藏 U 值（data_checks ok）。ToolSandbox 固定 commit `c8571d7854316d2e1c5f288e59fe1e34e53f6dd1`；数据生成 worker 832 calls。
+- **接口**：模型只输出 A–J/Z 单 token；程序复制来源值并执行原生 ToolSandbox；final Z→查询一次；terminal U/查询/错误副作用计入 utility；没有生成电话/时间戳/工具参数。
+- **RL**：LoRA r16/α32、q/v、BF16、max context2048；**seeded Gaussian LoRA-B init std0.7**（同 seed 的 PROCESS/OUTCOME 一致；zero-init 会使 base 近确定、4-rollout group 大量零方差）；**KL reference = frozen initial adapter policy**（KL coeff 0.02）；T=1.0 categorical；4 families/update、group4、128 updates、lr1e-5、clip0.2；只保存最终 adapter。
+- **SFT**：standard zero LoRA-B；lr1e-4；3072 samples（all train intermediate decisions），action-label-only CE；128 updates；只保存最终 adapter。早期随机初始化 SFT 尝试已停止并删除，未纳入最终表。
+- **没有**神经 PRM、新模型下载、AgentRM、checkpoint/optimizer/RNG/tokenizer 副本；没有把规则/过程 SFT 包装成新 PRM。
+
+### L8. 预算与产物
+
+- GPU：最多 2×A800（本工作使用 GPU0/GPU7，按批次各1进程）；6 runs **2.7951 GPU-hours** + baselines **0.1253** = **2.9205 GPU-hours**（≤12）；单 run 最大 **0.5608 GPU-hours**（≤1.5）；evaluation 包含在 run 时间内，未超2h。
+- 6 adapters：每个 **23,618,597 bytes = 22.52MiB**（≤128MiB），总 **135.15MiB**（≤768MiB）；无 optimizer/RNG/tokenizer/checkpoint。
+- 6 test prediction 文件各 **974 records**；baseline 2922 records；所有最终 predictions 中 `query_value` 0、隐藏 U 值 0；test 只最终使用。
+- policy model calls **68,656**，input tokens **30,369,738**；baseline calls **4,508**，input **2,142,450**；ToolSandbox worker calls **6,551**；SFT train tokens **1,243,145/run**，samples **3,072/run**。
+- 新源文件 **2**：`g7_data.py`、`g7_process.py`；一个 coordinator role `runs/G7-COORD-a01/run.json`；一个 `status.md`。数据 `data/g7_process/cases.jsonl` 8,530,866 bytes + manifest。没有上传权重/大型数据/密钥。
+
+### L9. 五个/六个最终回答
+
+1. **PROCESS−OUTCOME 在 composition test 的原生 utility 是否为正？** 否。两 seed 均 **0.000**，n=128/seed，CI [0,0]；success/query/support/final 也全部 0 差异。
+2. **过程奖励是否改善状态/来源正确性？** 否。两 RL arm都收敛为每步 Z、终端查询；support 0.500、final_correct 0.5039；F 0/623、U 664/664、O 0.5267、S 0.5192，两 arm完全相同。
+3. **为什么没有学习信号？** group-relative RL 的 4 条 T=1.0 categorical rollout 在近确定策略下经常全同；PROCESS 112–125/128、OUTCOME 124–125/128 个 update 全为 zero-advantage groups（均值 3.77–3.96/4）。两端走到 query-only 的 terminal 最优。
+4. **过程标签 SFT 是否有效？** 在“拟合过程标签”上有效（support 0.9967/0.9808、final 0.9805/0.9414），但在 composition terminal utility 上为 7.977/5.234，低于 query 9.0 和规则 9.496；1.95%/5.86% 错误副作用和 U/reminder composition 错误是主因。不能据此声称新 PRM。
+5. **当前最佳部署方案是什么？** DEPENDENCY_RULE：utility 9.4961、success 1.0、wrong 0、queries 0.5039、0 model calls；QUERY_ONCE 9.0；BASE_POINTER −15.49。RL 没有超过无模型规则。
+6. **是否扩大矩阵/继续 G7？** **否**。本轮是明确的负训练结果；不扩大矩阵，不再自动追加 G7 run。保留强规则作为工程基线，保留 G6/G7 的失败证据和协议。
+
+### L10. 最终判断
+
+- **主结论**：在真实 ToolSandbox 指针动作接口下，过程奖励策略训练**没有**优于结果奖励；两者都塌缩为最终查询策略，主比较原生 utility 精确为0。过程标签可用 SFT 学会，但未转化为 composition 上的安全 terminal utility；强依赖规则仍最佳。
+- **主张边界**：不声称新 PRM、不声称过程监督解决 evidence invalidation、不声称 SFT 优于 query/rule；只报告真实训练对比和负结果。
+- **当前状态**：全部 G7 进程结束，无运行中/排队任务。后续若被明确要求再做新实验，需新的独立任务说明；本轮不自动启动。

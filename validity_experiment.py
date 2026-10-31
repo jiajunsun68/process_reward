@@ -1176,7 +1176,7 @@ def rule_decide(workflow: str, notice: Any, target_id: str, other_id: str,
         return {"knowledge": "known", "value": initial_value, "parsed": True,
                 "fallback": False, "branch": "natural-other"}
     if not target_present:
-        return {"knowledge": "known", "value": initial_value, "parsed": False,
+        return {"knowledge": "unknown", "value": None, "parsed": False,
                 "fallback": True, "branch": "natural-unmatched"}
     if workflow == "contact":
         if "relationship" in lower or "label" in lower or "description" in lower:
@@ -1202,7 +1202,7 @@ def rule_decide(workflow: str, notice: Any, target_id: str, other_id: str,
                                          "alert time", "trigger", "changed", "moved")):
             return {"knowledge": "unknown", "value": None, "parsed": True,
                     "fallback": False, "branch": "natural-invalidate"}
-    return {"knowledge": "known", "value": initial_value, "parsed": False,
+    return {"knowledge": "unknown", "value": None, "parsed": False,
             "fallback": True, "branch": "natural-unmatched"}
 
 
@@ -1427,6 +1427,8 @@ def _value_matches(workflow: str, left: Any, right: Any) -> bool:
 
 
 def _state_correct(workflow: str, parsed: dict[str, Any], node: dict[str, Any]) -> bool:
+    if not parsed.get("valid", False):
+        return False
     if node["truth_state"] == "unknown":
         return parsed.get("knowledge") == "unknown" and parsed.get("value") is None
     return parsed.get("knowledge") == "known" and _value_matches(

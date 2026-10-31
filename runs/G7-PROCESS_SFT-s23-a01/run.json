@@ -1,0 +1,1617 @@
+{
+  "attempt_id": "G7-PROCESS_SFT-s23-a01",
+  "protocol_id": "g7-pointer-policy-v1",
+  "task_prompt_version": "g7-pointer-prompt-v1",
+  "arm": "PROCESS_SFT",
+  "seed": 23,
+  "status": "completed",
+  "started_at": "2026-10-31 14:32:19 CST",
+  "pid": 1421526,
+  "device": "cuda:0",
+  "gpu_inventory_start": {
+    "nvidia_smi": [
+      "0, NVIDIA A800-SXM4-80GB, 25557 MiB, 81920 MiB, 99 %",
+      "1, NVIDIA A800-SXM4-80GB, 28443 MiB, 81920 MiB, 99 %",
+      "2, NVIDIA A800-SXM4-80GB, 74322 MiB, 81920 MiB, 0 %",
+      "3, NVIDIA A800-SXM4-80GB, 74320 MiB, 81920 MiB, 0 %",
+      "4, NVIDIA A800-SXM4-80GB, 31043 MiB, 81920 MiB, 99 %",
+      "5, NVIDIA A800-SXM4-80GB, 57257 MiB, 81920 MiB, 99 %",
+      "6, NVIDIA A800-SXM4-80GB, 47433 MiB, 81920 MiB, 99 %",
+      "7, NVIDIA A800-SXM4-80GB, 13660 MiB, 81920 MiB, 29 %"
+    ]
+  },
+  "model": {
+    "snapshot": "/data4/sjj/.cache/modelscope/models/Qwen--Qwen3-4B-Instruct-2507/snapshots/2de2439ea21be1dc5cb21f22f88af07e43393cbb",
+    "dtype": "bfloat16",
+    "lora": {
+      "r": 16,
+      "alpha": 32,
+      "dropout": 0.0,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "init": "zero lora_B (standard SFT)",
+      "init_std": 0.0,
+      "init_seed": 23
+    },
+    "kl_reference": "not applicable (SFT)"
+  },
+  "data": {
+    "cases": "/data4/sjj/catelogue/process_reward/data/g7_process/cases.jsonl",
+    "manifest": "/data4/sjj/catelogue/process_reward/data/g7_process/manifest.json",
+    "manifest_sha256": "a50f26a9350a422ed8b89d3b17c874526a5ef5ecbb13799486d7ee3e5a1dde6e",
+    "cases_sha256": "b8fbde0f7ff8a40479d36c8603265fda8ca32e4990b8870a5e37911b3b5f850a"
+  },
+  "training": {
+    "updates": 128,
+    "families_per_update": 4,
+    "group_size": 4,
+    "sft_lr": 0.0001,
+    "rl_lr": 1e-05,
+    "kl_coef": null,
+    "clip_eps": 0.2,
+    "sft_examples_total": 3072,
+    "sft_examples_per_update": 24,
+    "sft_micro_batch": 1,
+    "updates_completed": 128,
+    "sft_samples_seen": 3072,
+    "sft_tokens_seen": 1243145,
+    "sft_action_tokens": 3072,
+    "sft_action_token_only": true,
+    "kl_reference": "not applicable (SFT)"
+  },
+  "dev_curve": [
+    {
+      "n_records": 124,
+      "n_families": 32,
+      "N": {
+        "utility": {
+          "mean": -0.3125,
+          "n": 32,
+          "ci95": [
+            -6.4375,
+            5.8125
+          ]
+        },
+        "success": {
+          "mean": 0.75,
+          "n": 32,
+          "ci95": [
+            0.59375,
+            0.90625
+          ]
+        },
+        "wrong_side_effect": {
+          "mean": 0.25,
+          "n": 32,
+          "ci95": [
+            0.09375,
+            0.40625
+          ]
+        },
+        "tool_error": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "abort": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "queries": {
+          "mean": 0.3125,
+          "n": 32,
+          "ci95": [
+            0.15625,
+            0.46875
+          ]
+        },
+        "process_support": {
+          "mean": 0.8880208333333334,
+          "n": 32,
+          "ci95": [
+            0.828125,
+            0.9427083333333334
+          ]
+        },
+        "final_correct": {
+          "mean": 0.75,
+          "n": 32,
+          "ci95": [
+            0.59375,
+            0.90625
+          ]
+        },
+        "process_reward": {
+          "mean": 0.3567708333333333,
+          "n": 32,
+          "ci95": [
+            -0.3114583333333334,
+            1.0171875
+          ]
+        },
+        "outcome_reward": {
+          "mean": -0.031249999999999993,
+          "n": 32,
+          "ci95": [
+            -0.64375,
+            0.58125
+          ]
+        },
+        "utility_by_cell": {
+          "all": {
+            "mean": -0.3125,
+            "n": 32,
+            "ci95": [
+              -6.4375,
+              5.8125
+            ]
+          },
+          "iid": {
+            "mean": 4.5,
+            "n": 16,
+            "ci95": [
+              -2.9375,
+              9.5
+            ]
+          },
+          "composition": {
+            "mean": -5.125,
+            "n": 16,
+            "ci95": [
+              -15.0625,
+              4.75
+            ]
+          },
+          "contact": {
+            "mean": 2.25,
+            "n": 16,
+            "ci95": [
+              -5.3125,
+              9.6875
+            ]
+          },
+          "reminder": {
+            "mean": -2.875,
+            "n": 16,
+            "ci95": [
+              -12.6875,
+              4.6875
+            ]
+          },
+          "length2": {
+            "mean": 4.375,
+            "n": 8,
+            "ci95": [
+              -5.5,
+              9.5
+            ]
+          },
+          "length4": {
+            "mean": 4.625,
+            "n": 8,
+            "ci95": [
+              -5.375,
+              9.875
+            ]
+          },
+          "length6": {
+            "mean": -5.125,
+            "n": 16,
+            "ci95": [
+              -15.0625,
+              4.75
+            ]
+          },
+          "initial_known": {
+            "mean": -2.8125,
+            "n": 16,
+            "ci95": [
+              -12.6875,
+              6.875
+            ]
+          },
+          "initial_unknown": {
+            "mean": 2.1875,
+            "n": 16,
+            "ci95": [
+              -5.3125,
+              9.5625
+            ]
+          }
+        }
+      },
+      "J": {
+        "utility": {
+          "mean": 4.5625,
+          "n": 32,
+          "ci95": [
+            -0.375,
+            8.34375
+          ]
+        },
+        "success": {
+          "mean": 0.875,
+          "n": 32,
+          "ci95": [
+            0.75,
+            0.96875
+          ]
+        },
+        "wrong_side_effect": {
+          "mean": 0.125,
+          "n": 32,
+          "ci95": [
+            0.03125,
+            0.25
+          ]
+        },
+        "tool_error": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "abort": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "queries": {
+          "mean": 0.4375,
+          "n": 32,
+          "ci95": [
+            0.28125,
+            0.59375
+          ]
+        },
+        "process_support": {
+          "mean": 0.9583333333333334,
+          "n": 32,
+          "ci95": [
+            0.9166666666666666,
+            0.9947916666666666
+          ]
+        },
+        "final_correct": {
+          "mean": 0.875,
+          "n": 32,
+          "ci95": [
+            0.75,
+            0.96875
+          ]
+        },
+        "process_reward": {
+          "mean": 0.9145833333333333,
+          "n": 32,
+          "ci95": [
+            0.38020833333333326,
+            1.3260416666666666
+          ]
+        },
+        "outcome_reward": {
+          "mean": 0.45625,
+          "n": 32,
+          "ci95": [
+            -0.03749999999999999,
+            0.834375
+          ]
+        },
+        "utility_by_cell": {
+          "all": {
+            "mean": 4.5625,
+            "n": 32,
+            "ci95": [
+              -0.375,
+              8.34375
+            ]
+          },
+          "iid": {
+            "mean": 6.9375,
+            "n": 16,
+            "ci95": [
+              1.875,
+              9.5625
+            ]
+          },
+          "composition": {
+            "mean": 2.1875,
+            "n": 16,
+            "ci95": [
+              -5.25,
+              9.5625
+            ]
+          },
+          "contact": {
+            "mean": 7.125,
+            "n": 16,
+            "ci95": [
+              2.0625,
+              9.75
+            ]
+          },
+          "reminder": {
+            "mean": 2.0,
+            "n": 16,
+            "ci95": [
+              -5.4375,
+              9.3125
+            ]
+          },
+          "length2": {
+            "mean": 4.375,
+            "n": 8,
+            "ci95": [
+              -5.5,
+              9.5
+            ]
+          },
+          "length4": {
+            "mean": 9.5,
+            "n": 8,
+            "ci95": [
+              9.125,
+              9.875
+            ]
+          },
+          "length6": {
+            "mean": 2.1875,
+            "n": 16,
+            "ci95": [
+              -5.25,
+              9.5625
+            ]
+          },
+          "initial_known": {
+            "mean": -0.375,
+            "n": 16,
+            "ci95": [
+              -10.1875,
+              7.125
+            ]
+          },
+          "initial_unknown": {
+            "mean": 9.5,
+            "n": 16,
+            "ci95": [
+              9.25,
+              9.75
+            ]
+          }
+        }
+      },
+      "step_diagnostics_N": {
+        "F": {
+          "correct": 72,
+          "total": 72,
+          "rate": 1.0
+        },
+        "O": {
+          "correct": 61,
+          "total": 73,
+          "rate": 0.8356164383561644
+        },
+        "S": {
+          "correct": 53,
+          "total": 61,
+          "rate": 0.8688524590163934
+        },
+        "U": {
+          "correct": 60,
+          "total": 78,
+          "rate": 0.7692307692307693
+        }
+      },
+      "final_event_diagnostics_N": {
+        "F": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "O": {
+          "correct": 12,
+          "total": 18,
+          "rate": 0.6666666666666666
+        },
+        "S": {
+          "correct": 12,
+          "total": 16,
+          "rate": 0.75
+        },
+        "U": {
+          "correct": 10,
+          "total": 16,
+          "rate": 0.625
+        }
+      },
+      "update": 32,
+      "n_errors": 0
+    },
+    {
+      "n_records": 124,
+      "n_families": 32,
+      "N": {
+        "utility": {
+          "mean": 5.78125,
+          "n": 32,
+          "ci95": [
+            0.9375,
+            9.46875
+          ]
+        },
+        "success": {
+          "mean": 0.90625,
+          "n": 32,
+          "ci95": [
+            0.78125,
+            1.0
+          ]
+        },
+        "wrong_side_effect": {
+          "mean": 0.09375,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.21875
+          ]
+        },
+        "tool_error": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "abort": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "queries": {
+          "mean": 0.46875,
+          "n": 32,
+          "ci95": [
+            0.28125,
+            0.625
+          ]
+        },
+        "process_support": {
+          "mean": 0.9583333333333334,
+          "n": 32,
+          "ci95": [
+            0.9166666666666666,
+            0.9947916666666666
+          ]
+        },
+        "final_correct": {
+          "mean": 0.90625,
+          "n": 32,
+          "ci95": [
+            0.78125,
+            1.0
+          ]
+        },
+        "process_reward": {
+          "mean": 1.0364583333333333,
+          "n": 32,
+          "ci95": [
+            0.50625,
+            1.4416666666666667
+          ]
+        },
+        "outcome_reward": {
+          "mean": 0.578125,
+          "n": 32,
+          "ci95": [
+            0.09375,
+            0.946875
+          ]
+        },
+        "utility_by_cell": {
+          "all": {
+            "mean": 5.78125,
+            "n": 32,
+            "ci95": [
+              0.9375,
+              9.46875
+            ]
+          },
+          "iid": {
+            "mean": 9.375,
+            "n": 16,
+            "ci95": [
+              9.1875,
+              9.625
+            ]
+          },
+          "composition": {
+            "mean": 2.1875,
+            "n": 16,
+            "ci95": [
+              -5.375,
+              9.5625
+            ]
+          },
+          "contact": {
+            "mean": 7.125,
+            "n": 16,
+            "ci95": [
+              2.0625,
+              9.75
+            ]
+          },
+          "reminder": {
+            "mean": 4.4375,
+            "n": 16,
+            "ci95": [
+              -2.9375,
+              9.4375
+            ]
+          },
+          "length2": {
+            "mean": 9.25,
+            "n": 8,
+            "ci95": [
+              9.0,
+              9.625
+            ]
+          },
+          "length4": {
+            "mean": 9.5,
+            "n": 8,
+            "ci95": [
+              9.125,
+              9.875
+            ]
+          },
+          "length6": {
+            "mean": 2.1875,
+            "n": 16,
+            "ci95": [
+              -5.375,
+              9.5625
+            ]
+          },
+          "initial_known": {
+            "mean": 2.0625,
+            "n": 16,
+            "ci95": [
+              -5.4375,
+              9.375
+            ]
+          },
+          "initial_unknown": {
+            "mean": 9.5,
+            "n": 16,
+            "ci95": [
+              9.25,
+              9.75
+            ]
+          }
+        }
+      },
+      "J": {
+        "utility": {
+          "mean": 9.375,
+          "n": 32,
+          "ci95": [
+            9.21875,
+            9.53125
+          ]
+        },
+        "success": {
+          "mean": 1.0,
+          "n": 32,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "wrong_side_effect": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "tool_error": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "abort": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "queries": {
+          "mean": 0.625,
+          "n": 32,
+          "ci95": [
+            0.4375,
+            0.78125
+          ]
+        },
+        "process_support": {
+          "mean": 0.9895833333333334,
+          "n": 32,
+          "ci95": [
+            0.9739583333333334,
+            1.0
+          ]
+        },
+        "final_correct": {
+          "mean": 0.9375,
+          "n": 32,
+          "ci95": [
+            0.84375,
+            1.0
+          ]
+        },
+        "process_reward": {
+          "mean": 1.4270833333333333,
+          "n": 32,
+          "ci95": [
+            1.4020833333333333,
+            1.4510416666666666
+          ]
+        },
+        "outcome_reward": {
+          "mean": 0.9375,
+          "n": 32,
+          "ci95": [
+            0.921875,
+            0.953125
+          ]
+        },
+        "utility_by_cell": {
+          "all": {
+            "mean": 9.375,
+            "n": 32,
+            "ci95": [
+              9.21875,
+              9.53125
+            ]
+          },
+          "iid": {
+            "mean": 9.375,
+            "n": 16,
+            "ci95": [
+              9.1875,
+              9.625
+            ]
+          },
+          "composition": {
+            "mean": 9.375,
+            "n": 16,
+            "ci95": [
+              9.125,
+              9.625
+            ]
+          },
+          "contact": {
+            "mean": 9.5,
+            "n": 16,
+            "ci95": [
+              9.25,
+              9.75
+            ]
+          },
+          "reminder": {
+            "mean": 9.25,
+            "n": 16,
+            "ci95": [
+              9.0625,
+              9.5
+            ]
+          },
+          "length2": {
+            "mean": 9.25,
+            "n": 8,
+            "ci95": [
+              9.0,
+              9.625
+            ]
+          },
+          "length4": {
+            "mean": 9.5,
+            "n": 8,
+            "ci95": [
+              9.125,
+              9.875
+            ]
+          },
+          "length6": {
+            "mean": 9.375,
+            "n": 16,
+            "ci95": [
+              9.125,
+              9.625
+            ]
+          },
+          "initial_known": {
+            "mean": 9.375,
+            "n": 16,
+            "ci95": [
+              9.125,
+              9.625
+            ]
+          },
+          "initial_unknown": {
+            "mean": 9.375,
+            "n": 16,
+            "ci95": [
+              9.125,
+              9.625
+            ]
+          }
+        }
+      },
+      "step_diagnostics_N": {
+        "F": {
+          "correct": 72,
+          "total": 72,
+          "rate": 1.0
+        },
+        "O": {
+          "correct": 71,
+          "total": 73,
+          "rate": 0.9726027397260274
+        },
+        "S": {
+          "correct": 55,
+          "total": 61,
+          "rate": 0.9016393442622951
+        },
+        "U": {
+          "correct": 70,
+          "total": 78,
+          "rate": 0.8974358974358975
+        }
+      },
+      "final_event_diagnostics_N": {
+        "F": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "O": {
+          "correct": 16,
+          "total": 18,
+          "rate": 0.8888888888888888
+        },
+        "S": {
+          "correct": 12,
+          "total": 16,
+          "rate": 0.75
+        },
+        "U": {
+          "correct": 16,
+          "total": 16,
+          "rate": 1.0
+        }
+      },
+      "update": 64,
+      "n_errors": 0
+    },
+    {
+      "n_records": 124,
+      "n_families": 32,
+      "N": {
+        "utility": {
+          "mean": 4.5625,
+          "n": 32,
+          "ci95": [
+            -0.34375,
+            8.34375
+          ]
+        },
+        "success": {
+          "mean": 0.875,
+          "n": 32,
+          "ci95": [
+            0.75,
+            0.96875
+          ]
+        },
+        "wrong_side_effect": {
+          "mean": 0.125,
+          "n": 32,
+          "ci95": [
+            0.03125,
+            0.25
+          ]
+        },
+        "tool_error": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "abort": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "queries": {
+          "mean": 0.4375,
+          "n": 32,
+          "ci95": [
+            0.28125,
+            0.59375
+          ]
+        },
+        "process_support": {
+          "mean": 0.9479166666666666,
+          "n": 32,
+          "ci95": [
+            0.9010416666666666,
+            0.984375
+          ]
+        },
+        "final_correct": {
+          "mean": 0.875,
+          "n": 32,
+          "ci95": [
+            0.75,
+            0.96875
+          ]
+        },
+        "process_reward": {
+          "mean": 0.9041666666666667,
+          "n": 32,
+          "ci95": [
+            0.36979166666666663,
+            1.3177083333333333
+          ]
+        },
+        "outcome_reward": {
+          "mean": 0.45625,
+          "n": 32,
+          "ci95": [
+            -0.03437499999999999,
+            0.834375
+          ]
+        },
+        "utility_by_cell": {
+          "all": {
+            "mean": 4.5625,
+            "n": 32,
+            "ci95": [
+              -0.34375,
+              8.34375
+            ]
+          },
+          "iid": {
+            "mean": 9.375,
+            "n": 16,
+            "ci95": [
+              9.1875,
+              9.625
+            ]
+          },
+          "composition": {
+            "mean": -0.25,
+            "n": 16,
+            "ci95": [
+              -10.0625,
+              7.25
+            ]
+          },
+          "contact": {
+            "mean": 7.125,
+            "n": 16,
+            "ci95": [
+              2.0625,
+              9.75
+            ]
+          },
+          "reminder": {
+            "mean": 2.0,
+            "n": 16,
+            "ci95": [
+              -5.4375,
+              9.25
+            ]
+          },
+          "length2": {
+            "mean": 9.25,
+            "n": 8,
+            "ci95": [
+              9.0,
+              9.625
+            ]
+          },
+          "length4": {
+            "mean": 9.5,
+            "n": 8,
+            "ci95": [
+              9.125,
+              9.875
+            ]
+          },
+          "length6": {
+            "mean": -0.25,
+            "n": 16,
+            "ci95": [
+              -10.0625,
+              7.25
+            ]
+          },
+          "initial_known": {
+            "mean": 2.0625,
+            "n": 16,
+            "ci95": [
+              -5.4375,
+              9.375
+            ]
+          },
+          "initial_unknown": {
+            "mean": 7.0625,
+            "n": 16,
+            "ci95": [
+              2.0,
+              9.75
+            ]
+          }
+        }
+      },
+      "J": {
+        "utility": {
+          "mean": 9.40625,
+          "n": 32,
+          "ci95": [
+            9.25,
+            9.5625
+          ]
+        },
+        "success": {
+          "mean": 1.0,
+          "n": 32,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "wrong_side_effect": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "tool_error": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "abort": {
+          "mean": 0.0,
+          "n": 32,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "queries": {
+          "mean": 0.59375,
+          "n": 32,
+          "ci95": [
+            0.4375,
+            0.75
+          ]
+        },
+        "process_support": {
+          "mean": 0.9947916666666666,
+          "n": 32,
+          "ci95": [
+            0.984375,
+            1.0
+          ]
+        },
+        "final_correct": {
+          "mean": 0.96875,
+          "n": 32,
+          "ci95": [
+            0.90625,
+            1.0
+          ]
+        },
+        "process_reward": {
+          "mean": 1.4354166666666666,
+          "n": 32,
+          "ci95": [
+            1.4124999999999999,
+            1.4552083333333332
+          ]
+        },
+        "outcome_reward": {
+          "mean": 0.940625,
+          "n": 32,
+          "ci95": [
+            0.925,
+            0.95625
+          ]
+        },
+        "utility_by_cell": {
+          "all": {
+            "mean": 9.40625,
+            "n": 32,
+            "ci95": [
+              9.25,
+              9.5625
+            ]
+          },
+          "iid": {
+            "mean": 9.375,
+            "n": 16,
+            "ci95": [
+              9.1875,
+              9.625
+            ]
+          },
+          "composition": {
+            "mean": 9.4375,
+            "n": 16,
+            "ci95": [
+              9.1875,
+              9.6875
+            ]
+          },
+          "contact": {
+            "mean": 9.5,
+            "n": 16,
+            "ci95": [
+              9.25,
+              9.75
+            ]
+          },
+          "reminder": {
+            "mean": 9.3125,
+            "n": 16,
+            "ci95": [
+              9.125,
+              9.5625
+            ]
+          },
+          "length2": {
+            "mean": 9.25,
+            "n": 8,
+            "ci95": [
+              9.0,
+              9.625
+            ]
+          },
+          "length4": {
+            "mean": 9.5,
+            "n": 8,
+            "ci95": [
+              9.125,
+              9.875
+            ]
+          },
+          "length6": {
+            "mean": 9.4375,
+            "n": 16,
+            "ci95": [
+              9.1875,
+              9.6875
+            ]
+          },
+          "initial_known": {
+            "mean": 9.375,
+            "n": 16,
+            "ci95": [
+              9.125,
+              9.625
+            ]
+          },
+          "initial_unknown": {
+            "mean": 9.4375,
+            "n": 16,
+            "ci95": [
+              9.1875,
+              9.6875
+            ]
+          }
+        }
+      },
+      "step_diagnostics_N": {
+        "F": {
+          "correct": 72,
+          "total": 72,
+          "rate": 1.0
+        },
+        "O": {
+          "correct": 69,
+          "total": 73,
+          "rate": 0.9452054794520548
+        },
+        "S": {
+          "correct": 55,
+          "total": 61,
+          "rate": 0.9016393442622951
+        },
+        "U": {
+          "correct": 68,
+          "total": 78,
+          "rate": 0.8717948717948718
+        }
+      },
+      "final_event_diagnostics_N": {
+        "F": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "O": {
+          "correct": 16,
+          "total": 18,
+          "rate": 0.8888888888888888
+        },
+        "S": {
+          "correct": 12,
+          "total": 16,
+          "rate": 0.75
+        },
+        "U": {
+          "correct": 14,
+          "total": 16,
+          "rate": 0.875
+        }
+      },
+      "update": 128,
+      "n_errors": 0
+    }
+  ],
+  "test": {
+    "n_records": 974,
+    "n_families": 256,
+    "N": {
+      "utility": {
+        "mean": 7.2109375,
+        "n": 256,
+        "ci95": [
+          5.99609375,
+          8.31640625
+        ]
+      },
+      "success": {
+        "mean": 0.94140625,
+        "n": 256,
+        "ci95": [
+          0.91015625,
+          0.96875
+        ]
+      },
+      "wrong_side_effect": {
+        "mean": 0.05859375,
+        "n": 256,
+        "ci95": [
+          0.03125,
+          0.08984375
+        ]
+      },
+      "tool_error": {
+        "mean": 0.0,
+        "n": 256,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "abort": {
+        "mean": 0.0,
+        "n": 256,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "queries": {
+        "mean": 0.4453125,
+        "n": 256,
+        "ci95": [
+          0.38671875,
+          0.5078125
+        ]
+      },
+      "process_support": {
+        "mean": 0.9807942708333334,
+        "n": 256,
+        "ci95": [
+          0.9729817708333334,
+          0.9879557291666666
+        ]
+      },
+      "final_correct": {
+        "mean": 0.94140625,
+        "n": 256,
+        "ci95": [
+          0.91015625,
+          0.96875
+        ]
+      },
+      "process_reward": {
+        "mean": 1.2018880208333333,
+        "n": 256,
+        "ci95": [
+          1.0736328124999999,
+          1.3184895833333332
+        ]
+      },
+      "outcome_reward": {
+        "mean": 0.72109375,
+        "n": 256,
+        "ci95": [
+          0.599609375,
+          0.831640625
+        ]
+      },
+      "utility_by_cell": {
+        "all": {
+          "mean": 7.2109375,
+          "n": 256,
+          "ci95": [
+            5.99609375,
+            8.31640625
+          ]
+        },
+        "iid": {
+          "mean": 9.1875,
+          "n": 128,
+          "ci95": [
+            8.5,
+            9.5625
+          ]
+        },
+        "composition": {
+          "mean": 5.234375,
+          "n": 128,
+          "ci95": [
+            3.0390625,
+            7.3515625
+          ]
+        },
+        "contact": {
+          "mean": 9.5234375,
+          "n": 128,
+          "ci95": [
+            9.4375,
+            9.609375
+          ]
+        },
+        "reminder": {
+          "mean": 4.8984375,
+          "n": 128,
+          "ci95": [
+            2.4765625,
+            7.0703125
+          ]
+        },
+        "length2": {
+          "mean": 9.46875,
+          "n": 64,
+          "ci95": [
+            9.34375,
+            9.59375
+          ]
+        },
+        "length4": {
+          "mean": 8.90625,
+          "n": 64,
+          "ci95": [
+            7.59375,
+            9.625
+          ]
+        },
+        "length6": {
+          "mean": 5.234375,
+          "n": 128,
+          "ci95": [
+            3.0390625,
+            7.3515625
+          ]
+        },
+        "initial_known": {
+          "mean": 7.046875,
+          "n": 128,
+          "ci95": [
+            5.1875,
+            8.578125
+          ]
+        },
+        "initial_unknown": {
+          "mean": 7.375,
+          "n": 128,
+          "ci95": [
+            5.5625,
+            8.890625
+          ]
+        }
+      }
+    },
+    "J": {
+      "utility": {
+        "mean": 9.484375,
+        "n": 256,
+        "ci95": [
+          9.421875,
+          9.546875
+        ]
+      },
+      "success": {
+        "mean": 1.0,
+        "n": 256,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "wrong_side_effect": {
+        "mean": 0.0,
+        "n": 256,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "tool_error": {
+        "mean": 0.0,
+        "n": 256,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "abort": {
+        "mean": 0.0,
+        "n": 256,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "queries": {
+        "mean": 0.515625,
+        "n": 256,
+        "ci95": [
+          0.453125,
+          0.578125
+        ]
+      },
+      "process_support": {
+        "mean": 0.9970703125,
+        "n": 256,
+        "ci95": [
+          0.9938151041666666,
+          0.9993489583333334
+        ]
+      },
+      "final_correct": {
+        "mean": 0.98828125,
+        "n": 256,
+        "ci95": [
+          0.97265625,
+          1.0
+        ]
+      },
+      "process_reward": {
+        "mean": 1.4455078125,
+        "n": 256,
+        "ci95": [
+          1.43828125,
+          1.4524088541666667
+        ]
+      },
+      "outcome_reward": {
+        "mean": 0.9484375,
+        "n": 256,
+        "ci95": [
+          0.9421875000000001,
+          0.9546875
+        ]
+      },
+      "utility_by_cell": {
+        "all": {
+          "mean": 9.484375,
+          "n": 256,
+          "ci95": [
+            9.421875,
+            9.546875
+          ]
+        },
+        "iid": {
+          "mean": 9.4921875,
+          "n": 128,
+          "ci95": [
+            9.40625,
+            9.578125
+          ]
+        },
+        "composition": {
+          "mean": 9.4765625,
+          "n": 128,
+          "ci95": [
+            9.390625,
+            9.5625
+          ]
+        },
+        "contact": {
+          "mean": 9.5,
+          "n": 128,
+          "ci95": [
+            9.4140625,
+            9.5859375
+          ]
+        },
+        "reminder": {
+          "mean": 9.46875,
+          "n": 128,
+          "ci95": [
+            9.3828125,
+            9.5546875
+          ]
+        },
+        "length2": {
+          "mean": 9.46875,
+          "n": 64,
+          "ci95": [
+            9.34375,
+            9.59375
+          ]
+        },
+        "length4": {
+          "mean": 9.515625,
+          "n": 64,
+          "ci95": [
+            9.390625,
+            9.640625
+          ]
+        },
+        "length6": {
+          "mean": 9.4765625,
+          "n": 128,
+          "ci95": [
+            9.390625,
+            9.5625
+          ]
+        },
+        "initial_known": {
+          "mean": 9.484375,
+          "n": 128,
+          "ci95": [
+            9.3984375,
+            9.5703125
+          ]
+        },
+        "initial_unknown": {
+          "mean": 9.484375,
+          "n": 128,
+          "ci95": [
+            9.3984375,
+            9.5703125
+          ]
+        }
+      }
+    },
+    "step_diagnostics_N": {
+      "F": {
+        "correct": 623,
+        "total": 623,
+        "rate": 1.0
+      },
+      "O": {
+        "correct": 518,
+        "total": 524,
+        "rate": 0.9885496183206107
+      },
+      "S": {
+        "correct": 427,
+        "total": 443,
+        "rate": 0.963882618510158
+      },
+      "U": {
+        "correct": 628,
+        "total": 664,
+        "rate": 0.9457831325301205
+      }
+    },
+    "final_event_diagnostics_N": {
+      "F": {
+        "correct": 99,
+        "total": 99,
+        "rate": 1.0
+      },
+      "O": {
+        "correct": 148,
+        "total": 154,
+        "rate": 0.961038961038961
+      },
+      "S": {
+        "correct": 108,
+        "total": 114,
+        "rate": 0.9473684210526315
+      },
+      "U": {
+        "correct": 102,
+        "total": 120,
+        "rate": 0.85
+      }
+    },
+    "phase_seconds": 391.1282379627228,
+    "n_predictions": 974
+  },
+  "adapter": {
+    "path": "/data4/sjj/catelogue/process_reward/runs/G7-PROCESS_SFT-s23-a01/adapter",
+    "files": {
+      "README.md": 5384,
+      "adapter_config.json": 949,
+      "adapter_model.safetensors": 23612264
+    },
+    "bytes": 23618597,
+    "within_128MiB": true
+  },
+  "cost": {
+    "started_unix": 1793428339.4361212,
+    "worker_calls": 607,
+    "model_calls": 9284,
+    "input_tokens": 4191623,
+    "eval_started_unix": 1793429334.2597816,
+    "eval_seconds": 391.1299407482147,
+    "wall_seconds": 1385.9537150859833,
+    "gpu_hours": 0.3849871430794398
+  },
+  "errors": [],
+  "notes": {
+    "main_comparison": "composition test native utility PROCESS - OUTCOME",
+    "test_used_only_final": true,
+    "checkpoint_rule": "no optimizer/RNG/tokenizer/checkpoint copies; only final adapter"
+  },
+  "finished_at": "2026-10-31 14:55:25 CST",
+  "gpu_inventory_end": {
+    "nvidia_smi": [
+      "0, NVIDIA A800-SXM4-80GB, 67603 MiB, 81920 MiB, 100 %",
+      "1, NVIDIA A800-SXM4-80GB, 49501 MiB, 81920 MiB, 99 %",
+      "2, NVIDIA A800-SXM4-80GB, 74322 MiB, 81920 MiB, 0 %",
+      "3, NVIDIA A800-SXM4-80GB, 74320 MiB, 81920 MiB, 0 %",
+      "4, NVIDIA A800-SXM4-80GB, 31043 MiB, 81920 MiB, 99 %",
+      "5, NVIDIA A800-SXM4-80GB, 61079 MiB, 81920 MiB, 99 %",
+      "6, NVIDIA A800-SXM4-80GB, 29765 MiB, 81920 MiB, 99 %",
+      "7, NVIDIA A800-SXM4-80GB, 65315 MiB, 81920 MiB, 100 %"
+    ]
+  }
+}
